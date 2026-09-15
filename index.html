@@ -6,7 +6,7 @@
   <title>FITCORE - Smart Diet & Workout</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js for 体重・体脂肪率推移グラフ -->
+  <!-- Chart.js for グラフ -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     tailwind.config = {
@@ -40,6 +40,7 @@
 </head>
 <body class="min-h-screen pb-24 md:pb-12 text-textPrimary">
 
+  <!-- ==================== ヘッダー ==================== -->
   <header class="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 transition-all">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
@@ -68,42 +69,56 @@
     </div>
   </header>
 
+  <!-- ==================== メインコンテンツ ==================== -->
   <main class="max-w-5xl mx-auto px-4 pt-6 space-y-6">
 
+    <!-- ナビゲーションタブ（ダッシュボード、食事PFC、筋トレ、レポートの順） -->
     <div class="bg-gray-200/70 p-1 rounded-2xl flex max-w-xl mx-auto shadow-inner text-xs sm:text-sm font-medium">
       <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn flex-1 py-2 text-center rounded-xl bg-white font-bold text-deepGreen shadow-sm transition-all">
         ダッシュボード
       </button>
-      <button onclick="switchTab('workout')" id="tab-workout" class="tab-btn flex-1 py-2 text-center rounded-xl text-textSecondary hover:text-textPrimary transition-all">
-        筋トレ・運動
-      </button>
       <button onclick="switchTab('diet')" id="tab-diet" class="tab-btn flex-1 py-2 text-center rounded-xl text-textSecondary hover:text-textPrimary transition-all">
         食事・PFC
+      </button>
+      <button onclick="switchTab('workout')" id="tab-workout" class="tab-btn flex-1 py-2 text-center rounded-xl text-textSecondary hover:text-textPrimary transition-all">
+        筋トレ・運動
       </button>
       <button onclick="switchTab('progress')" id="tab-progress" class="tab-btn flex-1 py-2 text-center rounded-xl text-textSecondary hover:text-textPrimary transition-all">
         推移・レポート
       </button>
     </div>
 
+    <!-- ==================== TAB 1: ダッシュボード ==================== -->
     <section id="section-dashboard" class="space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <div class="bg-cardBg p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
+        <!-- カロリー収支カード（摂取カロリーを目立つように配置） -->
+        <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">カロリーバランス</span>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-deepGreenLight text-deepGreen font-medium" id="goalTypeText">減量モード</span>
+            <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">本日のカロリー収支</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold" id="goalTypeText">減量モード</span>
           </div>
-          <div class="my-3">
-            <div class="flex items-baseline space-x-2">
-              <span class="text-3xl font-extrabold text-textPrimary" id="caloriesRemaining">0</span>
-              <span class="text-sm font-medium text-textSecondary">kcal 残り</span>
+          <div class="my-2">
+            <!-- 残り許容カロリーを上部に配置 -->
+            <div class="flex items-center justify-between bg-gray-50 px-4 py-2.5 rounded-xl border border-gray-100 text-xs font-semibold mb-3">
+              <span class="text-textSecondary">残り許容カロリー</span>
+              <span class="text-sm font-extrabold text-textPrimary"><span id="caloriesRemaining">0</span> kcal</span>
             </div>
-            <div class="w-full bg-gray-100 h-2.5 rounded-full mt-2 overflow-hidden">
+
+            <!-- 摂取カロリーを下部に大きく強調表示 -->
+            <div class="bg-deepGreenLight/30 p-4 rounded-2xl border border-deepGreen/15 text-center">
+              <span class="text-xs font-bold text-deepGreen uppercase tracking-wider block mb-0.5">本日の摂取カロリー</span>
+              <div class="flex items-baseline justify-center space-x-1">
+                <span class="text-4xl sm:text-5xl font-black text-deepGreen tracking-tight" id="caloriesConsumedText">0</span>
+                <span class="text-base font-bold text-deepGreen">kcal</span>
+              </div>
+              <div class="text-[11px] text-textSecondary mt-1 font-medium">
+                目標上限: <span id="targetCaloriesText" class="font-bold text-textPrimary">0</span> kcal
+              </div>
+            </div>
+
+            <div class="w-full bg-gray-100 h-2.5 rounded-full mt-3 overflow-hidden">
               <div id="calorieProgressBar" class="bg-deepGreen h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
-            </div>
-            <div class="flex justify-between text-xs text-textSecondary mt-1.5">
-              <span>摂取: <b id="caloriesConsumedText">0</b> kcal</span>
-              <span>目標: <b id="targetCaloriesText">0</b> kcal</span>
             </div>
           </div>
           <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100 text-center">
@@ -122,6 +137,7 @@
           </div>
         </div>
 
+        <!-- 水分補給トラッカーカード (100ml / 500mlボタン) -->
         <div class="bg-cardBg p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">水分補給トラッカー</span>
@@ -137,8 +153,8 @@
             <p class="text-xs text-textSecondary mt-1">達成度: <span id="waterPercentText" class="font-bold text-blue-600">0%</span></p>
           </div>
           <div class="flex space-x-2 pt-3 border-t border-gray-100">
-            <button onclick="addWater(200)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition">
-              +200ml
+            <button onclick="addWater(100)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition">
+              +100ml
             </button>
             <button onclick="addWater(500)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition shadow-xs">
               +500ml
@@ -146,6 +162,7 @@
           </div>
         </div>
 
+        <!-- 本日のワークアウトカード -->
         <div class="bg-cardBg p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
@@ -170,6 +187,7 @@
         </div>
       </div>
 
+      <!-- 身体情報・目標設定セクション -->
       <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
         <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('profile-setting-content')">
           <div class="flex items-center space-x-3">
@@ -281,46 +299,7 @@
       </div>
     </section>
 
-    <section id="section-workout" class="hidden space-y-6">
-      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-          <div>
-            <h2 class="text-lg font-bold text-textPrimary">おまかせ筋トレメニュー生成</h2>
-            <p class="text-xs text-textSecondary mt-0.5">初心者でも器具なし・自宅でできる自重トレーニング</p>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <select id="filterGoal" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
-              <option value="belly">目的: お腹・下腹部引き締め</option>
-              <option value="legs">目的: 太もも・美脚・ヒップ</option>
-              <option value="upper">目的: 二の腕・背中・姿勢改善</option>
-              <option value="full" selected>目的: 全身脂肪燃焼</option>
-            </select>
-            <select id="filterDuration" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
-              <option value="5">所要時間: 5分</option>
-              <option value="10" selected>所要時間: 10分</option>
-              <option value="15">所要時間: 15分</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="space-y-4" id="workoutListContainer"></div>
-
-        <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
-          <div class="text-xs text-textSecondary">
-            合計エクササイズ: <span id="totalExerciseCount" class="font-bold text-textPrimary">0種目</span>
-          </div>
-          <button onclick="openWorkoutSessionModal('custom')" class="px-6 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">
-            タイマー連動でスタート
-          </button>
-        </div>
-      </div>
-
-      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
-        <h3 class="text-base font-bold text-textPrimary mb-1">フォーム解説ガイド</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4" id="formGuideContainer"></div>
-      </div>
-    </section>
-
+    <!-- ==================== TAB 2: 食事・PFC ==================== -->
     <section id="section-diet" class="hidden space-y-6">
       <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100 space-y-4">
         <div class="flex items-center justify-between">
@@ -407,6 +386,48 @@
       </div>
     </section>
 
+    <!-- ==================== TAB 3: 筋トレ・運動 ==================== -->
+    <section id="section-workout" class="hidden space-y-6">
+      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <div>
+            <h2 class="text-lg font-bold text-textPrimary">おまかせ筋トレメニュー生成</h2>
+            <p class="text-xs text-textSecondary mt-0.5">初心者でも器具なし・自宅でできる自重トレーニング</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <select id="filterGoal" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
+              <option value="belly">目的: お腹・下腹部引き締め</option>
+              <option value="legs">目的: 太もも・美脚・ヒップ</option>
+              <option value="upper">目的: 二の腕・背中・姿勢改善</option>
+              <option value="full" selected>目的: 全身脂肪燃焼</option>
+            </select>
+            <select id="filterDuration" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
+              <option value="5">所要時間: 5分</option>
+              <option value="10" selected>所要時間: 10分</option>
+              <option value="15">所要時間: 15分</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-4" id="workoutListContainer"></div>
+
+        <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+          <div class="text-xs text-textSecondary">
+            合計エクササイズ: <span id="totalExerciseCount" class="font-bold text-textPrimary">0種目</span>
+          </div>
+          <button onclick="openWorkoutSessionModal('custom')" class="px-6 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">
+            タイマー連動でスタート
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
+        <h3 class="text-base font-bold text-textPrimary mb-1">フォーム解説ガイド</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4" id="formGuideContainer"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: 推移・レポート ==================== -->
     <section id="section-progress" class="hidden space-y-6">
       <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -437,6 +458,7 @@
 
   </main>
 
+  <!-- ==================== モーダル系 ==================== -->
   <div id="welcomeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative">
       <div class="text-center mb-5">
@@ -526,9 +548,7 @@
   </div>
 
   <script>
-    /* 総合食事メニューデータベース（カテゴリ分類付き） */
     const foodDB = [
-      /* 肉メイン (meat) */
       { name: "ハンバーグ（150g）", cal: 310, p: 20, f: 22, c: 8, cat: "meat" },
       { name: "ハンバーグステーキ（デミグラス・単品）", cal: 370, p: 22, f: 26, c: 12, cat: "meat" },
       { name: "チーズインハンバーグ（単品）", cal: 520, p: 26, f: 38, c: 18, cat: "meat" },
@@ -546,7 +566,6 @@
       { name: "サイコロステーキ（130g・単品）", cal: 360, p: 24, f: 28, c: 4, cat: "meat" },
       { name: "サーロインステーキ（200g・単品）", cal: 480, p: 38, f: 35, c: 3, cat: "meat" },
 
-      /* 魚メイン (fish) */
       { name: "鮭の塩焼き（1切れ）", cal: 179, p: 22, f: 10, c: 0.2, cat: "fish" },
       { name: "鮭のバター醤油焼き", cal: 240, p: 22, f: 16, c: 2, cat: "fish" },
       { name: "鯖の塩焼き（1切れ）", cal: 306, p: 20, f: 25, c: 0.2, cat: "fish" },
@@ -558,9 +577,8 @@
       { name: "いわしの梅煮 / 蒲焼き", cal: 212, p: 18, f: 12, c: 8, cat: "fish" },
       { name: "刺身盛り合わせ", cal: 140, p: 25, f: 4, c: 1, cat: "fish" },
 
-      /* 牛丼・丼もの・ご飯 (bowl) */
       { name: "牛丼（並盛）", cal: 650, p: 20, f: 24, c: 90, cat: "bowl" },
-      { name: "豚丼", cal: 620, p: 22, f: 20, c: 88, cat: "bowl" },
+      { name: "豚丼（並盛）", cal: 620, p: 22, f: 20, c: 88, cat: "bowl" },
       { name: "ねぎ玉牛丼（並盛）", cal: 720, p: 24, f: 28, c: 92, cat: "bowl" },
       { name: "チーズ牛丼（並盛）", cal: 810, p: 28, f: 38, c: 92, cat: "bowl" },
       { name: "キムチ牛丼（並盛）", cal: 680, p: 21, f: 24, c: 94, cat: "bowl" },
@@ -585,7 +603,6 @@
       { name: "ライス（小 / 100g）", cal: 156, p: 2.5, f: 0.3, c: 37, cat: "bowl" },
       { name: "ご飯（普通 / 200g）", cal: 312, p: 5.0, f: 0.6, c: 74, cat: "bowl" },
 
-      /* ドリア・グラタン・洋風一皿 (western) */
       { name: "マカロニグラタン", cal: 396, p: 16, f: 20, c: 38, cat: "western" },
       { name: "エビドリア", cal: 538, p: 20, f: 22, c: 65, cat: "western" },
       { name: "ミラノ風ドリア", cal: 300, p: 12, f: 14, c: 38, cat: "western" },
@@ -593,9 +610,7 @@
       { name: "ロールキャベツ（2個）", cal: 212, p: 14, f: 12, c: 12, cat: "western" },
       { name: "ビーフシチュー（単品）", cal: 385, p: 20, f: 25, c: 20, cat: "western" },
 
-      /* 中華・アジアンおかず (chinese) */
       { name: "焼き餃子（6個）", cal: 271, p: 12, f: 15, c: 22, cat: "chinese" },
-      { name: "焼き餃子（1人前・6個）", cal: 290, p: 12, f: 15, c: 28, cat: "chinese" },
       { name: "焼売（6個）", cal: 246, p: 12, f: 14, c: 18, cat: "chinese" },
       { name: "炒飯（チャーハン・普通盛）", cal: 620, p: 16, f: 20, c: 95, cat: "chinese" },
       { name: "五目チャーハン", cal: 542, p: 15, f: 18, c: 80, cat: "chinese" },
@@ -603,22 +618,22 @@
       { name: "天津飯（醤油/甘酢あん）", cal: 580, p: 18, f: 15, c: 92, cat: "chinese" },
       { name: "中華丼", cal: 564, p: 20, f: 16, c: 85, cat: "chinese" },
       { name: "麻婆豆腐", cal: 294, p: 16, f: 22, c: 8, cat: "chinese" },
-      { name: "麻婆豆腐（単品）", cal: 340, p: 18, f: 24, c: 12, cat: "chinese" },
       { name: "回鍋肉", cal: 338, p: 16, f: 26, c: 10, cat: "chinese" },
-      { name: "回鍋肉（ホイコーロー・単品）", cal: 390, p: 16, f: 30, c: 14, cat: "chinese" },
       { name: "青椒肉絲", cal: 284, p: 18, f: 20, c: 8, cat: "chinese" },
-      { name: "青椒肉絲（チンジャオロース・単品）", cal: 310, p: 18, f: 22, c: 10, cat: "chinese" },
       { name: "エビチリ", cal: 228, p: 14, f: 12, c: 16, cat: "chinese" },
-      { name: "エビのチリソース（単品）", cal: 250, p: 16, f: 12, c: 20, cat: "chinese" },
       { name: "エビマヨ", cal: 341, p: 15, f: 25, c: 14, cat: "chinese" },
       { name: "酢豚", cal: 370, p: 18, f: 22, c: 25, cat: "chinese" },
-      { name: "酢豚（単品）", cal: 420, p: 20, f: 25, c: 30, cat: "chinese" },
       { name: "ニラレバ炒め", cal: 228, p: 22, f: 12, c: 8, cat: "chinese" },
-      { name: "レバニラ炒め（単品）", cal: 270, p: 26, f: 14, c: 10, cat: "chinese" },
       { name: "豚ニラ玉炒め", cal: 290, p: 18, f: 22, c: 5, cat: "chinese" },
       { name: "油淋鶏", cal: 402, p: 24, f: 26, c: 18, cat: "chinese" },
+      { name: "焼き餃子（1人前・6個）", cal: 290, p: 12, f: 15, c: 28, cat: "chinese" },
+      { name: "麻婆豆腐（単品）", cal: 340, p: 18, f: 24, c: 12, cat: "chinese" },
+      { name: "回鍋肉（ホイコーロー・単品）", cal: 390, p: 16, f: 30, c: 14, cat: "chinese" },
+      { name: "青椒肉絲（チンジャオロース・単品）", cal: 310, p: 18, f: 22, c: 10, cat: "chinese" },
+      { name: "エビのチリソース（単品）", cal: 250, p: 16, f: 12, c: 20, cat: "chinese" },
+      { name: "酢豚（単品）", cal: 420, p: 20, f: 25, c: 30, cat: "chinese" },
+      { name: "レバニラ炒め（単品）", cal: 270, p: 26, f: 14, c: 10, cat: "chinese" },
 
-      /* ラーメン・麺類 (ramen) */
       { name: "醤油ラーメン", cal: 460, p: 18, f: 12, c: 70, cat: "ramen" },
       { name: "塩ラーメン", cal: 420, p: 16, f: 10, c: 66, cat: "ramen" },
       { name: "味噌ラーメン", cal: 550, p: 22, f: 18, c: 75, cat: "ramen" },
@@ -630,11 +645,11 @@
       { name: "油そば / まぜそば（普通盛）", cal: 730, p: 20, f: 32, c: 90, cat: "ramen" },
       { name: "汁なし担々麺", cal: 703, p: 22, f: 35, c: 75, cat: "ramen" },
       { name: "家系ラーメン（豚骨醤油 / 標準）", cal: 727, p: 28, f: 35, c: 75, cat: "ramen" },
+      { name: "ガッツリ系豚骨醤油（二郎系・標準）", cal: 1330, p: 45, f: 65, c: 140, cat: "ramen" },
       { name: "家系塩ラーメン", cal: 692, p: 26, f: 32, c: 75, cat: "ramen" },
       { name: "家系味噌ラーメン", cal: 726, p: 27, f: 34, c: 78, cat: "ramen" },
       { name: "家系チャーシューメン", cal: 904, p: 42, f: 48, c: 76, cat: "ramen" },
       { name: "家系MAX / スペシャル（全部乗せ）", cal: 1000, p: 48, f: 55, c: 78, cat: "ramen" },
-      { name: "ガッツリ系豚骨醤油（二郎系・標準）", cal: 1330, p: 45, f: 65, c: 140, cat: "ramen" },
       { name: "ラーメン（小 / 麺300g・ヤサイ標準・豚2枚）", cal: 1222, p: 45, f: 58, c: 130, cat: "ramen" },
       { name: "ラーメン（大 / 麺400g・ヤサイ標準・豚2枚）", cal: 1485, p: 55, f: 65, c: 170, cat: "ramen" },
       { name: "豚W / 豚増しラーメン（小 / 豚4〜5枚）", cal: 1565, p: 68, f: 85, c: 132, cat: "ramen" },
@@ -642,16 +657,16 @@
       { name: "汁なし / まぜそば（小）", cal: 1380, p: 48, f: 72, c: 135, cat: "ramen" },
       { name: "醤油ラーメン（回転寿司サイズ）", cal: 280, p: 12, f: 8, c: 40, cat: "ramen" },
 
-      /* パスタ・焼きそば・うどん・そば (pasta) */
       { name: "ミートソーススパゲティ", cal: 524, p: 20, f: 16, c: 75, cat: "pasta" },
       { name: "カルボナーラ", cal: 656, p: 22, f: 32, c: 70, cat: "pasta" },
       { name: "ナポリタン", cal: 538, p: 16, f: 18, c: 78, cat: "pasta" },
       { name: "ペペロンチーノ", cal: 508, p: 12, f: 20, c: 70, cat: "pasta" },
-      { name: "たらこ・明太子クリームパスタ", cal: 576, p: 18, f: 24, c: 72, cat: "pasta" },
       { name: "ソース焼きそば", cal: 522, p: 15, f: 18, c: 75, cat: "pasta" },
       { name: "焼きうどん", cal: 462, p: 14, f: 14, c: 70, cat: "pasta" },
       { name: "肉うどん", cal: 430, p: 20, f: 10, c: 65, cat: "pasta" },
       { name: "かけうどん（並）", cal: 300, p: 8, f: 2, c: 62, cat: "pasta" },
+      { name: "かけそば（並）", cal: 310, p: 14, f: 2, c: 58, cat: "pasta" },
+      { name: "たらこ・明太子クリームパスタ", cal: 576, p: 18, f: 24, c: 72, cat: "pasta" },
       { name: "ぶっかけうどん（温/冷・並）", cal: 315, p: 9, f: 2, c: 65, cat: "pasta" },
       { name: "ざるうどん（並）", cal: 300, p: 8, f: 1.5, c: 63, cat: "pasta" },
       { name: "釜玉うどん（並）", cal: 390, p: 15, f: 8, c: 64, cat: "pasta" },
@@ -660,41 +675,37 @@
       { name: "きつねうどん（並）", cal: 430, p: 14, f: 8, c: 75, cat: "pasta" },
       { name: "ざるうどん・天ぷらそば", cal: 510, p: 15, f: 18, c: 72, cat: "pasta" },
       { name: "天ぷらうどん / 天ぷらそば", cal: 500, p: 14, f: 16, c: 75, cat: "pasta" },
-      { name: "かけそば（並）", cal: 310, p: 14, f: 2, c: 58, cat: "pasta" },
       { name: "もりそば / ざるそば（並）", cal: 300, p: 14, f: 1.5, c: 57, cat: "pasta" },
 
-      /* ハンバーガー・ファストフード (fastfood) */
       { name: "ハンバーガー", cal: 256, p: 13, f: 9, c: 30, cat: "fastfood" },
       { name: "チーズバーガー", cal: 307, p: 15, f: 13, c: 31, cat: "fastfood" },
       { name: "ダブルチーズバーガー", cal: 457, p: 26, f: 25, c: 31, cat: "fastfood" },
       { name: "ビッグマック", cal: 525, p: 26, f: 28, c: 42, cat: "fastfood" },
       { name: "照り焼きバーガー", cal: 470, p: 14, f: 30, c: 36, cat: "fastfood" },
+      { name: "フライドポテト（Mサイズ）", cal: 410, p: 5, f: 20, c: 50, cat: "fastfood" },
+      { name: "チキンナゲット（5個）", cal: 270, p: 15, f: 17, c: 13, cat: "fastfood" },
+      { name: "オリジナルチキン（KFC・1ピース）", cal: 240, p: 18, f: 15, c: 8, cat: "fastfood" },
       { name: "フィレオフィッシュ / フライド魚バーガー", cal: 340, p: 14, f: 14, c: 37, cat: "fastfood" },
       { name: "チキンフィレバーガー / チキンクリスプ", cal: 350, p: 14, f: 16, c: 38, cat: "fastfood" },
       { name: "エビフィレオ / エビバーガー", cal: 395, p: 13, f: 17, c: 48, cat: "fastfood" },
       { name: "モスバーガー", cal: 380, p: 15, f: 17, c: 40, cat: "fastfood" },
       { name: "テリヤキチキンバーガー（モス）", cal: 300, p: 19, f: 12, c: 30, cat: "fastfood" },
       { name: "ライスバーガー（焼肉）", cal: 350, p: 12, f: 13, c: 45, cat: "fastfood" },
-      { name: "フライドポテト（Mサイズ）", cal: 410, p: 5, f: 20, c: 50, cat: "fastfood" },
-      { name: "チキンナゲット（5個）", cal: 270, p: 15, f: 17, c: 13, cat: "fastfood" },
-      { name: "オリジナルチキン（KFC・1ピース）", cal: 240, p: 18, f: 15, c: 8, cat: "fastfood" },
       { name: "ツイスター（KFC・ペッパーマヨ）", cal: 330, p: 12, f: 17, c: 32, cat: "fastfood" },
 
-      /* 寿司 (sushi) */
       { name: "マグロ（2貫）", cal: 108, p: 9, f: 1, c: 16, cat: "sushi" },
       { name: "サーモン（2貫）", cal: 128, p: 7, f: 4, c: 16, cat: "sushi" },
       { name: "炙りサーモンチーズ（2貫）", cal: 168, p: 8, f: 8, c: 16, cat: "sushi" },
-      { name: "ハマチ / ブリ（2貫）", cal: 140, p: 8, f: 5, c: 16, cat: "sushi" },
       { name: "エビ（2貫）", cal: 96, p: 7, f: 0.5, c: 16, cat: "sushi" },
       { name: "イカ（2貫）", cal: 92, p: 6, f: 0.4, c: 16, cat: "sushi" },
+      { name: "いくら軍艦（2貫）", cal: 118, p: 7, f: 3, c: 16, cat: "sushi" },
+      { name: "ハマチ / ブリ（2貫）", cal: 140, p: 8, f: 5, c: 16, cat: "sushi" },
       { name: "タコ（2貫）", cal: 92, p: 6, f: 0.4, c: 16, cat: "sushi" },
       { name: "玉子（2貫）", cal: 128, p: 5, f: 3, c: 20, cat: "sushi" },
       { name: "ねぎまぐろ軍艦（2貫）", cal: 140, p: 7, f: 5, c: 17, cat: "sushi" },
-      { name: "いくら軍艦（2貫）", cal: 118, p: 7, f: 3, c: 16, cat: "sushi" },
       { name: "ツナサラダ軍艦（2貫）", cal: 170, p: 5, f: 9, c: 17, cat: "sushi" },
       { name: "エビフライアボカドロール（1皿）", cal: 220, p: 6, f: 12, c: 24, cat: "sushi" },
 
-      /* 定食 (setmeal) */
       { name: "鶏と野菜の黒酢あん定食", cal: 810, p: 28, f: 26, c: 115, cat: "setmeal" },
       { name: "サバの塩焼き定食", cal: 740, p: 32, f: 32, c: 80, cat: "setmeal" },
       { name: "サバの味噌煮定食", cal: 730, p: 30, f: 28, c: 90, cat: "setmeal" },
@@ -704,51 +715,50 @@
       { name: "しまほっけの炭火焼き定食", cal: 580, p: 40, f: 12, c: 78, cat: "setmeal" },
       { name: "豆腐ハンバーグしそおろし定食", cal: 580, p: 24, f: 16, c: 85, cat: "setmeal" },
 
-      /* 和風小鉢・副菜・スープ (side) */
       { name: "肉じゃが", cal: 250, p: 12, f: 10, c: 28, cat: "side" },
       { name: "筑前煮", cal: 182, p: 12, f: 6, c: 20, cat: "side" },
       { name: "だし巻き卵（2個分）", cal: 146, p: 12, f: 10, c: 2, cat: "side" },
+      { name: "豚汁（1杯）", cal: 144, p: 10, f: 8, c: 8, cat: "side" },
+      { name: "あさりの味噌汁", cal: 45, p: 5, f: 1, c: 4, cat: "side" },
       { name: "とん平焼き", cal: 286, p: 16, f: 22, c: 6, cat: "side" },
       { name: "豚キムチ", cal: 280, p: 18, f: 20, c: 7, cat: "side" },
       { name: "鶏肉とネギの塩ダレ炒め（150g）", cal: 246, p: 26, f: 14, c: 4, cat: "side" },
       { name: "ほうれん草のソテー", cal: 100, p: 3, f: 8, c: 4, cat: "side" },
       { name: "辛味チキン（5本）", cal: 295, p: 18, f: 19, c: 12, cat: "side" },
       { name: "小エビのサラダ", cal: 130, p: 6, f: 9, c: 6, cat: "side" },
+      { name: "とり天（1個）", cal: 140, p: 12, f: 7, c: 8, cat: "side" },
+      { name: "かしわ天（1個）", cal: 160, p: 14, f: 8, c: 9, cat: "side" },
       { name: "ミネストローネ（1杯）", cal: 99, p: 4, f: 3, c: 14, cat: "side" },
       { name: "クラムチャウダー（1杯）", cal: 182, p: 7, f: 10, c: 16, cat: "side" },
-      { name: "豚汁（1杯）", cal: 144, p: 10, f: 8, c: 8, cat: "side" },
-      { name: "あさりの味噌汁", cal: 45, p: 5, f: 1, c: 4, cat: "side" },
       { name: "茶碗蒸し", cal: 70, p: 7, f: 3, c: 4, cat: "side" },
 
-      /* おにぎり系 (onigiri) */
       { name: "塩おにぎり（白米のみ）", cal: 160, p: 2.5, f: 0.3, c: 37.0, cat: "onigiri" },
       { name: "梅おにぎり", cal: 164, p: 2.5, f: 0.3, c: 38.0, cat: "onigiri" },
       { name: "昆布おにぎり", cal: 168, p: 2.7, f: 0.3, c: 38.5, cat: "onigiri" },
-      { name: "おかかおにぎり", cal: 170, p: 3.5, f: 0.4, c: 37.5, cat: "onigiri" },
       { name: "鮭おにぎり", cal: 178, p: 4.8, f: 1.2, c: 37.2, cat: "onigiri" },
       { name: "ツナマヨおにぎり", cal: 212, p: 4.2, f: 5.5, c: 38.0, cat: "onigiri" },
+      { name: "おかかおにぎり", cal: 170, p: 3.5, f: 0.4, c: 37.5, cat: "onigiri" },
       { name: "明太子おにぎり", cal: 172, p: 3.8, f: 0.5, c: 37.5, cat: "onigiri" },
       { name: "たらこおにぎり", cal: 174, p: 3.9, f: 0.6, c: 37.5, cat: "onigiri" },
       { name: "納豆おにぎり", cal: 186, p: 4.5, f: 1.8, c: 38.0, cat: "onigiri" },
       { name: "肉味噌おにぎり", cal: 205, p: 5.2, f: 3.2, c: 40.0, cat: "onigiri" },
       { name: "天むす（海老天入り）", cal: 215, p: 4.5, f: 3.5, c: 42.0, cat: "onigiri" },
 
-      /* 天ぷら系 (tempura) */
       { name: "えび天（1本）", cal: 95, p: 5.0, f: 5.0, c: 7.0, cat: "tempura" },
-      { name: "いか天（1切れ / 1本）", cal: 92, p: 7.0, f: 4.0, c: 8.0, cat: "tempura" },
       { name: "ちくわ天（1本）", cal: 130, p: 4.0, f: 6.0, c: 15.0, cat: "tempura" },
-      { name: "半熟玉子天（1個）", cal: 85, p: 6.0, f: 5.0, c: 3.0, cat: "tempura" },
-      { name: "かしわ天 / 鶏天（1個）", cal: 160, p: 14.0, f: 8.0, c: 9.0, cat: "tempura" },
-      { name: "とり天（1個）", cal: 140, p: 12.0, f: 7.0, c: 8.0, cat: "tempura" },
-      { name: "白身魚の天 / 魚介天（1切れ）", cal: 110, p: 8.0, f: 5.0, c: 9.0, cat: "tempura" },
       { name: "野菜かき揚げ（1個）", cal: 280, p: 3.0, f: 18.0, c: 26.0, cat: "tempura" },
-      { name: "さつまいも天（1切れ）", cal: 102, p: 1.0, f: 4.0, c: 16.0, cat: "tempura" },
-      { name: "かぼちゃ天（1切れ）", cal: 85, p: 1.0, f: 4.0, c: 12.0, cat: "tempura" },
-      { name: "レンコン天（1切れ）", cal: 72, p: 1.0, f: 4.0, c: 9.0, cat: "tempura" },
-      { name: "ナス天（1切れ）", cal: 75, p: 0.8, f: 5.0, c: 6.0, cat: "tempura" },
-      { name: "舞茸天（1個）", cal: 78, p: 1.5, f: 6.0, c: 5.0, cat: "tempura" },
-      { name: "しいたけ天（1個）", cal: 58, p: 1.0, f: 4.0, c: 4.0, cat: "tempura" },
-      { name: "大葉（シソ）天（1枚）", cal: 36, p: 0.3, f: 3.0, c: 2.0, cat: "tempura" }
+      { name: "いか天（1切れ / 1本）", cal: 92, p: 7, f: 4, c: 8, cat: "tempura" },
+      { name: "半熟玉子天（1個）", cal: 85, p: 6, f: 5, c: 3, cat: "tempura" },
+      { name: "かしわ天 / 鶏天（1個）", cal: 160, p: 14, f: 8, c: 9, cat: "tempura" },
+      { name: "とり天（1個）", cal: 140, p: 12, f: 7, c: 8, cat: "tempura" },
+      { name: "白身魚の天 / 魚介天（1切れ）", cal: 110, p: 8, f: 5, c: 9, cat: "tempura" },
+      { name: "さつまいも天（1切れ）", cal: 102, p: 1, f: 4, c: 16, cat: "tempura" },
+      { name: "かぼちゃ天（1切れ）", cal: 85, p: 1, f: 4, c: 12, cat: "tempura" },
+      { name: "レンコン天（1切れ）", cal: 72, p: 1, f: 4, c: 9, cat: "tempura" },
+      { name: "ナス天（1切れ）", cal: 75, p: 0.8, f: 5, c: 6, cat: "tempura" },
+      { name: "舞茸天（1個）", cal: 78, p: 1.5, f: 6, c: 5, cat: "tempura" },
+      { name: "しいたけ天（1個）", cal: 58, p: 1, f: 4, c: 4, cat: "tempura" },
+      { name: "大葉（シソ）天（1枚）", cal: 36, p: 0.3, f: 3, c: 2, cat: "tempura" }
     ];
 
     const state = {
@@ -798,8 +808,9 @@
       initWeightChart();
     });
 
+    // タブ切り替え（ダッシュボード、食事PFC、筋トレ、レポート）
     function switchTab(tabId) {
-      ['dashboard', 'workout', 'diet', 'progress'].forEach(s => {
+      ['dashboard', 'diet', 'workout', 'progress'].forEach(s => {
         const sec = document.getElementById(`section-${s}`);
         const btn = document.getElementById(`tab-${s}`);
         if (s === tabId) {
