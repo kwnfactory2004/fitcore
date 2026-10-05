@@ -58,7 +58,7 @@
       <div class="flex items-center space-x-2">
         <div class="flex items-center space-x-1.5 bg-deepGreenLight text-deepGreen px-3 py-1.5 rounded-full text-xs font-semibold shadow-xs">
           <span class="text-sm">🔥</span>
-          <span id="streakCount">0日連続記録中</span>
+          <span id="streakCount">1日連続記録中</span>
         </div>
         <button onclick="showNotificationModal()" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition text-textSecondary" title="リマインダー通知">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@
   <!-- ==================== メインコンテンツ ==================== -->
   <main class="max-w-5xl mx-auto px-4 pt-6 space-y-6">
 
-    <!-- ナビゲーションタブ（ダッシュボード、食事PFC、筋トレ、レポートの順） -->
+    <!-- ナビゲーションタブ -->
     <div class="bg-gray-200/70 p-1 rounded-2xl flex max-w-xl mx-auto shadow-inner text-xs sm:text-sm font-medium">
       <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn flex-1 py-2 text-center rounded-xl bg-white font-bold text-deepGreen shadow-sm transition-all">
         ダッシュボード
@@ -92,20 +92,18 @@
     <section id="section-dashboard" class="space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <!-- カロリー収支カード（摂取カロリーを目立つように配置） -->
+        <!-- カロリー収支カード -->
         <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">本日のカロリー収支</span>
             <span class="text-xs px-2.5 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold" id="goalTypeText">減量モード</span>
           </div>
           <div class="my-2">
-            <!-- 残り許容カロリーを上部に配置 -->
             <div class="flex items-center justify-between bg-gray-50 px-4 py-2.5 rounded-xl border border-gray-100 text-xs font-semibold mb-3">
               <span class="text-textSecondary">残り許容カロリー</span>
               <span class="text-sm font-extrabold text-textPrimary"><span id="caloriesRemaining">0</span> kcal</span>
             </div>
 
-            <!-- 摂取カロリーを下部に大きく強調表示 -->
             <div class="bg-deepGreenLight/30 p-4 rounded-2xl border border-deepGreen/15 text-center">
               <span class="text-xs font-bold text-deepGreen uppercase tracking-wider block mb-0.5">本日の摂取カロリー</span>
               <div class="flex items-baseline justify-center space-x-1">
@@ -137,7 +135,7 @@
           </div>
         </div>
 
-        <!-- 水分補給トラッカーカード (100ml / 500mlボタン) -->
+        <!-- 水分補給トラッカーカード -->
         <div class="bg-cardBg p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">水分補給トラッカー</span>
@@ -207,18 +205,18 @@
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">身長 (cm)</label>
-                <input type="number" id="inputHeight" value="0" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputHeight" value="170" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">現在の体重 (kg)</label>
-                <input type="number" id="inputWeight" value="0" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputWeight" value="68.5" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
             </div>
 
             <div class="grid grid-cols-3 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">年齢</label>
-                <input type="number" id="inputAge" value="0" min="0" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputAge" value="25" min="0" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">性別</label>
@@ -229,7 +227,7 @@
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">目標体重 (kg)</label>
-                <input type="number" id="inputGoalWeight" value="0" step="0.1" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputGoalWeight" value="62.0" step="0.1" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
             </div>
 
@@ -326,6 +324,7 @@
           <!-- カテゴリタブ -->
           <div class="flex space-x-1 overflow-x-auto custom-scrollbar pb-1 text-[11px] font-medium" id="foodCategoryTabs">
             <button onclick="filterFoodCategory('all')" id="cat-btn-all" class="px-3 py-1 rounded-full bg-deepGreen text-white whitespace-nowrap">すべて</button>
+            <button onclick="filterFoodCategory('drink')" id="cat-btn-drink" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">飲み物</button>
             <button onclick="filterFoodCategory('meat')" id="cat-btn-meat" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">肉メイン</button>
             <button onclick="filterFoodCategory('fish')" id="cat-btn-fish" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">魚メイン</button>
             <button onclick="filterFoodCategory('bowl')" id="cat-btn-bowl" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">丼・ご飯</button>
@@ -342,7 +341,7 @@
           </div>
 
           <div class="relative">
-            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" placeholder="例: ハンバーグ、牛丼、ラーメン、寿司、おにぎり..." class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
+            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" placeholder="例: お～いお茶、コカ・コーラ、ハンバーグ、牛丼..." class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
             <div id="foodDropdown" class="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-20 hidden max-h-56 overflow-y-auto custom-scrollbar"></div>
           </div>
         </div>
@@ -475,18 +474,18 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-semibold text-textSecondary mb-1">身長 (cm)</label>
-            <input type="number" id="welcomeHeight" step="0.1" required placeholder="170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeHeight" step="0.1" required placeholder="170" value="170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">現在の体重 (kg)</label>
-            <input type="number" id="welcomeWeight" step="0.1" required placeholder="68.5" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeWeight" step="0.1" required placeholder="68.5" value="68.5" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
         </div>
         
         <div class="grid grid-cols-3 gap-2">
           <div>
             <label class="block font-semibold text-textSecondary mb-1">年齢</label>
-            <input type="number" id="welcomeAge" required placeholder="25" min="10" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <input type="number" id="welcomeAge" required placeholder="25" value="25" min="10" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">性別</label>
@@ -497,7 +496,7 @@
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">目標 (kg)</label>
-            <input type="number" id="welcomeGoal" step="0.1" required placeholder="62.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <input type="number" id="welcomeGoal" step="0.1" required placeholder="62.0" value="62.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
           </div>
         </div>
 
@@ -530,7 +529,7 @@
 
   <div id="workoutTimerModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative text-center flex flex-col justify-between min-h-[440px]">
-      <button onclick="closeWorkoutModal()" class="absolute top-4 right-4 text-textSecondary">✕</button>
+      <button onclick="closeWorkoutModal()" class="absolute top-4 right-4 text-textSecondary font-bold hover:text-textPrimary">✕</button>
       <div>
         <span id="modalPhaseBadge" class="text-xs px-3 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold">WORKOUT</span>
         <h3 id="modalExerciseTitle" class="text-lg font-bold text-textPrimary mt-2">種目名</h3>
@@ -541,8 +540,8 @@
         <span class="text-xs text-textSecondary font-semibold uppercase mt-1">Seconds</span>
       </div>
       <div class="flex space-x-2">
-        <button id="timerToggleBtn" onclick="toggleTimer()" class="flex-1 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm">一時停止</button>
-        <button onclick="skipExercise()" class="px-5 py-3 rounded-2xl bg-gray-100 text-textPrimary font-bold text-sm">スキップ</button>
+        <button id="timerToggleBtn" onclick="toggleTimer()" class="flex-1 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition">一時停止</button>
+        <button onclick="skipExercise()" class="px-5 py-3 rounded-2xl bg-gray-100 text-textPrimary font-bold text-sm hover:bg-gray-200 transition">スキップ</button>
       </div>
     </div>
   </div>
@@ -617,22 +616,15 @@
       { name: "キムチ炒飯", cal: 563, p: 16, f: 19, c: 82, cat: "chinese" },
       { name: "天津飯（醤油/甘酢あん）", cal: 580, p: 18, f: 15, c: 92, cat: "chinese" },
       { name: "中華丼", cal: 564, p: 20, f: 16, c: 85, cat: "chinese" },
-      { name: "麻婆豆腐", cal: 294, p: 16, f: 22, c: 8, cat: "chinese" },
-      { name: "回鍋肉", cal: 338, p: 16, f: 26, c: 10, cat: "chinese" },
-      { name: "青椒肉絲", cal: 284, p: 18, f: 20, c: 8, cat: "chinese" },
-      { name: "エビチリ", cal: 228, p: 14, f: 12, c: 16, cat: "chinese" },
-      { name: "エビマヨ", cal: 341, p: 15, f: 25, c: 14, cat: "chinese" },
-      { name: "酢豚", cal: 370, p: 18, f: 22, c: 25, cat: "chinese" },
-      { name: "ニラレバ炒め", cal: 228, p: 22, f: 12, c: 8, cat: "chinese" },
-      { name: "豚ニラ玉炒め", cal: 290, p: 18, f: 22, c: 5, cat: "chinese" },
-      { name: "油淋鶏", cal: 402, p: 24, f: 26, c: 18, cat: "chinese" },
-      { name: "焼き餃子（1人前・6個）", cal: 290, p: 12, f: 15, c: 28, cat: "chinese" },
       { name: "麻婆豆腐（単品）", cal: 340, p: 18, f: 24, c: 12, cat: "chinese" },
       { name: "回鍋肉（ホイコーロー・単品）", cal: 390, p: 16, f: 30, c: 14, cat: "chinese" },
       { name: "青椒肉絲（チンジャオロース・単品）", cal: 310, p: 18, f: 22, c: 10, cat: "chinese" },
       { name: "エビのチリソース（単品）", cal: 250, p: 16, f: 12, c: 20, cat: "chinese" },
+      { name: "エビマヨ", cal: 341, p: 15, f: 25, c: 14, cat: "chinese" },
       { name: "酢豚（単品）", cal: 420, p: 20, f: 25, c: 30, cat: "chinese" },
       { name: "レバニラ炒め（単品）", cal: 270, p: 26, f: 14, c: 10, cat: "chinese" },
+      { name: "豚ニラ玉炒め", cal: 290, p: 18, f: 22, c: 5, cat: "chinese" },
+      { name: "油淋鶏", cal: 402, p: 24, f: 26, c: 18, cat: "chinese" },
 
       { name: "醤油ラーメン", cal: 460, p: 18, f: 12, c: 70, cat: "ramen" },
       { name: "塩ラーメン", cal: 420, p: 16, f: 10, c: 66, cat: "ramen" },
@@ -650,12 +642,6 @@
       { name: "家系味噌ラーメン", cal: 726, p: 27, f: 34, c: 78, cat: "ramen" },
       { name: "家系チャーシューメン", cal: 904, p: 42, f: 48, c: 76, cat: "ramen" },
       { name: "家系MAX / スペシャル（全部乗せ）", cal: 1000, p: 48, f: 55, c: 78, cat: "ramen" },
-      { name: "ラーメン（小 / 麺300g・ヤサイ標準・豚2枚）", cal: 1222, p: 45, f: 58, c: 130, cat: "ramen" },
-      { name: "ラーメン（大 / 麺400g・ヤサイ標準・豚2枚）", cal: 1485, p: 55, f: 65, c: 170, cat: "ramen" },
-      { name: "豚W / 豚増しラーメン（小 / 豚4〜5枚）", cal: 1565, p: 68, f: 85, c: 132, cat: "ramen" },
-      { name: "マシマシ仕様（小ラーメン ＋ ヤサイマシマシ・アブラマシマシ）", cal: 1510, p: 48, f: 82, c: 145, cat: "ramen" },
-      { name: "汁なし / まぜそば（小）", cal: 1380, p: 48, f: 72, c: 135, cat: "ramen" },
-      { name: "醤油ラーメン（回転寿司サイズ）", cal: 280, p: 12, f: 8, c: 40, cat: "ramen" },
 
       { name: "ミートソーススパゲティ", cal: 524, p: 20, f: 16, c: 75, cat: "pasta" },
       { name: "カルボナーラ", cal: 656, p: 22, f: 32, c: 70, cat: "pasta" },
@@ -673,8 +659,6 @@
       { name: "明太釜玉うどん（並）", cal: 420, p: 18, f: 9, c: 65, cat: "pasta" },
       { name: "カレーうどん（並）", cal: 500, p: 15, f: 14, c: 78, cat: "pasta" },
       { name: "きつねうどん（並）", cal: 430, p: 14, f: 8, c: 75, cat: "pasta" },
-      { name: "ざるうどん・天ぷらそば", cal: 510, p: 15, f: 18, c: 72, cat: "pasta" },
-      { name: "天ぷらうどん / 天ぷらそば", cal: 500, p: 14, f: 16, c: 75, cat: "pasta" },
       { name: "もりそば / ざるそば（並）", cal: 300, p: 14, f: 1.5, c: 57, cat: "pasta" },
 
       { name: "ハンバーガー", cal: 256, p: 13, f: 9, c: 30, cat: "fastfood" },
@@ -693,7 +677,7 @@
       { name: "ライスバーガー（焼肉）", cal: 350, p: 12, f: 13, c: 45, cat: "fastfood" },
       { name: "ツイスター（KFC・ペッパーマヨ）", cal: 330, p: 12, f: 17, c: 32, cat: "fastfood" },
 
-      { name: "マグロ（2貫）", cal: 108, p: 9, f: 1, c: 16, cat: "sushi" },
+      { name: "マグロ（赤身・2貫）", cal: 108, p: 9, f: 1, c: 16, cat: "sushi" },
       { name: "サーモン（2貫）", cal: 128, p: 7, f: 4, c: 16, cat: "sushi" },
       { name: "炙りサーモンチーズ（2貫）", cal: 168, p: 8, f: 8, c: 16, cat: "sushi" },
       { name: "エビ（2貫）", cal: 96, p: 7, f: 0.5, c: 16, cat: "sushi" },
@@ -705,6 +689,8 @@
       { name: "ねぎまぐろ軍艦（2貫）", cal: 140, p: 7, f: 5, c: 17, cat: "sushi" },
       { name: "ツナサラダ軍艦（2貫）", cal: 170, p: 5, f: 9, c: 17, cat: "sushi" },
       { name: "エビフライアボカドロール（1皿）", cal: 220, p: 6, f: 12, c: 24, cat: "sushi" },
+      { name: "マグロ（中トロ・2貫）", cal: 130, p: 7.0, f: 6.0, c: 11.5, cat: "sushi" },
+      { name: "マグロ（大トロ・2貫）", cal: 160, p: 6.5, f: 10.0, c: 11.5, cat: "sushi" },
 
       { name: "鶏と野菜の黒酢あん定食", cal: 810, p: 28, f: 26, c: 115, cat: "setmeal" },
       { name: "サバの塩焼き定食", cal: 740, p: 32, f: 32, c: 80, cat: "setmeal" },
@@ -749,35 +735,107 @@
       { name: "野菜かき揚げ（1個）", cal: 280, p: 3.0, f: 18.0, c: 26.0, cat: "tempura" },
       { name: "いか天（1切れ / 1本）", cal: 92, p: 7, f: 4, c: 8, cat: "tempura" },
       { name: "半熟玉子天（1個）", cal: 85, p: 6, f: 5, c: 3, cat: "tempura" },
-      { name: "かしわ天 / 鶏天（1個）", cal: 160, p: 14, f: 8, c: 9, cat: "tempura" },
-      { name: "とり天（1個）", cal: 140, p: 12, f: 7, c: 8, cat: "tempura" },
-      { name: "白身魚の天 / 魚介天（1切れ）", cal: 110, p: 8, f: 5, c: 9, cat: "tempura" },
       { name: "さつまいも天（1切れ）", cal: 102, p: 1, f: 4, c: 16, cat: "tempura" },
       { name: "かぼちゃ天（1切れ）", cal: 85, p: 1, f: 4, c: 12, cat: "tempura" },
       { name: "レンコン天（1切れ）", cal: 72, p: 1, f: 4, c: 9, cat: "tempura" },
       { name: "ナス天（1切れ）", cal: 75, p: 0.8, f: 5, c: 6, cat: "tempura" },
       { name: "舞茸天（1個）", cal: 78, p: 1.5, f: 6, c: 5, cat: "tempura" },
       { name: "しいたけ天（1個）", cal: 58, p: 1, f: 4, c: 4, cat: "tempura" },
-      { name: "大葉（シソ）天（1枚）", cal: 36, p: 0.3, f: 3, c: 2, cat: "tempura" }
+      { name: "大葉（シソ）天（1枚）", cal: 36, p: 0.3, f: 3, c: 2, cat: "tempura" },
+
+      { name: "チーズハットグ（1本）", cal: 400, p: 10, f: 18, c: 42, cat: "fastfood" },
+      { name: "チーズボール（約4〜5個）", cal: 280, p: 8, f: 14, c: 31, cat: "fastfood" },
+      { name: "ヒレカツ（1枚 / 約100g）", cal: 220, p: 21, f: 12, c: 8, cat: "meat" },
+
+      // 飲み物系
+      { name: "お～いお茶（伊藤園）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "綾鷹（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "綾鷹 濃い緑茶（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "伊右衛門（サントリー）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "生茶（キリンビバレッジ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "健康ミネラルむぎ茶（伊藤園）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "グリーンダ・カ・ラ 麦茶（サントリー）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "十六茶（アサヒ飲料）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "やかんの麦茶（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "サントリー烏龍茶（サントリー）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "爽健美茶（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "BOSS / ボス シリーズ（微糖）", cal: 25, p: 0.8, f: 0.5, c: 4.3, cat: "drink" },
+      { name: "BOSS / ボス シリーズ（カフェオレ）", cal: 45, p: 0.9, f: 1.0, c: 8.3, cat: "drink" },
+      { name: "GEORGIA / ジョージア シリーズ（微糖）", cal: 24, p: 0.7, f: 0.5, c: 4.0, cat: "drink" },
+      { name: "GEORGIA / ジョージア シリーズ（カフェオレ）", cal: 42, p: 0.8, f: 0.9, c: 7.8, cat: "drink" },
+      { name: "WANDA / ワンダ シリーズ（微糖）", cal: 23, p: 0.7, f: 0.5, c: 3.9, cat: "drink" },
+      { name: "WANDA / ワンダ シリーズ（カフェオレ）", cal: 44, p: 0.9, f: 1.0, c: 8.0, cat: "drink" },
+      { name: "ダイドードミニアスコーヒー", cal: 26, p: 0.6, f: 0.5, c: 4.5, cat: "drink" },
+      { name: "午後の紅茶 シリーズ（ストレートティー）", cal: 30, p: 0, f: 0, c: 7.5, cat: "drink" },
+      { name: "午後の紅茶 シリーズ（ミルクティー）", cal: 38, p: 0.6, f: 0.6, c: 7.5, cat: "drink" },
+      { name: "午後の紅茶 シリーズ（レモンティー）", cal: 28, p: 0, f: 0, c: 7.0, cat: "drink" },
+      { name: "リプトン / Lipton 紙パックシリーズ（レモンティー等）", cal: 36, p: 0, f: 0, c: 9.0, cat: "drink" },
+      { name: "リプトン / Lipton 紙パックシリーズ（ミルクティー）", cal: 42, p: 0.8, f: 0.9, c: 7.8, cat: "drink" },
+      { name: "カルピス / カルピスウォーター（アサヒ飲料）", cal: 46, p: 0.3, f: 0, c: 11.2, cat: "drink" },
+      { name: "ヤクルト / Newヤクルト（ヤクルト本社）", cal: 75, p: 1.2, f: 0.1, c: 17.2, cat: "drink" },
+      { name: "小岩井 まろやかミルクココア（キリンビバレッジ）", cal: 58, p: 1.0, f: 1.5, c: 10.3, cat: "drink" },
+      { name: "コカ・コーラ（日本コカ・コーラ）", cal: 45, p: 0, f: 0, c: 11.3, cat: "drink" },
+      { name: "ファンタ オレンジ（日本コカ・コーラ）", cal: 43, p: 0, f: 0, c: 10.7, cat: "drink" },
+      { name: "ファンタ グレープ（日本コカ・コーラ）", cal: 41, p: 0, f: 0, c: 10.2, cat: "drink" },
+      { name: "スプライト（日本コカ・コーラ）", cal: 39, p: 0, f: 0, c: 9.8, cat: "drink" },
+      { name: "カナダドライ ジンジャーエール（日本コカ・コーラ）", cal: 36, p: 0, f: 0, c: 9.0, cat: "drink" },
+      { name: "ペプシコーラ（サントリー）", cal: 45, p: 0, f: 0, c: 11.4, cat: "drink" },
+      { name: "C.C.レモン（サントリー）", cal: 40, p: 0, f: 0, c: 10.0, cat: "drink" },
+      { name: "オランジーナ（サントリー）", cal: 41, p: 0, f: 0, c: 10.1, cat: "drink" },
+      { name: "三ツ矢サイダー（アサヒ飲料）", cal: 42, p: 0, f: 0, c: 10.5, cat: "drink" },
+      { name: "ウィルキンソン タンサン（レモン、グレープフルーツ、ウメ含む）（アサヒ飲料）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "キリンレモン（キリンビバレッジ）", cal: 40, p: 0, f: 0, c: 10.0, cat: "drink" },
+      { name: "キリン メッツ（キリンビバレッジ）", cal: 40, p: 0, f: 0, c: 10.0, cat: "drink" },
+      { name: "ライフガード（チェリオジャパン）", cal: 50, p: 0, f: 0, c: 12.5, cat: "drink" },
+      { name: "カナダドライ ザ・タンサン（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "伊賀の天然水強炭酸水（サンガリア）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "ドデカミン（アサヒ飲料）", cal: 38, p: 0, f: 0, c: 9.5, cat: "drink" },
+      { name: "オロナミンCドリンク（大塚製薬）", cal: 51, p: 0, f: 0, c: 13.0, cat: "drink" },
+      { name: "MATCH / マッチ（大塚製薬）", cal: 40, p: 0, f: 0, c: 10.0, cat: "drink" },
+      { name: "レッドブル / Red Bull（レッドブル・ジャパン）", cal: 46, p: 0, f: 0, c: 11.0, cat: "drink" },
+      { name: "モンスターエナジー（モンスターエナジー・ジャパン）", cal: 45, p: 0, f: 0, c: 11.0, cat: "drink" },
+      { name: "キレートレモン（ポッカサッポロ）", cal: 60, p: 0, f: 0, c: 15.0, cat: "drink" },
+      { name: "C1000ビタミンレモン（ハウスウェルネスフーズ）", cal: 35, p: 0, f: 0, c: 9.0, cat: "drink" },
+      { name: "メガシャキ（ハウスウェルネスフーズ）", cal: 39, p: 0, f: 0, c: 9.5, cat: "drink" },
+      { name: "リアルゴールド（日本コカ・コーラ）", cal: 50, p: 0, f: 0, c: 12.0, cat: "drink" },
+      { name: "ハタラムネ（イチゴ、メロン、ブルーハワイなど）（ハタ鉱泉）", cal: 45, p: 0, f: 0, c: 11.0, cat: "drink" },
+      { name: "島ごころレモンサイダー", cal: 42, p: 0, f: 0, c: 10.5, cat: "drink" },
+      { name: "北海道ガラナ", cal: 48, p: 0, f: 0, c: 12.0, cat: "drink" },
+      { name: "湯あがり堂サイダー（友桝飲料）", cal: 40, p: 0, f: 0, c: 10.0, cat: "drink" },
+      { name: "ポカリスエット（大塚製薬）", cal: 25, p: 0, f: 0, c: 6.2, cat: "drink" },
+      { name: "アクエリアス（日本コカ・コーラ）", cal: 19, p: 0, f: 0, c: 4.7, cat: "drink" },
+      { name: "DAKARA / ダ・カ・ラ（サントリー）", cal: 20, p: 0, f: 0, c: 5.0, cat: "drink" },
+      { name: "い・ろ・は・す / I LOHAS（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "サントリー天然水（サントリー）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "おいしい水 富士山（アサヒ飲料）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "キリンの天然水（キリンビバレッジ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "ルイボスティー", cal: 0, p: 0, f: 0, c: 0, cat: "drink" }
+    ];
+
+    const exerciseDB = [
+      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', durationSec: 30, equipment: '自重', point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
+      { id: 'legraise', name: 'レッグレイズ', target: '下腹部', category: 'belly', durationSec: 35, equipment: '自重', point: '腰を床に押し付けながら足を上下', ng: '腰を反らせる' },
+      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', durationSec: 40, equipment: '自重', point: '頭からかかとまで一直線', ng: '腰を反らさない' },
+      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', durationSec: 40, equipment: '自重', point: 'お尻を後ろへ引くように沈み込む', ng: '膝を内側にいれる' },
+      { id: 'lunge', name: 'ランジ', target: '太もも・ヒップ', category: 'legs', durationSec: 35, equipment: '自重', point: '股関節から前脚に体重を乗せる', ng: '前膝がつま先より前に出る' },
+      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・二の腕', category: 'upper', durationSec: 30, equipment: '自重', point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' },
+      { id: 'armraise', name: 'バックエクステンション', target: '背中・姿勢', category: 'upper', durationSec: 30, equipment: '自重', point: '肩甲骨を寄せて上体を軽く起こす', ng: '首だけを反らす' },
+      { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', durationSec: 45, equipment: '自重', point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
     ];
 
     const state = {
-      user: { height: 0, weight: 0, goalWeight: 0, age: 0, gender: 'male', activity: 1.375, durationMonths: 3 },
+      user: { height: 170, weight: 68.5, goalWeight: 62.0, age: 25, gender: 'male', activity: 1.375, durationMonths: 3 },
       stats: { bmi: 0, bmr: 0, tdee: 0, targetCalories: 0, targetP: 0, targetF: 0, targetC: 0 },
-      today: { caloriesConsumed: 0, p: 0, f: 0, c: 0, water: 0, streak: 0 },
+      today: { caloriesConsumed: 0, p: 0, f: 0, c: 0, water: 0, streak: 1 },
       meals: [],
-      weightHistory: { week: { labels: ['6日前','5日前','4日前','3日前','一昨日','昨日','今日'], weights: [0,0,0,0,0,0,0], goals: [0,0,0,0,0,0,0] }, month: { labels: ['30日前','24日前','18日前','12日前','6日前','今日'], weights: [0,0,0,0,0,0], goals: [0,0,0,0,0,0] } }
+      weightHistory: { 
+        week: { labels: ['6日前','5日前','4日前','3日前','一昨日','昨日','今日'], weights: [69.2, 69.0, 68.8, 68.9, 68.6, 68.7, 68.5], goals: [62,62,62,62,62,62,62] }, 
+        month: { labels: ['30日前','24日前','18日前','12日前','6日前','今日'], weights: [70.5, 70.0, 69.5, 69.1, 68.7, 68.5], goals: [62,62,62,62,62,62] } 
+      }
     };
 
     let currentMealSlot = '朝食';
     let currentFoodCategory = 'all';
-
-    const exerciseDB = [
-      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', durationSec: 30, equipment: '自重', point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
-      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', durationSec: 35, equipment: '自重', point: '頭からかかとまで一直線', ng: '腰を反らさない' },
-      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', durationSec: 40, equipment: '自重', point: 'お尻を後ろへ引く', ng: '膝を内側にいれない' },
-      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・腕', category: 'upper', durationSec: 30, equipment: '自重', point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' }
-    ];
 
     let currentWorkoutQueue = [];
     let currentExerciseIndex = 0;
@@ -791,13 +849,13 @@
       if (savedUser) {
         try {
           state.user = JSON.parse(savedUser);
-          calculateAllMetrics();
         } catch(e) {}
-      }
-
-      if (state.user.height === 0 || state.user.weight === 0) {
+      } else {
         document.getElementById('welcomeModal').classList.remove('hidden');
       }
+
+      syncInputFields();
+      calculateAllMetrics();
 
       const days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
       document.getElementById('todayDayName').textContent = days[new Date().getDay()];
@@ -806,9 +864,31 @@
       generateCustomWorkout();
       renderFormGuides();
       initWeightChart();
+
+      // 外側クリックで食事ドロップダウンを閉じる
+      document.addEventListener('click', (e) => {
+        const dropdown = document.getElementById('foodDropdown');
+        const searchInput = document.getElementById('foodSearchInput');
+        if (!dropdown.contains(e.target) && e.target !== searchInput) {
+          dropdown.classList.add('hidden');
+        }
+      });
     });
 
-    // タブ切り替え（ダッシュボード、食事PFC、筋トレ、レポート）
+    function syncInputFields() {
+      const u = state.user;
+      document.getElementById('inputHeight').value = u.height;
+      document.getElementById('inputWeight').value = u.weight;
+      document.getElementById('inputAge').value = u.age;
+      document.getElementById('inputGoalWeight').value = u.goalWeight;
+      document.getElementById('inputGender').value = u.gender;
+      document.getElementById('inputActivity').value = u.activity;
+      document.getElementById('inputDuration').value = u.durationMonths;
+      
+      document.getElementById('quickWeightInput').value = u.weight;
+    }
+
+    // タブ切り替え
     function switchTab(tabId) {
       ['dashboard', 'diet', 'workout', 'progress'].forEach(s => {
         const sec = document.getElementById(`section-${s}`);
@@ -840,6 +920,14 @@
       const heightM = u.height / 100;
       const bmi = u.weight / (heightM * heightM);
       state.stats.bmi = bmi.toFixed(1);
+
+      let bmiStatus = "標準";
+      let statusColor = "text-textSecondary";
+      if (bmi < 18.5) { bmiStatus = "低体重"; statusColor = "text-accentBlue"; }
+      else if (bmi >= 25) { bmiStatus = "肥満"; statusColor = "text-accentCoral"; }
+      
+      document.getElementById('calcBmiStatus').textContent = bmiStatus;
+      document.getElementById('calcBmiStatus').className = `text-[11px] font-medium ${statusColor}`;
 
       let bmr = (u.gender === 'male') 
         ? (13.397 * u.weight + 4.799 * u.height - 5.677 * u.age + 88.362)
@@ -881,14 +969,7 @@
       localStorage.setItem('fitcore_user', JSON.stringify(state.user));
       document.getElementById('welcomeModal').classList.add('hidden');
 
-      document.getElementById('inputHeight').value = state.user.height;
-      document.getElementById('inputWeight').value = state.user.weight;
-      document.getElementById('inputAge').value = state.user.age;
-      document.getElementById('inputGoalWeight').value = state.user.goalWeight;
-      document.getElementById('inputGender').value = state.user.gender;
-      document.getElementById('inputActivity').value = state.user.activity;
-      document.getElementById('inputDuration').value = state.user.durationMonths;
-
+      syncInputFields();
       calculateAllMetrics();
       renderTodayDashboard();
       updateChartGoals();
@@ -962,7 +1043,7 @@
 
     function filterFoodCategory(cat) {
       currentFoodCategory = cat;
-      ['all', 'meat', 'fish', 'bowl', 'western', 'chinese', 'ramen', 'pasta', 'fastfood', 'sushi', 'setmeal', 'side', 'onigiri', 'tempura'].forEach(c => {
+      ['all', 'drink', 'meat', 'fish', 'bowl', 'western', 'chinese', 'ramen', 'pasta', 'fastfood', 'sushi', 'setmeal', 'side', 'onigiri', 'tempura'].forEach(c => {
         const btn = document.getElementById(`cat-btn-${c}`);
         if (!btn) return;
         if (c === cat) {
@@ -1072,14 +1153,37 @@
       selectFoodItem({ name, cal, p: 10, f: 5, c: 30, cat: "other" });
     }
 
+    // 目的と所要時間による動的ワークアウト生成ロジック
     function generateCustomWorkout() {
-      currentWorkoutQueue = exerciseDB;
+      const goal = document.getElementById('filterGoal').value;
+      const duration = parseInt(document.getElementById('filterDuration').value);
+
+      let targetExercises = exerciseDB;
+      if (goal !== 'full') {
+        targetExercises = exerciseDB.filter(ex => ex.category === goal || ex.category === 'full');
+      }
+
+      // 時間に応じた種目数の調整 (5分: 3種目, 10分: 5種目, 15分: 8種目)
+      let count = 5;
+      if (duration === 5) count = 3;
+      if (duration === 15) count = 8;
+
+      currentWorkoutQueue = targetExercises.slice(0, count);
+
       const container = document.getElementById('workoutListContainer');
       container.innerHTML = '';
       currentWorkoutQueue.forEach((ex, idx) => {
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200/80';
-        item.innerHTML = `<div class="flex items-center space-x-3"><div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs">${idx+1}</div><div><h4 class="text-sm font-bold text-textPrimary">${ex.name}</h4><p class="text-xs text-textSecondary">${ex.target} ・ ${ex.durationSec}秒</p></div></div>`;
+        item.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs">${idx+1}</div>
+            <div>
+              <h4 class="text-sm font-bold text-textPrimary">${ex.name}</h4>
+              <p class="text-xs text-textSecondary">${ex.target} ・ ${ex.durationSec}秒</p>
+            </div>
+          </div>
+        `;
         container.appendChild(item);
       });
       document.getElementById('totalExerciseCount').textContent = `${currentWorkoutQueue.length}種目`;
@@ -1096,7 +1200,8 @@
       });
     }
 
-    function openWorkoutSessionModal() {
+    function openWorkoutSessionModal(mode) {
+      if (currentWorkoutQueue.length === 0) generateCustomWorkout();
       currentExerciseIndex = 0;
       timerRemainingSec = currentWorkoutQueue[0].durationSec;
       document.getElementById('modalExerciseTitle').textContent = currentWorkoutQueue[0].name;
@@ -1114,6 +1219,7 @@
     function startTimer() {
       if (isTimerRunning) return;
       isTimerRunning = true;
+      document.getElementById('timerToggleBtn').textContent = '一時停止';
       timerInterval = setInterval(() => {
         timerRemainingSec--;
         document.getElementById('timerSecondsText').textContent = timerRemainingSec;
@@ -1141,7 +1247,6 @@
         document.getElementById('timerToggleBtn').textContent = '再開';
       } else {
         startTimer();
-        document.getElementById('timerToggleBtn').textContent = '一時停止';
       }
     }
 
@@ -1152,6 +1257,7 @@
       if (currentExerciseIndex < currentWorkoutQueue.length) {
         timerRemainingSec = currentWorkoutQueue[currentExerciseIndex].durationSec;
         document.getElementById('modalExerciseTitle').textContent = currentWorkoutQueue[currentExerciseIndex].name;
+        document.getElementById('modalExerciseTip').textContent = currentWorkoutQueue[currentExerciseIndex].point;
         startTimer();
       } else {
         closeWorkoutModal();
@@ -1160,20 +1266,36 @@
 
     function initWeightChart() {
       const ctx = document.getElementById('weightChart').getContext('2d');
+      updateChartGoals();
       weightChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
           labels: state.weightHistory.week.labels,
           datasets: [
-            { label: '体重 (kg)', data: state.weightHistory.week.weights, borderColor: '#0F382C', backgroundColor: 'rgba(15, 56, 44, 0.05)', borderWidth: 2, fill: true },
+            { label: '体重 (kg)', data: state.weightHistory.week.weights, borderColor: '#0F382C', backgroundColor: 'rgba(15, 56, 44, 0.05)', borderWidth: 2, fill: true, tension: 0.3 },
             { label: '目標 (kg)', data: state.weightHistory.week.goals, borderColor: '#F5A623', borderDash: [4,4], borderWidth: 1.5, fill: false }
           ]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: true, position: 'top' }
+          },
+          scales: {
+            y: {
+              suggestedMin: Math.floor(state.user.goalWeight - 2),
+              suggestedMax: Math.ceil(state.user.weight + 2)
+            }
+          }
+        }
       });
     }
 
     function changeChartSpan(span) {
+      document.getElementById('span-week').className = span === 'week' ? 'px-3 py-1 rounded-lg bg-white shadow-xs text-deepGreen font-bold' : 'px-3 py-1 rounded-lg text-textSecondary';
+      document.getElementById('span-month').className = span === 'month' ? 'px-3 py-1 rounded-lg bg-white shadow-xs text-deepGreen font-bold' : 'px-3 py-1 rounded-lg text-textSecondary';
+
       const data = state.weightHistory[span];
       weightChartInstance.data.labels = data.labels;
       weightChartInstance.data.datasets[0].data = data.weights;
@@ -1193,19 +1315,23 @@
       if (!val) return;
       state.user.weight = val;
       state.weightHistory.week.weights[6] = val;
+      state.weightHistory.month.weights[5] = val;
+      localStorage.setItem('fitcore_user', JSON.stringify(state.user));
+      
       weightChartInstance.update();
       calculateAllMetrics();
+      renderTodayDashboard();
       showToast(`体重 ${val}kg を記録しました`);
     }
 
-    function showNotificationModal() { showToast('リマインダーは有効です'); }
+    function showNotificationModal() { showToast('毎日のリマインダー通知が有効になっています'); }
 
     function showToast(msg) {
       const existing = document.getElementById('fitcore-toast');
       if (existing) existing.remove();
       const toast = document.createElement('div');
       toast.id = 'fitcore-toast';
-      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-textPrimary/90 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg';
+      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-textPrimary/90 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-all';
       toast.textContent = msg;
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 2500);
