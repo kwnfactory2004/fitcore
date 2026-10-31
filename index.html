@@ -2,36 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F4C3A">
   <title>FITCORE - Smart Diet & Workout</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js for グラフ -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            themeBg: '#F5F5F7',
-            cardBg: '#FFFFFF',
-            textPrimary: '#1D1D1F',
-            textSecondary: '#86868B',
-            deepGreen: '#0F382C',
-            deepGreenHover: '#175241',
-            deepGreenLight: '#E8F1ED',
-            accentCoral: '#FF6B6B',
-            accentAmber: '#F5A623',
-            accentBlue: '#3B82F6'
-          },
-          fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro JP"', '"Hiragino Sans"', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="icon" type="image/png" href="https://kwnfactory2004.github.io/webtools-aresenal/logo.png">
+  <link rel="apple-touch-icon" href="https://kwnfactory2004.github.io/webtools-aresenal/logo.png">
   <style>
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:-apple-system,BlinkMacSystemFont,SF Pro Display,SF Pro JP,Hiragino Sans,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.bottom-6{bottom:1.5rem}.left-0{left:0}.left-1\/2{left:50%}.right-0{right:0}.right-4{right:1rem}.top-0{top:0}.top-4{top:1rem}.top-full{top:100%}.z-20{z-index:20}.z-30{z-index:30}.z-50{z-index:50}.z-\[60\]{z-index:60}.m-auto{margin:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:.5rem;margin-bottom:.5rem}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-0\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.ml-1\.5{margin-left:.375rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:.375rem}.h-12{height:3rem}.h-2\.5{height:.625rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.max-h-56{max-height:14rem}.min-h-\[1\.25rem\]{min-height:1.25rem}.min-h-\[440px\]{min-height:440px}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-24{width:6rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-5xl{max-width:64rem}.max-w-\[90vw\]{max-width:90vw}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.resize{resize:both}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.375rem*var(--tw-space-x-reverse));margin-left:calc(.375rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-3\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.875rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.875rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-none{border-style:none}.border-deepGreen{--tw-border-opacity:1;border-color:rgb(15 76 58/var(--tw-border-opacity,1))}.border-deepGreen\/15{border-color:rgba(15,76,58,.15)}.border-deepGreen\/20{border-color:rgba(15,76,58,.2)}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246/var(--tw-border-opacity,1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235/var(--tw-border-opacity,1))}.border-gray-200\/80{border-color:rgba(229,231,235,.8)}.bg-accentCoral{--tw-bg-opacity:1;background-color:rgb(255 107 107/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-black\/50{background-color:rgba(0,0,0,.5)}.bg-black\/60{background-color:rgba(0,0,0,.6)}.bg-black\/70{background-color:rgba(0,0,0,.7)}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-cardBg{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-deepGreen{--tw-bg-opacity:1;background-color:rgb(15 76 58/var(--tw-bg-opacity,1))}.bg-deepGreenLight{--tw-bg-opacity:1;background-color:rgb(232 241 237/var(--tw-bg-opacity,1))}.bg-deepGreenLight\/30{background-color:rgba(232,241,237,.3)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.bg-gray-200\/70{background-color:rgba(229,231,235,.7)}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity,1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.bg-textPrimary\/90{background-color:rgba(29,29,31,.9)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/85{background-color:hsla(0,0%,100%,.85)}.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-1{padding-bottom:.25rem}.pb-24{padding-bottom:6rem}.pt-1{padding-top:.25rem}.pt-2{padding-top:.5rem}.pt-3{padding-top:.75rem}.pt-4{padding-top:1rem}.pt-5{padding-top:1.25rem}.pt-6{padding-top:1.5rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-accentAmber{--tw-text-opacity:1;color:rgb(245 166 35/var(--tw-text-opacity,1))}.text-accentBlue{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-accentCoral{--tw-text-opacity:1;color:rgb(255 107 107/var(--tw-text-opacity,1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216/var(--tw-text-opacity,1))}.text-deepGreen{--tw-text-opacity:1;color:rgb(15 76 58/var(--tw-text-opacity,1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87/var(--tw-text-opacity,1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175/var(--tw-text-opacity,1))}.text-textPrimary{--tw-text-opacity:1;color:rgb(29 29 31/var(--tw-text-opacity,1))}.text-textSecondary{--tw-text-opacity:1;color:rgb(134 134 139/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.opacity-80{opacity:.8}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-inner{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgba(0,0,0,.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-500{transition-duration:.5s}.hover\:border-deepGreen:hover{--tw-border-opacity:1;border-color:rgb(15 76 58/var(--tw-border-opacity,1))}.hover\:bg-blue-100:hover{--tw-bg-opacity:1;background-color:rgb(219 234 254/var(--tw-bg-opacity,1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity,1))}.hover\:bg-deepGreenHover:hover{--tw-bg-opacity:1;background-color:rgb(19 96 74/var(--tw-bg-opacity,1))}.hover\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235/var(--tw-bg-opacity,1))}.hover\:text-accentCoral:hover{--tw-text-opacity:1;color:rgb(255 107 107/var(--tw-text-opacity,1))}.hover\:text-textPrimary:hover{--tw-text-opacity:1;color:rgb(29 29 31/var(--tw-text-opacity,1))}.focus\:border-deepGreen:focus{--tw-border-opacity:1;border-color:rgb(15 76 58/var(--tw-border-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95}.active\:scale-95:active,.active\:scale-\[0\.98\]:active{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-\[0\.98\]:active{--tw-scale-x:0.98;--tw-scale-y:0.98}@media (min-width:640px){.sm\:h-72{height:18rem}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:768px){.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:pb-12{padding-bottom:3rem}}
     * { -webkit-tap-highlight-color: transparent; }
     body { background-color: #F5F5F7; color: #1D1D1F; font-size: 16px; line-height: 1.6; }
     .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
@@ -56,15 +33,10 @@
       </div>
 
       <div class="flex items-center space-x-2">
-        <div class="flex items-center space-x-1.5 bg-deepGreenLight text-deepGreen px-3 py-1.5 rounded-full text-xs font-semibold shadow-xs">
+        <div class="flex items-center space-x-1.5 bg-deepGreenLight text-deepGreen px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm">
           <span class="text-sm">🔥</span>
           <span id="streakCount">1日連続記録中</span>
         </div>
-        <button onclick="showNotificationModal()" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition text-textSecondary" title="リマインダー通知">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-        </button>
       </div>
     </div>
   </header>
@@ -151,10 +123,11 @@
             <p class="text-xs text-textSecondary mt-1">達成度: <span id="waterPercentText" class="font-bold text-blue-600">0%</span></p>
           </div>
           <div class="flex space-x-2 pt-3 border-t border-gray-100">
+            <button onclick="addWater(-100)" class="px-3 py-2 text-xs font-bold rounded-xl bg-gray-100 text-textSecondary hover:bg-gray-200 active:scale-95 transition" title="100ml取り消す">−100</button>
             <button onclick="addWater(100)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition">
               +100ml
             </button>
-            <button onclick="addWater(500)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition shadow-xs">
+            <button onclick="addWater(500)" class="flex-1 py-2 text-xs font-bold rounded-xl bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition shadow-sm">
               +500ml
             </button>
           </div>
@@ -167,16 +140,17 @@
               <span class="text-xs font-semibold text-textSecondary uppercase tracking-wider">今日のおすすめ筋トレ</span>
               <span class="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-medium" id="todayDayName">曜日</span>
             </div>
-            <h3 class="text-lg font-bold text-textPrimary mt-1" id="todayWorkoutFocus">お腹引き締め & 体幹リセット</h3>
+            <h3 class="text-lg font-bold text-textPrimary mt-1" id="todayWorkoutFocus">-</h3>
             <p class="text-xs text-textSecondary mt-1 leading-relaxed">
-              所要時間: <strong>約7分</strong> (器具不要・自宅自重)
+              所要時間: <strong id="todayWorkoutTime">約7分</strong> (器具不要・自宅自重)
             </p>
             <div class="mt-3 flex items-center space-x-2 text-xs text-deepGreen bg-deepGreenLight px-3 py-2 rounded-xl">
               <span>💡</span>
-              <span class="font-medium">クランチ + プランクで下腹部を狙う</span>
+              <span class="font-medium" id="todayWorkoutTip">-</span>
             </div>
+            <p class="text-[11px] text-textSecondary mt-2" id="todayWorkoutDone"></p>
           </div>
-          <button onclick="openWorkoutSessionModal('today')" class="w-full mt-4 py-2.5 rounded-xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover active:scale-98 transition flex items-center justify-center space-x-2 shadow-sm">
+          <button onclick="openWorkoutSessionModal('today')" class="w-full mt-4 py-2.5 rounded-xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover active:scale-[0.98] transition flex items-center justify-center space-x-2 shadow-sm">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
             </svg>
@@ -201,22 +175,22 @@
         </div>
 
         <div id="profile-setting-content" class="mt-6 pt-5 border-t border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <form id="profileForm" onsubmit="saveUserProfile(event)" class="space-y-4">
+          <form id="profileForm" novalidate onsubmit="saveUserProfile(event)" class="space-y-4">
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">身長 (cm)</label>
-                <input type="number" id="inputHeight" value="170" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputHeight" min="100" max="250" value="170" step="any" inputmode="decimal" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">現在の体重 (kg)</label>
-                <input type="number" id="inputWeight" value="68.5" step="0.1" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputWeight" min="20" max="300" value="68.5" step="any" inputmode="decimal" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
             </div>
 
             <div class="grid grid-cols-3 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">年齢</label>
-                <input type="number" id="inputAge" value="25" min="0" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputAge" value="25" min="10" max="100" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">性別</label>
@@ -227,7 +201,7 @@
               </div>
               <div>
                 <label class="block text-xs font-semibold text-textSecondary mb-1">目標体重 (kg)</label>
-                <input type="number" id="inputGoalWeight" value="62.0" step="0.1" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+                <input type="number" id="inputGoalWeight" min="20" max="300" value="62.0" step="any" inputmode="decimal" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
               </div>
             </div>
 
@@ -252,7 +226,8 @@
               </div>
             </div>
 
-            <button type="submit" class="w-full py-2.5 rounded-xl bg-deepGreen text-white font-bold text-xs hover:bg-deepGreenHover transition shadow-xs">
+            <p id="profileError" class="hidden text-xs font-semibold text-accentCoral bg-red-50 rounded-xl px-3 py-2"></p>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-deepGreen text-white font-bold text-xs hover:bg-deepGreenHover transition shadow-sm">
               数値を更新して再計算する
             </button>
           </form>
@@ -305,7 +280,7 @@
             <h2 class="text-lg font-bold text-textPrimary">今日のPFCバランス</h2>
             <p class="text-xs text-textSecondary">タンパク質(25%) / 脂質(20%) / 炭水化物(55%)</p>
           </div>
-          <button onclick="showQuickAddMealModal()" class="px-3 py-1.5 rounded-xl bg-deepGreen text-white text-xs font-bold hover:bg-deepGreenHover transition">
+          <button onclick="openManualMealModal()" class="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-xl bg-deepGreen text-white text-xs font-bold hover:bg-deepGreenHover transition">
             + 手動で記録
           </button>
         </div>
@@ -315,7 +290,7 @@
             <label class="block text-xs font-bold text-textSecondary">食事区分を選択して検索・追加</label>
           </div>
           <div class="grid grid-cols-4 gap-1.5 bg-gray-200/70 p-1 rounded-xl text-xs font-semibold">
-            <button onclick="setMealSlot('朝食')" id="slot-朝食" class="meal-slot-btn py-1.5 text-center rounded-lg bg-white font-bold text-deepGreen shadow-xs">朝食</button>
+            <button onclick="setMealSlot('朝食')" id="slot-朝食" class="meal-slot-btn py-1.5 text-center rounded-lg bg-white font-bold text-deepGreen shadow-sm">朝食</button>
             <button onclick="setMealSlot('昼食')" id="slot-昼食" class="meal-slot-btn py-1.5 text-center rounded-lg text-textSecondary">昼食</button>
             <button onclick="setMealSlot('夕食')" id="slot-夕食" class="meal-slot-btn py-1.5 text-center rounded-lg text-textSecondary">夕食</button>
             <button onclick="setMealSlot('間食')" id="slot-間食" class="meal-slot-btn py-1.5 text-center rounded-lg text-textSecondary">間食</button>
@@ -341,7 +316,7 @@
           </div>
 
           <div class="relative">
-            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" placeholder="例: お～いお茶、コカ・コーラ、ハンバーグ、牛丼..." class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
+            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" placeholder="例: おーいお茶、コーラ、ハンバーグ、牛丼..." class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
             <div id="foodDropdown" class="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-20 hidden max-h-56 overflow-y-auto custom-scrollbar"></div>
           </div>
         </div>
@@ -391,7 +366,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
           <div>
             <h2 class="text-lg font-bold text-textPrimary">おまかせ筋トレメニュー生成</h2>
-            <p class="text-xs text-textSecondary mt-0.5">初心者でも器具なし・自宅でできる自重トレーニング</p>
+            <p class="text-xs text-textSecondary mt-0.5">初心者でも器具なし・自宅でできる自重トレーニング（種目の間に15秒休憩）</p>
           </div>
           <div class="flex flex-wrap gap-2">
             <select id="filterGoal" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
@@ -408,11 +383,11 @@
           </div>
         </div>
 
-        <div class="space-y-4" id="workoutListContainer"></div>
+        <div class="space-y-2" id="workoutListContainer"></div>
 
         <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
           <div class="text-xs text-textSecondary">
-            合計エクササイズ: <span id="totalExerciseCount" class="font-bold text-textPrimary">0種目</span>
+            <span id="totalExerciseCount" class="font-bold text-textPrimary">-</span>
           </div>
           <button onclick="openWorkoutSessionModal('custom')" class="px-6 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">
             タイマー連動でスタート
@@ -432,34 +407,32 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
             <h2 class="text-lg font-bold text-textPrimary">体重・目標達成推移</h2>
-            <p class="text-xs text-textSecondary">目標ライン（点線）との差分</p>
+            <p class="text-xs text-textSecondary" id="weightSummary">目標ライン（点線）との差分</p>
           </div>
           <div class="flex items-center space-x-1 bg-gray-100 p-1 rounded-xl text-xs font-semibold">
-            <button onclick="changeChartSpan('week')" id="span-week" class="px-3 py-1 rounded-lg bg-white shadow-xs text-deepGreen">週</button>
+            <button onclick="changeChartSpan('week')" id="span-week" class="px-3 py-1 rounded-lg bg-white shadow-sm text-deepGreen">週</button>
             <button onclick="changeChartSpan('month')" id="span-month" class="px-3 py-1 rounded-lg text-textSecondary">月</button>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mb-4 p-3 bg-gray-50 rounded-2xl">
           <span class="text-xs font-bold text-textSecondary">今日の体重記録:</span>
-          <input type="number" id="quickWeightInput" step="0.1" placeholder="例: 65.0" class="w-24 bg-white border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold focus:outline-none focus:border-deepGreen">
+          <input type="number" id="quickWeightInput" step="any" inputmode="decimal" min="20" max="300" inputmode="decimal" placeholder="例: 65.0" class="w-24 bg-white border border-gray-200 rounded-xl px-3 py-1.5 text-xs font-bold focus:outline-none focus:border-deepGreen">
           <span class="text-xs font-semibold text-textSecondary">kg</span>
           <button onclick="saveTodayWeight()" class="px-3 py-1.5 bg-deepGreen text-white text-xs font-bold rounded-xl hover:bg-deepGreenHover transition">
             記録
           </button>
         </div>
 
-        <div class="relative h-64 sm:h-72 w-full">
-          <canvas id="weightChart"></canvas>
-        </div>
+        <div class="relative h-64 sm:h-72 w-full" id="weightChart"></div>
       </div>
     </section>
 
   </main>
 
   <!-- ==================== モーダル系 ==================== -->
-  <div id="welcomeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative">
+  <div id="welcomeModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex justify-center p-4 overflow-y-auto">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative m-auto">
       <div class="text-center mb-5">
         <div class="w-12 h-12 bg-deepGreen flex items-center justify-center text-white rounded-2xl mx-auto mb-2 shadow-sm">
            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
@@ -470,15 +443,15 @@
         <p class="text-xs text-textSecondary mt-1">最適なダイエットプランを作成するため、<br>はじめに身体情報を設定してください。</p>
       </div>
       
-      <form id="welcomeForm" onsubmit="handleWelcomeSubmit(event)" class="space-y-3.5 text-xs">
+      <form id="welcomeForm" novalidate onsubmit="handleWelcomeSubmit(event)" class="space-y-3.5 text-xs">
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-semibold text-textSecondary mb-1">身長 (cm)</label>
-            <input type="number" id="welcomeHeight" step="0.1" required placeholder="170" value="170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeHeight" min="100" max="250" step="any" inputmode="decimal" required placeholder="170" value="170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">現在の体重 (kg)</label>
-            <input type="number" id="welcomeWeight" step="0.1" required placeholder="68.5" value="68.5" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeWeight" min="20" max="300" step="any" inputmode="decimal" required placeholder="68.5" value="68.5" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
         </div>
         
@@ -496,7 +469,7 @@
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">目標 (kg)</label>
-            <input type="number" id="welcomeGoal" step="0.1" required placeholder="62.0" value="62.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <input type="number" id="welcomeGoal" min="20" max="300" step="any" inputmode="decimal" required placeholder="62.0" value="62.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
           </div>
         </div>
 
@@ -520,6 +493,7 @@
           </select>
         </div>
 
+        <p id="welcomeError" class="hidden text-xs font-semibold text-accentCoral bg-red-50 rounded-xl px-3 py-2"></p>
         <button type="submit" class="w-full mt-2 py-3 rounded-xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">
           設定してスタート
         </button>
@@ -531,19 +505,64 @@
     <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl relative text-center flex flex-col justify-between min-h-[440px]">
       <button onclick="closeWorkoutModal()" class="absolute top-4 right-4 text-textSecondary font-bold hover:text-textPrimary">✕</button>
       <div>
-        <span id="modalPhaseBadge" class="text-xs px-3 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold">WORKOUT</span>
+        <div class="flex items-center justify-center gap-2">
+          <span id="modalPhaseBadge" class="text-xs px-3 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold">WORKOUT</span>
+          <span id="modalStepCount" class="text-xs font-semibold text-textSecondary">1 / 1</span>
+        </div>
         <h3 id="modalExerciseTitle" class="text-lg font-bold text-textPrimary mt-2">種目名</h3>
         <p id="modalExerciseTip" class="text-xs text-textSecondary mt-0.5">解説</p>
       </div>
       <div class="my-4 flex flex-col items-center">
         <span id="timerSecondsText" class="text-6xl font-black text-deepGreen tracking-tight">30</span>
         <span class="text-xs text-textSecondary font-semibold uppercase mt-1">Seconds</span>
+        <div class="w-full bg-gray-100 h-1.5 rounded-full mt-4 overflow-hidden"><div id="timerProgressBar" class="bg-deepGreen h-full rounded-full" style="width:0%"></div></div>
+        <p id="modalNextText" class="text-xs text-textSecondary mt-3 min-h-[1.25rem]"></p>
       </div>
       <div class="flex space-x-2">
         <button id="timerToggleBtn" onclick="toggleTimer()" class="flex-1 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition">一時停止</button>
         <button onclick="skipExercise()" class="px-5 py-3 rounded-2xl bg-gray-100 text-textPrimary font-bold text-sm hover:bg-gray-200 transition">スキップ</button>
       </div>
     </div>
+  </div>
+
+  <!-- 量の選択 -->
+  <div id="amountModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4" onclick="if(event.target===this)closeAmountModal()">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl">
+      <p class="text-xs font-semibold text-textSecondary" id="amountSlotText">朝食</p>
+      <h3 class="text-base font-bold text-textPrimary mt-0.5" id="amountItemName">-</h3>
+      <p class="text-xs text-textSecondary mt-1" id="amountBaseText"></p>
+      <div class="grid grid-cols-3 gap-2 mt-4" id="amountOptions"></div>
+      <button onclick="closeAmountModal()" class="w-full mt-3 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold text-xs hover:bg-gray-200 transition">キャンセル</button>
+    </div>
+  </div>
+
+  <!-- 手動記録 -->
+  <div id="manualMealModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4" onclick="if(event.target===this)closeManualMealModal()">
+    <form class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl space-y-3 text-xs" novalidate onsubmit="submitManualMeal(event)">
+      <div>
+        <p class="font-semibold text-textSecondary" id="manualSlotText">朝食</p>
+        <h3 class="text-base font-bold text-textPrimary">手動で記録</h3>
+      </div>
+      <div>
+        <label class="block font-semibold text-textSecondary mb-1">メニュー名</label>
+        <input type="text" id="manualName" required maxlength="60" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+      </div>
+      <div>
+        <label class="block font-semibold text-textSecondary mb-1">カロリー (kcal)</label>
+        <input type="number" id="manualCal" required min="0" max="5000" step="1" inputmode="numeric" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div><label class="block font-semibold text-textSecondary mb-1">P (g)</label><input type="number" id="manualP" min="0" max="500" step="any" inputmode="decimal" inputmode="decimal" placeholder="0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2 text-sm focus:outline-none focus:border-deepGreen"></div>
+        <div><label class="block font-semibold text-textSecondary mb-1">F (g)</label><input type="number" id="manualF" min="0" max="500" step="any" inputmode="decimal" inputmode="decimal" placeholder="0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2 text-sm focus:outline-none focus:border-deepGreen"></div>
+        <div><label class="block font-semibold text-textSecondary mb-1">C (g)</label><input type="number" id="manualC" min="0" max="500" step="any" inputmode="decimal" inputmode="decimal" placeholder="0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2 text-sm focus:outline-none focus:border-deepGreen"></div>
+      </div>
+      <p id="manualError" class="hidden text-xs font-semibold text-accentCoral bg-red-50 rounded-xl px-3 py-2"></p>
+      <p class="text-[11px] text-textSecondary">PFCがわからないときは空欄のままで大丈夫です（0gで記録します）。</p>
+      <div class="flex gap-2 pt-1">
+        <button type="button" onclick="closeManualMealModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold hover:bg-gray-200 transition">キャンセル</button>
+        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-deepGreen text-white font-bold hover:bg-deepGreenHover transition">記録する</button>
+      </div>
+    </form>
   </div>
 
   <script>
@@ -598,7 +617,7 @@
       { name: "ガパオライス", cal: 588, p: 22, f: 20, c: 80, cat: "bowl" },
       { name: "ルーロー飯", cal: 688, p: 24, f: 28, c: 85, cat: "bowl" },
       { name: "レギュラーバーグディッシュ（150g・ご飯込）", cal: 730, p: 24, f: 30, c: 90, cat: "bowl" },
-      { name: "チーズバーバーグディッシュ（150g・ご飯込）", cal: 840, p: 29, f: 38, c: 91, cat: "bowl" },
+      { name: "チーズバーグディッシュ（150g・ご飯込）", cal: 840, p: 29, f: 38, c: 91, cat: "bowl" },
       { name: "ライス（小 / 100g）", cal: 156, p: 2.5, f: 0.3, c: 37, cat: "bowl" },
       { name: "ご飯（普通 / 200g）", cal: 312, p: 5.0, f: 0.6, c: 74, cat: "bowl" },
 
@@ -812,87 +831,170 @@
       { name: "ルイボスティー", cal: 0, p: 0, f: 0, c: 0, cat: "drink" }
     ];
 
+    // 飲み物は100mlあたりの値で登録している
+    const DRINK_AMOUNTS = [100, 200, 250, 350, 500, 1000];
+    const FOOD_AMOUNTS = [0.5, 1, 1.5, 2];
+
     const exerciseDB = [
-      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', durationSec: 30, equipment: '自重', point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
-      { id: 'legraise', name: 'レッグレイズ', target: '下腹部', category: 'belly', durationSec: 35, equipment: '自重', point: '腰を床に押し付けながら足を上下', ng: '腰を反らせる' },
-      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', durationSec: 40, equipment: '自重', point: '頭からかかとまで一直線', ng: '腰を反らさない' },
-      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', durationSec: 40, equipment: '自重', point: 'お尻を後ろへ引くように沈み込む', ng: '膝を内側にいれる' },
-      { id: 'lunge', name: 'ランジ', target: '太もも・ヒップ', category: 'legs', durationSec: 35, equipment: '自重', point: '股関節から前脚に体重を乗せる', ng: '前膝がつま先より前に出る' },
-      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・二の腕', category: 'upper', durationSec: 30, equipment: '自重', point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' },
-      { id: 'armraise', name: 'バックエクステンション', target: '背中・姿勢', category: 'upper', durationSec: 30, equipment: '自重', point: '肩甲骨を寄せて上体を軽く起こす', ng: '首だけを反らす' },
-      { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', durationSec: 45, equipment: '自重', point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
+      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', durationSec: 30, point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
+      { id: 'legraise', name: 'レッグレイズ', target: '下腹部', category: 'belly', durationSec: 35, point: '腰を床に押し付けながら足を上下', ng: '腰を反らせる' },
+      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', durationSec: 40, point: '頭からかかとまで一直線', ng: '腰を反らさない' },
+      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', durationSec: 40, point: 'お尻を後ろへ引くように沈み込む', ng: '膝を内側にいれる' },
+      { id: 'lunge', name: 'ランジ', target: '太もも・ヒップ', category: 'legs', durationSec: 35, point: '股関節から前脚に体重を乗せる', ng: '前膝がつま先より前に出る' },
+      { id: 'hiplift', name: 'ヒップリフト', target: 'お尻・もも裏', category: 'legs', durationSec: 30, point: 'かかとで床を押してお尻を持ち上げる', ng: '腰を反らせて持ち上げる' },
+      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・二の腕', category: 'upper', durationSec: 30, point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' },
+      { id: 'armraise', name: 'バックエクステンション', target: '背中・姿勢', category: 'upper', durationSec: 30, point: '肩甲骨を寄せて上体を軽く起こす', ng: '首だけを反らす' },
+      { id: 'shouldertap', name: 'プランク・ショルダータップ', target: '肩・二の腕・体幹', category: 'upper', durationSec: 30, point: '腕立ての姿勢で左右交互に肩をタッチ', ng: '腰を左右に大きく揺らす' },
+      { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', durationSec: 45, point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
     ];
+    const exById = Object.fromEntries(exerciseDB.map(e => [e.id, e]));
+
+    // 目的ごとの種目の順番（部位が続かないように並べる）
+    const GOAL_ORDER = {
+      belly: ['crunch', 'legraise', 'plank', 'burpee'],
+      legs: ['squat', 'hiplift', 'lunge', 'burpee'],
+      upper: ['pushup', 'armraise', 'shouldertap', 'burpee'],
+      full: ['squat', 'pushup', 'crunch', 'lunge', 'armraise', 'plank', 'hiplift', 'legraise', 'shouldertap', 'burpee']
+    };
+    const GOAL_INFO = {
+      belly: { title: 'お腹引き締め & 体幹', tip: 'クランチ + プランクで下腹部を狙う' },
+      legs: { title: '下半身・ヒップアップ', tip: 'スクワットとヒップリフトでお尻から引き締める' },
+      upper: { title: '二の腕・背中・姿勢改善', tip: '肩甲骨を意識して背中と二の腕を使う' },
+      full: { title: '全身脂肪燃焼', tip: '全身を順番に動かして消費カロリーを上げる' }
+    };
+    // 日曜〜土曜のおすすめ
+    const WEEKDAY_GOALS = ['full', 'belly', 'legs', 'upper', 'belly', 'legs', 'full'];
+    const TODAY_MINUTES = 7;
+    const REST_SEC = 15;
+    const READY_SEC = 5;
+
+    const DEFAULT_USER = { height: 170, weight: 68.5, goalWeight: 62.0, age: 25, gender: 'male', activity: 1.375, durationMonths: 3 };
 
     const state = {
-      user: { height: 170, weight: 68.5, goalWeight: 62.0, age: 25, gender: 'male', activity: 1.375, durationMonths: 3 },
+      user: { ...DEFAULT_USER },
       stats: { bmi: 0, bmr: 0, tdee: 0, targetCalories: 0, targetP: 0, targetF: 0, targetC: 0 },
-      today: { caloriesConsumed: 0, p: 0, f: 0, c: 0, water: 0, streak: 1 },
-      meals: [],
-      weightHistory: { 
-        week: { labels: ['6日前','5日前','4日前','3日前','一昨日','昨日','今日'], weights: [69.2, 69.0, 68.8, 68.9, 68.6, 68.7, 68.5], goals: [62,62,62,62,62,62,62] }, 
-        month: { labels: ['30日前','24日前','18日前','12日前','6日前','今日'], weights: [70.5, 70.0, 69.5, 69.1, 68.7, 68.5], goals: [62,62,62,62,62,62] } 
-      }
+      data: { days: {}, weights: {} }   // days[YYYY-MM-DD] = { meals:[], water:0, workouts:0 }, weights[YYYY-MM-DD] = kg
     };
 
     let currentMealSlot = '朝食';
     let currentFoodCategory = 'all';
+    let customPlan = [];
+    let chartSpan = 'week';
+    let renderedDay = '';
+    let pendingFood = null;
 
-    let currentWorkoutQueue = [];
-    let currentExerciseIndex = 0;
-    let timerRemainingSec = 30;
-    let timerInterval = null;
-    let isTimerRunning = false;
-    let weightChartInstance = null;
+    // ---------- 共通 ----------
+    function dateKey(d = new Date()) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    function todayKey() { return dateKey(); }
+    function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+    function r1(n) { return Math.round(n * 10) / 10; }
+    function fmt(n) { return r1(n).toLocaleString('ja-JP', { maximumFractionDigits: 1 }); }
+    function esc(str) {
+      return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+    function $(id) { return document.getElementById(id); }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedUser = localStorage.getItem('fitcore_user');
-      if (savedUser) {
-        try {
-          state.user = JSON.parse(savedUser);
-        } catch(e) {}
-      } else {
-        document.getElementById('welcomeModal').classList.remove('hidden');
+    function loadData() {
+      try {
+        const u = JSON.parse(localStorage.getItem('fitcore_user'));
+        if (u && u.height) state.user = { ...DEFAULT_USER, ...u };
+      } catch (e) {}
+      try {
+        const d = JSON.parse(localStorage.getItem('fitcore_data'));
+        if (d && d.days && d.weights) state.data = d;
+      } catch (e) {}
+    }
+    function saveUser() {
+      try { localStorage.setItem('fitcore_user', JSON.stringify(state.user)); } catch (e) {}
+    }
+    function saveData() {
+      try { localStorage.setItem('fitcore_data', JSON.stringify(state.data)); } catch (e) {
+        showToast('保存できませんでした（ブラウザの容量や設定を確認してください）');
       }
+    }
+    function getDay(key = todayKey()) {
+      if (!state.data.days[key]) state.data.days[key] = { meals: [], water: 0, workouts: 0 };
+      return state.data.days[key];
+    }
+    function peekDay(key) { return state.data.days[key] || { meals: [], water: 0, workouts: 0 }; }
+    function dayTotals(key = todayKey()) {
+      const t = { cal: 0, p: 0, f: 0, c: 0 };
+      peekDay(key).meals.forEach(m => { t.cal += m.cal; t.p += m.p; t.f += m.f; t.c += m.c; });
+      return { cal: Math.round(t.cal), p: r1(t.p), f: r1(t.f), c: r1(t.c) };
+    }
+    function isActiveDay(key) {
+      const d = peekDay(key);
+      return d.meals.length > 0 || d.water > 0 || d.workouts > 0 || state.data.weights[key] != null;
+    }
+    function calcStreak() {
+      let d = new Date();
+      if (!isActiveDay(dateKey(d))) d = addDays(d, -1);
+      let n = 0;
+      while (isActiveDay(dateKey(d)) && n < 3650) { n++; d = addDays(d, -1); }
+      return n;
+    }
+
+    // ---------- 起動 ----------
+    window.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      if (!localStorage.getItem('fitcore_user')) $('welcomeModal').classList.remove('hidden');
 
       syncInputFields();
       calculateAllMetrics();
-
-      const days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
-      document.getElementById('todayDayName').textContent = days[new Date().getDay()];
-
-      renderTodayDashboard();
       generateCustomWorkout();
       renderFormGuides();
-      initWeightChart();
+      renderAll();
 
-      // 外側クリックで食事ドロップダウンを閉じる
       document.addEventListener('click', (e) => {
-        const dropdown = document.getElementById('foodDropdown');
-        const searchInput = document.getElementById('foodSearchInput');
-        if (!dropdown.contains(e.target) && e.target !== searchInput) {
+        const dropdown = $('foodDropdown');
+        const searchInput = $('foodSearchInput');
+        if (!dropdown.contains(e.target) && e.target !== searchInput && !e.target.closest('#foodCategoryTabs')) {
           dropdown.classList.add('hidden');
         }
       });
+      // 開きっぱなしで日付が変わったら今日の表示に切り替える
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkDayChange(); });
+      setInterval(checkDayChange, 60000);
+      // 別のタブで記録したときに反映する
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'fitcore_data' || e.key === 'fitcore_user') {
+          loadData(); syncInputFields(); calculateAllMetrics(); renderAll();
+        }
+      });
+      window.addEventListener('resize', () => { if (!$('section-progress').classList.contains('hidden')) renderWeightChart(); });
     });
+
+    function checkDayChange() { if (todayKey() !== renderedDay) renderAll(); }
+
+    function renderAll() {
+      renderedDay = todayKey();
+      $('todayDayName').textContent = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'][new Date().getDay()];
+      renderTodayDashboard();
+      renderTodayWorkoutCard();
+      renderMealLogs();
+      renderWeightChart();
+    }
 
     function syncInputFields() {
       const u = state.user;
-      document.getElementById('inputHeight').value = u.height;
-      document.getElementById('inputWeight').value = u.weight;
-      document.getElementById('inputAge').value = u.age;
-      document.getElementById('inputGoalWeight').value = u.goalWeight;
-      document.getElementById('inputGender').value = u.gender;
-      document.getElementById('inputActivity').value = u.activity;
-      document.getElementById('inputDuration').value = u.durationMonths;
-      
-      document.getElementById('quickWeightInput').value = u.weight;
+      $('inputHeight').value = u.height;
+      $('inputWeight').value = u.weight;
+      $('inputAge').value = u.age;
+      $('inputGoalWeight').value = u.goalWeight;
+      $('inputGender').value = u.gender;
+      $('inputActivity').value = String(u.activity);
+      $('inputDuration').value = String(u.durationMonths);
+      $('quickWeightInput').value = state.data.weights[todayKey()] ?? '';
+      $('quickWeightInput').placeholder = `例: ${u.weight}`;
     }
 
     // タブ切り替え
     function switchTab(tabId) {
       ['dashboard', 'diet', 'workout', 'progress'].forEach(s => {
-        const sec = document.getElementById(`section-${s}`);
-        const btn = document.getElementById(`tab-${s}`);
+        const sec = $(`section-${s}`);
+        const btn = $(`tab-${s}`);
         if (s === tabId) {
           sec.classList.remove('hidden');
           btn.classList.add('bg-white', 'font-bold', 'text-deepGreen', 'shadow-sm');
@@ -903,43 +1005,53 @@
           btn.classList.add('text-textSecondary');
         }
       });
-      if (tabId === 'progress' && weightChartInstance) setTimeout(() => weightChartInstance.resize(), 50);
+      if (tabId === 'progress') renderWeightChart();
+      window.scrollTo({ top: 0 });
     }
 
     function toggleSection(id) {
-      const el = document.getElementById(id);
-      const arrow = document.getElementById('profile-setting-arrow');
+      const el = $(id);
       el.classList.toggle('hidden');
-      arrow.style.transform = el.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+      $('profile-setting-arrow').style.transform = el.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    // ---------- 計算 ----------
+    function goalMode() {
+      const diff = state.user.weight - state.user.goalWeight;
+      if (diff > 0.5) return 'loss';
+      if (diff < -0.5) return 'gain';
+      return 'keep';
     }
 
     function calculateAllMetrics() {
       const u = state.user;
-      if (u.height <= 0 || u.weight <= 0) return;
-      
+      if (!(u.height > 0) || !(u.weight > 0)) return;
+
       const heightM = u.height / 100;
       const bmi = u.weight / (heightM * heightM);
       state.stats.bmi = bmi.toFixed(1);
 
-      let bmiStatus = "標準";
-      let statusColor = "text-textSecondary";
-      if (bmi < 18.5) { bmiStatus = "低体重"; statusColor = "text-accentBlue"; }
-      else if (bmi >= 25) { bmiStatus = "肥満"; statusColor = "text-accentCoral"; }
-      
-      document.getElementById('calcBmiStatus').textContent = bmiStatus;
-      document.getElementById('calcBmiStatus').className = `text-[11px] font-medium ${statusColor}`;
+      let bmiStatus = '標準', statusColor = 'text-textSecondary';
+      if (bmi < 18.5) { bmiStatus = '低体重'; statusColor = 'text-accentBlue'; }
+      else if (bmi >= 25) { bmiStatus = '肥満'; statusColor = 'text-accentCoral'; }
+      $('calcBmiStatus').textContent = bmiStatus;
+      $('calcBmiStatus').className = `text-[11px] font-medium ${statusColor}`;
 
-      let bmr = (u.gender === 'male') 
+      // 改訂版ハリス・ベネディクト式
+      const bmr = (u.gender === 'male')
         ? (13.397 * u.weight + 4.799 * u.height - 5.677 * u.age + 88.362)
         : (9.247 * u.weight + 3.098 * u.height - 4.33 * u.age + 447.593);
       state.stats.bmr = Math.round(bmr);
-
       const tdee = bmr * parseFloat(u.activity);
       state.stats.tdee = Math.round(tdee);
 
-      const weightDiff = u.weight - u.goalWeight;
-      const deficit = (weightDiff > 0) ? Math.min((weightDiff * 7200) / (u.durationMonths * 30), 700) : 0;
-      let targetCal = Math.round(tdee - deficit);
+      const diff = u.weight - u.goalWeight;
+      const days = u.durationMonths * 30;
+      const mode = goalMode();
+      let targetCal = tdee;
+      if (mode === 'loss') targetCal = tdee - Math.min((diff * 7200) / days, 700);
+      if (mode === 'gain') targetCal = tdee + Math.min((-diff * 7200) / days, 300);
+      targetCal = Math.round(targetCal);
       if (targetCal < bmr) targetCal = Math.round(bmr * 1.05);
       state.stats.targetCalories = targetCal;
 
@@ -947,395 +1059,613 @@
       state.stats.targetF = Math.round((targetCal * 0.20) / 9);
       state.stats.targetC = Math.round((targetCal * 0.55) / 4);
 
-      document.getElementById('calcBmi').textContent = state.stats.bmi;
-      document.getElementById('calcBmr').textContent = state.stats.bmr.toLocaleString();
-      document.getElementById('calcTdee').textContent = state.stats.tdee.toLocaleString();
-      document.getElementById('calcTargetCal').textContent = state.stats.targetCalories.toLocaleString();
-      document.getElementById('calcWeightDiff').textContent = ((u.goalWeight - u.weight > 0 ? '+' : '') + (u.goalWeight - u.weight).toFixed(1) + ' kg');
+      $('calcBmi').textContent = state.stats.bmi;
+      $('calcBmr').textContent = state.stats.bmr.toLocaleString();
+      $('calcTdee').textContent = state.stats.tdee.toLocaleString();
+      $('calcTargetCal').textContent = state.stats.targetCalories.toLocaleString();
+      const g = u.goalWeight - u.weight;
+      $('calcWeightDiff').textContent = (g > 0 ? '+' : '') + g.toFixed(1) + ' kg';
+      $('goalTypeText').textContent = { loss: '減量モード', gain: '増量モード', keep: '維持モード' }[mode];
+    }
+
+    // 入力欄の数字を読む（全角数字や「,」の小数点も受け付ける）
+    function readNum(id) {
+      const el = $(id);
+      if (el.validity && el.validity.badInput) return NaN;
+      const v = String(el.value).normalize('NFKC').replace(',', '.').trim();
+      return v === '' ? NaN : Number(v);
+    }
+
+    function readUserForm(prefix) {
+      const ids = prefix === 'welcome'
+        ? { height: 'welcomeHeight', weight: 'welcomeWeight', age: 'welcomeAge', gender: 'welcomeGender', goal: 'welcomeGoal', activity: 'welcomeActivity', duration: 'welcomeDuration' }
+        : { height: 'inputHeight', weight: 'inputWeight', age: 'inputAge', gender: 'inputGender', goal: 'inputGoalWeight', activity: 'inputActivity', duration: 'inputDuration' };
+      const u = {
+        height: r1(readNum(ids.height)), weight: r1(readNum(ids.weight)), age: Math.round(readNum(ids.age)),
+        gender: $(ids.gender).value, goalWeight: r1(readNum(ids.goal)),
+        activity: parseFloat($(ids.activity).value), durationMonths: parseInt($(ids.duration).value)
+      };
+      const checks = [
+        [u.height, 100, 250, '身長は100〜250cmで入力してください', ids.height],
+        [u.weight, 20, 300, '体重は20〜300kgで入力してください', ids.weight],
+        [u.age, 10, 100, '年齢は10〜100で入力してください', ids.age],
+        [u.goalWeight, 20, 300, '目標体重は20〜300kgで入力してください', ids.goal]
+      ];
+      for (const [v, min, max, msg, id] of checks) {
+        if (!(v >= min && v <= max)) return { error: msg, field: id };
+      }
+      return { user: u };
+    }
+
+    function showFormError(id, msg, field) {
+      const el = $(id);
+      el.textContent = msg || '';
+      el.classList.toggle('hidden', !msg);
+      if (msg && field) { try { $(field).focus(); } catch (e) {} }
+    }
+
+    function applyUser(u) {
+      state.user = u;
+      saveUser();
+      // 入力した体重を今日の記録にする
+      state.data.weights[todayKey()] = u.weight;
+      saveData();
+      syncInputFields();
+      calculateAllMetrics();
+      renderAll();
     }
 
     function handleWelcomeSubmit(e) {
       e.preventDefault();
-      state.user = {
-        height: parseFloat(document.getElementById('welcomeHeight').value),
-        weight: parseFloat(document.getElementById('welcomeWeight').value),
-        age: parseInt(document.getElementById('welcomeAge').value),
-        gender: document.getElementById('welcomeGender').value,
-        goalWeight: parseFloat(document.getElementById('welcomeGoal').value),
-        activity: parseFloat(document.getElementById('welcomeActivity').value),
-        durationMonths: parseInt(document.getElementById('welcomeDuration').value)
-      };
-
-      localStorage.setItem('fitcore_user', JSON.stringify(state.user));
-      document.getElementById('welcomeModal').classList.add('hidden');
-
-      syncInputFields();
-      calculateAllMetrics();
-      renderTodayDashboard();
-      updateChartGoals();
+      const r = readUserForm('welcome');
+      if (r.error) { showFormError('welcomeError', r.error, r.field); return; }
+      showFormError('welcomeError', '');
+      // 途中で何かあっても、設定画面は必ず閉じる
+      $('welcomeModal').classList.add('hidden');
+      try { applyUser(r.user); } catch (err) { console.error(err); }
       showToast('初期設定が完了しました！');
     }
 
     function saveUserProfile(e) {
       e.preventDefault();
-      state.user.height = parseFloat(document.getElementById('inputHeight').value);
-      state.user.weight = parseFloat(document.getElementById('inputWeight').value);
-      state.user.age = parseInt(document.getElementById('inputAge').value);
-      state.user.gender = document.getElementById('inputGender').value;
-      state.user.goalWeight = parseFloat(document.getElementById('inputGoalWeight').value);
-      state.user.activity = parseFloat(document.getElementById('inputActivity').value);
-      state.user.durationMonths = parseInt(document.getElementById('inputDuration').value);
-
-      localStorage.setItem('fitcore_user', JSON.stringify(state.user));
-      calculateAllMetrics();
-      renderTodayDashboard();
-      updateChartGoals();
+      const r = readUserForm('input');
+      if (r.error) { showFormError('profileError', r.error, r.field); return; }
+      showFormError('profileError', '');
+      applyUser(r.user);
       showToast('身体情報を更新しました');
     }
 
+    // ---------- ダッシュボード ----------
     function renderTodayDashboard() {
-      const remaining = Math.max(0, state.stats.targetCalories - state.today.caloriesConsumed);
-      document.getElementById('caloriesRemaining').textContent = remaining.toLocaleString();
-      document.getElementById('caloriesConsumedText').textContent = state.today.caloriesConsumed.toLocaleString();
-      document.getElementById('targetCaloriesText').textContent = state.stats.targetCalories.toLocaleString();
+      const t = dayTotals();
+      const day = peekDay(todayKey());
+      const target = state.stats.targetCalories;
+      $('caloriesRemaining').textContent = Math.max(0, target - t.cal).toLocaleString();
+      $('caloriesConsumedText').textContent = t.cal.toLocaleString();
+      $('targetCaloriesText').textContent = target.toLocaleString();
 
-      const targetCal = state.stats.targetCalories || 1;
-      const pct = Math.min(100, Math.round((state.today.caloriesConsumed / targetCal) * 100));
-      document.getElementById('calorieProgressBar').style.width = `${pct}%`;
+      const pct = Math.min(100, Math.round((t.cal / (target || 1)) * 100));
+      const bar = $('calorieProgressBar');
+      bar.style.width = `${pct}%`;
+      bar.classList.toggle('bg-accentCoral', t.cal > target);
+      bar.classList.toggle('bg-deepGreen', t.cal <= target);
 
-      document.getElementById('pfc-p-summary').textContent = `${state.today.p} / ${state.stats.targetP}g`;
-      document.getElementById('pfc-f-summary').textContent = `${state.today.f} / ${state.stats.targetF}g`;
-      document.getElementById('pfc-c-summary').textContent = `${state.today.c} / ${state.stats.targetC}g`;
+      const s = state.stats;
+      $('pfc-p-summary').textContent = `${fmt(t.p)} / ${s.targetP}g`;
+      $('pfc-f-summary').textContent = `${fmt(t.f)} / ${s.targetF}g`;
+      $('pfc-c-summary').textContent = `${fmt(t.c)} / ${s.targetC}g`;
+      $('pfc-p-bar').style.width = `${Math.min(100, (t.p / (s.targetP || 1)) * 100)}%`;
+      $('pfc-f-bar').style.width = `${Math.min(100, (t.f / (s.targetF || 1)) * 100)}%`;
+      $('pfc-c-bar').style.width = `${Math.min(100, (t.c / (s.targetC || 1)) * 100)}%`;
+      $('pfc-p-text').textContent = `${fmt(t.p)}g / ${s.targetP}g`;
+      $('pfc-f-text').textContent = `${fmt(t.f)}g / ${s.targetF}g`;
+      $('pfc-c-text').textContent = `${fmt(t.c)}g / ${s.targetC}g`;
 
-      const tp = state.stats.targetP || 1;
-      const tf = state.stats.targetF || 1;
-      const tc = state.stats.targetC || 1;
-      document.getElementById('pfc-p-bar').style.width = `${Math.min(100, (state.today.p/tp)*100)}%`;
-      document.getElementById('pfc-f-bar').style.width = `${Math.min(100, (state.today.f/tf)*100)}%`;
-      document.getElementById('pfc-c-bar').style.width = `${Math.min(100, (state.today.c/tc)*100)}%`;
+      $('waterAmountText').innerHTML = `${day.water.toLocaleString()} <span class="text-sm font-medium text-textSecondary">ml</span>`;
+      $('waterPercentText').textContent = `${Math.min(100, Math.round((day.water / 2000) * 100))}%`;
 
-      document.getElementById('pfc-p-text').textContent = `${state.today.p}g / ${state.stats.targetP}g`;
-      document.getElementById('pfc-f-text').textContent = `${state.today.f}g / ${state.stats.targetF}g`;
-      document.getElementById('pfc-c-text').textContent = `${state.today.c}g / ${state.stats.targetC}g`;
-
-      document.getElementById('waterAmountText').innerHTML = `${state.today.water} <span class="text-sm font-medium text-textSecondary">ml</span>`;
-      document.getElementById('waterPercentText').textContent = `${Math.min(100, Math.round((state.today.water/2000)*100))}%`;
-      document.getElementById('streakCount').textContent = `${state.today.streak}日連続記録中`;
+      const streak = calcStreak();
+      $('streakCount').textContent = streak > 0 ? `${streak}日連続記録中` : '今日から記録しよう';
     }
 
     function addWater(amount) {
-      state.today.water += amount;
+      const day = getDay();
+      if (amount < 0 && day.water <= 0) return;
+      day.water = Math.max(0, day.water + amount);
+      saveData();
       renderTodayDashboard();
-      showToast(`水分 +${amount}ml`);
+      showToast(amount > 0 ? `水分 +${amount}ml` : `水分 ${amount}ml`);
     }
 
+    // ---------- 食事 ----------
     function setMealSlot(slot) {
       currentMealSlot = slot;
       ['朝食', '昼食', '夕食', '間食'].forEach(s => {
-        const btn = document.getElementById(`slot-${s}`);
-        if (s === slot) {
-          btn.className = 'meal-slot-btn py-1.5 text-center rounded-lg bg-white font-bold text-deepGreen shadow-xs';
-        } else {
-          btn.className = 'meal-slot-btn py-1.5 text-center rounded-lg text-textSecondary';
-        }
+        $(`slot-${s}`).className = s === slot
+          ? 'meal-slot-btn py-1.5 text-center rounded-lg bg-white font-bold text-deepGreen shadow-sm'
+          : 'meal-slot-btn py-1.5 text-center rounded-lg text-textSecondary';
       });
     }
 
     function filterFoodCategory(cat) {
       currentFoodCategory = cat;
-      ['all', 'drink', 'meat', 'fish', 'bowl', 'western', 'chinese', 'ramen', 'pasta', 'fastfood', 'sushi', 'setmeal', 'side', 'onigiri', 'tempura'].forEach(c => {
-        const btn = document.getElementById(`cat-btn-${c}`);
-        if (!btn) return;
-        if (c === cat) {
-          btn.className = 'px-3 py-1 rounded-full bg-deepGreen text-white whitespace-nowrap';
-        } else {
-          btn.className = 'px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap';
-        }
+      document.querySelectorAll('#foodCategoryTabs button').forEach(btn => {
+        btn.className = btn.id === `cat-btn-${cat}`
+          ? 'px-3 py-1 rounded-full bg-deepGreen text-white whitespace-nowrap'
+          : 'px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap';
       });
-      const input = document.getElementById('foodSearchInput');
-      handleFoodSearch(input.value);
+      handleFoodSearch($('foodSearchInput').value);
     }
 
-    function handleFoodSearch(keyword) {
-      const dropdown = document.getElementById('foodDropdown');
-      let matched = foodDB;
-      if (currentFoodCategory !== 'all') {
-        matched = matched.filter(f => f.cat === currentFoodCategory);
-      }
-      if (keyword.trim()) {
-        matched = matched.filter(f => f.name.toLowerCase().includes(keyword.toLowerCase()));
-      }
+    // 全角・半角、カタカナ・ひらがな、長音や記号の違いを無視して比べる
+    function normalizeText(str) {
+      return str.normalize('NFKC').toLowerCase()
+        .replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
+        .replace(/[\s・~〜ーｰ\-－‐（）()\/／、。]/g, '');
+    }
+    const foodIndex = foodDB.map(f => normalizeText(f.name));
+    // メーカー名（かっこの中）を除いた商品名だけの検索用
+    const foodMainIndex = foodDB.map(f => normalizeText(f.name.replace(/（[^（）]*）\s*$/, '')));
 
-      if (matched.length === 0) {
-        dropdown.classList.add('hidden');
-        return;
-      }
+    function handleFoodSearch(keyword) {
+      const dropdown = $('foodDropdown');
+      const q = normalizeText(keyword);
+      const matched = foodDB.map((f, i) => ({ f, i }))
+        .filter(({ f, i }) => (currentFoodCategory === 'all' || f.cat === currentFoodCategory) && (!q || foodIndex[i].includes(q)))
+        .map(({ f, i }) => ({ f, rank: !q ? 2 : foodMainIndex[i].startsWith(q) ? 0 : foodMainIndex[i].includes(q) ? 1 : 2 }))
+        .sort((a, b) => a.rank - b.rank)
+        .map(x => x.f);
+
+      if (!keyword.trim() && currentFoodCategory === 'all') { dropdown.classList.add('hidden'); return; }
       dropdown.innerHTML = '';
+      if (matched.length === 0) {
+        dropdown.innerHTML = '<div class="px-3 py-3 text-xs text-textSecondary text-center">見つかりません。「+ 手動で記録」から追加できます</div>';
+      }
       matched.forEach(item => {
         const div = document.createElement('div');
-        div.className = 'px-3 py-2 hover:bg-gray-100 cursor-pointer text-xs flex justify-between items-center border-b border-gray-100';
-        div.innerHTML = `<span><b>${item.name}</b></span><span class="text-deepGreen font-bold">${item.cal} kcal (P:${item.p} F:${item.f} C:${item.c})</span>`;
-        div.onclick = () => selectFoodItem(item);
+        div.className = 'px-3 py-2 hover:bg-gray-100 cursor-pointer text-xs flex justify-between items-center gap-2 border-b border-gray-100';
+        const unit = item.cat === 'drink' ? '/100ml' : '';
+        div.innerHTML = `<span class="font-bold">${esc(item.name)}</span><span class="text-deepGreen font-bold whitespace-nowrap">${item.cal} kcal${unit}</span>`;
+        div.onclick = () => openAmountModal(item);
         dropdown.appendChild(div);
       });
       dropdown.classList.remove('hidden');
     }
 
-    function selectFoodItem(item) {
-      state.today.caloriesConsumed += item.cal;
-      state.today.p += item.p;
-      state.today.f += item.f;
-      state.today.c += item.c;
+    function openAmountModal(item) {
+      pendingFood = item;
+      const isDrink = item.cat === 'drink';
+      $('amountSlotText').textContent = currentMealSlot;
+      $('amountItemName').textContent = item.name;
+      $('amountBaseText').textContent = isDrink
+        ? `100mlあたり ${item.cal} kcal（P:${item.p} F:${item.f} C:${item.c}）。飲んだ量を選んでください`
+        : `1人前 ${item.cal} kcal（P:${item.p} F:${item.f} C:${item.c}）。食べた量を選んでください`;
+      const box = $('amountOptions');
+      box.innerHTML = '';
+      (isDrink ? DRINK_AMOUNTS : FOOD_AMOUNTS).forEach(a => {
+        const mult = isDrink ? a / 100 : a;
+        const label = isDrink ? (a >= 1000 ? `${a / 1000}L` : `${a}ml`) : (a === 1 ? '1人前' : `${a}人前`);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = `py-2.5 rounded-xl border text-xs font-bold transition active:scale-95 ${mult === 1 && !isDrink ? 'bg-deepGreen text-white border-deepGreen' : 'bg-gray-50 border-gray-200 text-textPrimary hover:border-deepGreen'}`;
+        b.innerHTML = `${label}<span class="block text-[10px] font-medium opacity-80">${Math.round(item.cal * mult)} kcal</span>`;
+        b.onclick = () => { addMeal(item, mult, label); closeAmountModal(); };
+        box.appendChild(b);
+      });
+      $('amountModal').classList.remove('hidden');
+      $('foodDropdown').classList.add('hidden');
+    }
+    function closeAmountModal() { $('amountModal').classList.add('hidden'); pendingFood = null; }
 
-      state.meals.push({
-        id: Date.now(),
+    function addMeal(item, mult = 1, amountLabel = '') {
+      const day = getDay();
+      day.meals.push({
+        id: Date.now() + Math.random(),
         slot: currentMealSlot,
         name: item.name,
-        cal: item.cal,
-        p: item.p,
-        f: item.f,
-        c: item.c
+        amount: amountLabel,
+        cal: Math.round(item.cal * mult),
+        p: r1(item.p * mult), f: r1(item.f * mult), c: r1(item.c * mult)
       });
-
-      document.getElementById('foodSearchInput').value = '';
-      document.getElementById('foodDropdown').classList.add('hidden');
+      saveData();
+      $('foodSearchInput').value = '';
       renderTodayDashboard();
       renderMealLogs();
       showToast(`[${currentMealSlot}] ${item.name} を記録しました`);
     }
 
     function deleteMeal(id) {
-      const idx = state.meals.findIndex(m => m.id === id);
-      if (idx !== -1) {
-        const m = state.meals[idx];
-        state.today.caloriesConsumed = Math.max(0, state.today.caloriesConsumed - m.cal);
-        state.today.p = Math.max(0, state.today.p - m.p);
-        state.today.f = Math.max(0, state.today.f - m.f);
-        state.today.c = Math.max(0, state.today.c - m.c);
-        state.meals.splice(idx, 1);
-        renderTodayDashboard();
-        renderMealLogs();
-        showToast('食事ログを削除しました');
-      }
+      const day = getDay();
+      const idx = day.meals.findIndex(m => m.id === id);
+      if (idx === -1) return;
+      day.meals.splice(idx, 1);
+      saveData();
+      renderTodayDashboard();
+      renderMealLogs();
+      showToast('食事ログを削除しました');
     }
 
     function renderMealLogs() {
-      const container = document.getElementById('mealLogsContainer');
-      if (state.meals.length === 0) {
-        container.innerHTML = `<p class="text-xs text-textSecondary text-center py-4">まだ食事の記録がありません</p>`;
+      const container = $('mealLogsContainer');
+      const meals = peekDay(todayKey()).meals;
+      if (meals.length === 0) {
+        container.innerHTML = '<p class="text-xs text-textSecondary text-center py-4">まだ食事の記録がありません</p>';
         return;
       }
+      const order = ['朝食', '昼食', '夕食', '間食'];
       container.innerHTML = '';
-      state.meals.forEach(m => {
+      [...meals].sort((a, b) => order.indexOf(a.slot) - order.indexOf(b.slot)).forEach(m => {
         const div = document.createElement('div');
-        div.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-2xl text-xs';
+        div.className = 'flex items-center justify-between gap-2 p-3 bg-gray-50 rounded-2xl text-xs';
         div.innerHTML = `
-          <div class="flex items-center space-x-2">
-            <span class="px-2 py-0.5 rounded bg-deepGreenLight text-deepGreen font-bold text-[10px]">${m.slot}</span>
-            <div>
-              <span class="font-bold text-textPrimary">${m.name}</span>
-              <p class="text-[10px] text-textSecondary">P:${m.p}g / F:${m.f}g / C:${m.c}g</p>
+          <div class="flex items-center space-x-2 min-w-0">
+            <span class="px-2 py-0.5 rounded bg-deepGreenLight text-deepGreen font-bold text-[10px] shrink-0">${m.slot}</span>
+            <div class="min-w-0">
+              <span class="font-bold text-textPrimary break-words">${esc(m.name)}</span>${m.amount ? `<span class="text-textSecondary"> ・ ${esc(m.amount)}</span>` : ''}
+              <p class="text-[10px] text-textSecondary">P:${fmt(m.p)}g / F:${fmt(m.f)}g / C:${fmt(m.c)}g</p>
             </div>
           </div>
-          <div class="flex items-center space-x-3">
-            <span class="font-bold">${m.cal} kcal</span>
-            <button onclick="deleteMeal(${m.id})" class="text-gray-400 hover:text-accentCoral font-bold px-1.5 py-0.5 rounded transition" title="削除">✕</button>
-          </div>
-        `;
+          <div class="flex items-center space-x-2 shrink-0">
+            <span class="font-bold whitespace-nowrap">${m.cal.toLocaleString()} kcal</span>
+            <button class="text-gray-400 hover:text-accentCoral font-bold px-1.5 py-0.5 rounded transition" title="削除">✕</button>
+          </div>`;
+        div.querySelector('button').onclick = () => deleteMeal(m.id);
         container.appendChild(div);
       });
     }
 
-    function showQuickAddMealModal() {
-      const name = prompt(`[${currentMealSlot}] 追加するメニュー名:`);
-      if (!name) return;
-      const cal = parseInt(prompt("カロリー (kcal):", "300")) || 0;
-      selectFoodItem({ name, cal, p: 10, f: 5, c: 30, cat: "other" });
+    function openManualMealModal() {
+      $('manualSlotText').textContent = currentMealSlot;
+      ['manualName', 'manualCal', 'manualP', 'manualF', 'manualC'].forEach(id => $(id).value = '');
+      showFormError('manualError', '');
+      $('manualMealModal').classList.remove('hidden');
+      setTimeout(() => $('manualName').focus(), 50);
+    }
+    function closeManualMealModal() { $('manualMealModal').classList.add('hidden'); }
+    function submitManualMeal(e) {
+      e.preventDefault();
+      const n = id => Math.max(0, readNum(id) || 0);
+      if (!$('manualName').value.trim()) { showFormError('manualError', 'メニュー名を入力してください', 'manualName'); return; }
+      const cal = readNum('manualCal');
+      if (!(cal >= 0 && cal <= 5000)) { showFormError('manualError', 'カロリーを0〜5000kcalで入力してください', 'manualCal'); return; }
+      addMeal({ name: $('manualName').value.trim() || '手動記録', cal: n('manualCal'), p: n('manualP'), f: n('manualF'), c: n('manualC') });
+      closeManualMealModal();
     }
 
-    // 目的と所要時間による動的ワークアウト生成ロジック
-    function generateCustomWorkout() {
-      const goal = document.getElementById('filterGoal').value;
-      const duration = parseInt(document.getElementById('filterDuration').value);
-
-      let targetExercises = exerciseDB;
-      if (goal !== 'full') {
-        targetExercises = exerciseDB.filter(ex => ex.category === goal || ex.category === 'full');
+    // ---------- 筋トレ ----------
+    // 指定した時間に収まるように、種目（間に休憩）を順番に並べる
+    function buildPlan(goal, minutes) {
+      const pool = GOAL_ORDER[goal].map(id => exById[id]);
+      const target = minutes * 60;
+      const plan = [];
+      let total = 0;
+      for (let i = 0; i < 100; i++) {
+        const ex = pool[i % pool.length];
+        const need = (plan.length ? REST_SEC : 0) + ex.durationSec;
+        if (plan.length && total + need > target + 15) break;
+        plan.push({ ex, round: Math.floor(i / pool.length) + 1 });
+        total += need;
       }
+      return { plan, totalSec: total };
+    }
+    function planToSteps(plan) {
+      const steps = [{ kind: 'ready', sec: READY_SEC, ex: plan[0].ex }];
+      plan.forEach((p, i) => {
+        if (i > 0) steps.push({ kind: 'rest', sec: REST_SEC, ex: p.ex });
+        steps.push({ kind: 'work', sec: p.ex.durationSec, ex: p.ex, no: i + 1 });
+      });
+      return steps;
+    }
+    function minutesText(sec) { return `約${Math.max(1, Math.round(sec / 60))}分`; }
 
-      // 時間に応じた種目数の調整 (5分: 3種目, 10分: 5種目, 15分: 8種目)
-      let count = 5;
-      if (duration === 5) count = 3;
-      if (duration === 15) count = 8;
+    function generateCustomWorkout() {
+      const goal = $('filterGoal').value;
+      const duration = parseInt($('filterDuration').value);
+      const { plan, totalSec } = buildPlan(goal, duration);
+      customPlan = plan;
 
-      currentWorkoutQueue = targetExercises.slice(0, count);
-
-      const container = document.getElementById('workoutListContainer');
+      const container = $('workoutListContainer');
       container.innerHTML = '';
-      currentWorkoutQueue.forEach((ex, idx) => {
+      const rounds = plan[plan.length - 1].round;
+      plan.forEach((p, idx) => {
+        if (rounds > 1 && (idx === 0 || p.round !== plan[idx - 1].round)) {
+          const h = document.createElement('p');
+          h.className = `text-xs font-bold text-textSecondary ${idx ? 'pt-3' : ''}`;
+          h.textContent = `${p.round}周目`;
+          container.appendChild(h);
+        }
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200/80';
         item.innerHTML = `
           <div class="flex items-center space-x-3">
-            <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs">${idx+1}</div>
+            <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs">${idx + 1}</div>
             <div>
-              <h4 class="text-sm font-bold text-textPrimary">${ex.name}</h4>
-              <p class="text-xs text-textSecondary">${ex.target} ・ ${ex.durationSec}秒</p>
+              <h4 class="text-sm font-bold text-textPrimary">${p.ex.name}</h4>
+              <p class="text-xs text-textSecondary">${p.ex.target} ・ ${p.ex.durationSec}秒</p>
             </div>
-          </div>
-        `;
+          </div>`;
         container.appendChild(item);
       });
-      document.getElementById('totalExerciseCount').textContent = `${currentWorkoutQueue.length}種目`;
+      const kinds = new Set(plan.map(p => p.ex.id)).size;
+      $('totalExerciseCount').textContent = `${kinds}種目${rounds > 1 ? ` × ${rounds}周` : ''} ・ ${minutesText(totalSec)}`;
+    }
+
+    function todayGoal() { return WEEKDAY_GOALS[new Date().getDay()]; }
+
+    function renderTodayWorkoutCard() {
+      const goal = todayGoal();
+      const { totalSec } = buildPlan(goal, TODAY_MINUTES);
+      $('todayWorkoutFocus').textContent = GOAL_INFO[goal].title;
+      $('todayWorkoutTime').textContent = minutesText(totalSec);
+      $('todayWorkoutTip').textContent = GOAL_INFO[goal].tip;
+      const done = peekDay(todayKey()).workouts;
+      $('todayWorkoutDone').textContent = done ? `✅ 今日は${done}回トレーニングしました` : '';
     }
 
     function renderFormGuides() {
-      const container = document.getElementById('formGuideContainer');
+      const container = $('formGuideContainer');
       container.innerHTML = '';
       exerciseDB.forEach(ex => {
         const card = document.createElement('div');
         card.className = 'p-4 rounded-2xl bg-gray-50 border border-gray-200/80 text-xs';
-        card.innerHTML = `<h4 class="font-bold text-sm text-textPrimary mb-1">${ex.name}</h4><p class="text-deepGreen mb-1"><strong>正解:</strong> ${ex.point}</p><p class="text-accentCoral"><strong>NG:</strong> ${ex.ng}</p>`;
+        card.innerHTML = `<h4 class="font-bold text-sm text-textPrimary mb-1">${ex.name}<span class="text-[11px] font-medium text-textSecondary ml-1.5">${ex.target}</span></h4><p class="text-deepGreen mb-1"><strong>正解:</strong> ${ex.point}</p><p class="text-accentCoral"><strong>NG:</strong> ${ex.ng}</p>`;
         container.appendChild(card);
       });
     }
 
+    // ---------- タイマー（終了時刻から残りを計算する） ----------
+    const timer = { steps: [], index: 0, endAt: 0, pausedLeft: null, loop: null, lastBeepSec: null, wakeLock: null };
+    let audioCtx = null;
+
+    function beep(freq = 880, dur = 0.12, vol = 0.25) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const t = audioCtx.currentTime;
+        const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.type = 'sine'; o.frequency.value = freq;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        o.connect(g).connect(audioCtx.destination);
+        o.start(t); o.stop(t + dur + 0.02);
+      } catch (e) {}
+    }
+
+    async function requestWakeLock() {
+      try { if ('wakeLock' in navigator) timer.wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+    }
+    function releaseWakeLock() {
+      try { if (timer.wakeLock) timer.wakeLock.release(); } catch (e) {}
+      timer.wakeLock = null;
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && timer.loop && timer.pausedLeft === null) requestWakeLock();
+    });
+
     function openWorkoutSessionModal(mode) {
-      if (currentWorkoutQueue.length === 0) generateCustomWorkout();
-      currentExerciseIndex = 0;
-      timerRemainingSec = currentWorkoutQueue[0].durationSec;
-      document.getElementById('modalExerciseTitle').textContent = currentWorkoutQueue[0].name;
-      document.getElementById('modalExerciseTip').textContent = currentWorkoutQueue[0].point;
-      document.getElementById('workoutTimerModal').classList.remove('hidden');
-      startTimer();
+      const plan = mode === 'today' ? buildPlan(todayGoal(), TODAY_MINUTES).plan : customPlan;
+      if (!plan.length) return;
+      beep(0, 0.01, 0.0001); // タップ中に音声を使える状態にしておく
+      timer.steps = planToSteps(plan);
+      timer.index = 0;
+      timer.pausedLeft = null;
+      timer.endAt = Date.now() + timer.steps[0].sec * 1000;
+      timer.lastBeepSec = null;
+      $('timerToggleBtn').textContent = '一時停止';
+      $('workoutTimerModal').classList.remove('hidden');
+      clearInterval(timer.loop);
+      timer.loop = setInterval(tick, 200);
+      requestWakeLock();
+      renderStep();
+      tick();
     }
 
     function closeWorkoutModal() {
-      clearInterval(timerInterval);
-      isTimerRunning = false;
-      document.getElementById('workoutTimerModal').classList.add('hidden');
+      clearInterval(timer.loop);
+      timer.loop = null;
+      releaseWakeLock();
+      $('workoutTimerModal').classList.add('hidden');
     }
 
-    function startTimer() {
-      if (isTimerRunning) return;
-      isTimerRunning = true;
-      document.getElementById('timerToggleBtn').textContent = '一時停止';
-      timerInterval = setInterval(() => {
-        timerRemainingSec--;
-        document.getElementById('timerSecondsText').textContent = timerRemainingSec;
-        if (timerRemainingSec <= 0) {
-          clearInterval(timerInterval);
-          isTimerRunning = false;
-          currentExerciseIndex++;
-          if (currentExerciseIndex < currentWorkoutQueue.length) {
-            timerRemainingSec = currentWorkoutQueue[currentExerciseIndex].durationSec;
-            document.getElementById('modalExerciseTitle').textContent = currentWorkoutQueue[currentExerciseIndex].name;
-            document.getElementById('modalExerciseTip').textContent = currentWorkoutQueue[currentExerciseIndex].point;
-            startTimer();
-          } else {
-            closeWorkoutModal();
-            showToast('🎉 ワークアウト完了！');
-          }
-        }
-      }, 1000);
+    function finishWorkout() {
+      closeWorkoutModal();
+      getDay().workouts += 1;
+      saveData();
+      renderTodayDashboard();
+      renderTodayWorkoutCard();
+      beep(660, 0.15); setTimeout(() => beep(880, 0.15), 180); setTimeout(() => beep(1175, 0.3), 360);
+      showToast('🎉 ワークアウト完了！');
+    }
+
+    function tick() {
+      if (timer.pausedLeft !== null) return;
+      const now = Date.now();
+      let changed = false;
+      // 画面を消していた間に終わった種目は飛ばして追いつく
+      while (now >= timer.endAt) {
+        timer.index++;
+        changed = true;
+        if (timer.index >= timer.steps.length) { finishWorkout(); return; }
+        timer.endAt += timer.steps[timer.index].sec * 1000;
+      }
+      if (changed) {
+        const step = timer.steps[timer.index];
+        beep(step.kind === 'work' ? 1046 : 660, 0.25);
+        if ('vibrate' in navigator) navigator.vibrate(200);
+        timer.lastBeepSec = null;
+        renderStep();
+      }
+      renderTime(timer.endAt - now);
+    }
+
+    function renderTime(leftMs) {
+      const step = timer.steps[timer.index];
+      const sec = Math.max(0, Math.ceil(leftMs / 1000));
+      $('timerSecondsText').textContent = sec;
+      $('timerProgressBar').style.width = `${Math.min(100, (1 - leftMs / (step.sec * 1000)) * 100)}%`;
+      // 残り3秒でカウント音
+      if (sec <= 3 && sec >= 1 && timer.lastBeepSec !== sec && timer.pausedLeft === null) {
+        timer.lastBeepSec = sec;
+        beep(880, 0.08, 0.15);
+      }
+    }
+
+    function renderStep() {
+      const step = timer.steps[timer.index];
+      const works = timer.steps.filter(s => s.kind === 'work').length;
+      const badge = $('modalPhaseBadge');
+      const sec = $('timerSecondsText');
+      if (step.kind === 'work') {
+        badge.textContent = 'WORKOUT';
+        badge.className = 'text-xs px-3 py-1 rounded-full bg-deepGreenLight text-deepGreen font-bold';
+        sec.className = 'text-6xl font-black text-deepGreen tracking-tight';
+        $('modalExerciseTitle').textContent = step.ex.name;
+        $('modalExerciseTip').textContent = step.ex.point;
+        $('modalStepCount').textContent = `${step.no} / ${works}`;
+        const next = timer.steps[timer.index + 2];
+        $('modalNextText').textContent = next ? `次: ${next.ex.name}` : 'ラスト！';
+      } else {
+        badge.textContent = step.kind === 'ready' ? 'READY' : 'REST';
+        badge.className = 'text-xs px-3 py-1 rounded-full bg-amber-50 text-amber-700 font-bold';
+        sec.className = 'text-6xl font-black text-accentAmber tracking-tight';
+        $('modalExerciseTitle').textContent = step.kind === 'ready' ? 'まもなくスタート' : '休憩';
+        $('modalExerciseTip').textContent = step.kind === 'ready' ? '姿勢を整えて準備しましょう' : '呼吸を整えましょう';
+        const no = timer.steps[timer.index + 1].no;
+        $('modalStepCount').textContent = `${no} / ${works}`;
+        $('modalNextText').textContent = `次: ${step.ex.name}（${step.ex.durationSec}秒）`;
+      }
     }
 
     function toggleTimer() {
-      if (isTimerRunning) {
-        clearInterval(timerInterval);
-        isTimerRunning = false;
-        document.getElementById('timerToggleBtn').textContent = '再開';
+      if (timer.pausedLeft === null) {
+        timer.pausedLeft = Math.max(0, timer.endAt - Date.now());
+        $('timerToggleBtn').textContent = '再開';
+        releaseWakeLock();
       } else {
-        startTimer();
+        timer.endAt = Date.now() + timer.pausedLeft;
+        timer.pausedLeft = null;
+        $('timerToggleBtn').textContent = '一時停止';
+        requestWakeLock();
+        tick();
       }
     }
 
     function skipExercise() {
-      clearInterval(timerInterval);
-      isTimerRunning = false;
-      currentExerciseIndex++;
-      if (currentExerciseIndex < currentWorkoutQueue.length) {
-        timerRemainingSec = currentWorkoutQueue[currentExerciseIndex].durationSec;
-        document.getElementById('modalExerciseTitle').textContent = currentWorkoutQueue[currentExerciseIndex].name;
-        document.getElementById('modalExerciseTip').textContent = currentWorkoutQueue[currentExerciseIndex].point;
-        startTimer();
-      } else {
-        closeWorkoutModal();
-      }
+      timer.index++;
+      if (timer.index >= timer.steps.length) { finishWorkout(); return; }
+      const ms = timer.steps[timer.index].sec * 1000;
+      if (timer.pausedLeft !== null) timer.pausedLeft = ms;
+      else timer.endAt = Date.now() + ms;
+      timer.lastBeepSec = null;
+      renderStep();
+      renderTime(timer.pausedLeft ?? ms);
     }
 
-    function initWeightChart() {
-      const ctx = document.getElementById('weightChart').getContext('2d');
-      updateChartGoals();
-      weightChartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: state.weightHistory.week.labels,
-          datasets: [
-            { label: '体重 (kg)', data: state.weightHistory.week.weights, borderColor: '#0F382C', backgroundColor: 'rgba(15, 56, 44, 0.05)', borderWidth: 2, fill: true, tension: 0.3 },
-            { label: '目標 (kg)', data: state.weightHistory.week.goals, borderColor: '#F5A623', borderDash: [4,4], borderWidth: 1.5, fill: false }
-          ]
-        },
-        options: { 
-          responsive: true, 
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: true, position: 'top' }
-          },
-          scales: {
-            y: {
-              suggestedMin: Math.floor(state.user.goalWeight - 2),
-              suggestedMax: Math.ceil(state.user.weight + 2)
-            }
-          }
-        }
-      });
-    }
-
+    // ---------- 体重グラフ（SVG） ----------
     function changeChartSpan(span) {
-      document.getElementById('span-week').className = span === 'week' ? 'px-3 py-1 rounded-lg bg-white shadow-xs text-deepGreen font-bold' : 'px-3 py-1 rounded-lg text-textSecondary';
-      document.getElementById('span-month').className = span === 'month' ? 'px-3 py-1 rounded-lg bg-white shadow-xs text-deepGreen font-bold' : 'px-3 py-1 rounded-lg text-textSecondary';
-
-      const data = state.weightHistory[span];
-      weightChartInstance.data.labels = data.labels;
-      weightChartInstance.data.datasets[0].data = data.weights;
-      weightChartInstance.data.datasets[1].data = data.goals;
-      weightChartInstance.update();
-    }
-
-    function updateChartGoals() {
-      const g = state.user.goalWeight;
-      state.weightHistory.week.goals.fill(g);
-      state.weightHistory.month.goals.fill(g);
-      if (weightChartInstance) weightChartInstance.update();
+      chartSpan = span;
+      const on = 'px-3 py-1 rounded-lg bg-white shadow-sm text-deepGreen font-bold';
+      const off = 'px-3 py-1 rounded-lg text-textSecondary';
+      $('span-week').className = span === 'week' ? on : off;
+      $('span-month').className = span === 'month' ? on : off;
+      renderWeightChart();
     }
 
     function saveTodayWeight() {
-      const val = parseFloat(document.getElementById('quickWeightInput').value);
-      if (!val) return;
-      state.user.weight = val;
-      state.weightHistory.week.weights[6] = val;
-      state.weightHistory.month.weights[5] = val;
-      localStorage.setItem('fitcore_user', JSON.stringify(state.user));
-      
-      weightChartInstance.update();
+      const val = readNum('quickWeightInput');
+      if (!(val >= 20 && val <= 300)) { showToast('体重は20〜300kgの範囲で入力してください'); return; }
+      const v = r1(val);
+      state.data.weights[todayKey()] = v;
+      state.user.weight = v;
+      saveUser();
+      saveData();
+      syncInputFields();
       calculateAllMetrics();
-      renderTodayDashboard();
-      showToast(`体重 ${val}kg を記録しました`);
+      renderAll();
+      showToast(`体重 ${v}kg を記録しました`);
     }
 
-    function showNotificationModal() { showToast('毎日のリマインダー通知が有効になっています'); }
+    function renderWeightChart() {
+      const box = $('weightChart');
+      const days = chartSpan === 'week' ? 7 : 30;
+      const today = new Date();
+      const keys = [];
+      for (let i = days - 1; i >= 0; i--) keys.push(dateKey(addDays(today, -i)));
+      const pts = keys.map((k, i) => ({ i, k, w: state.data.weights[k] })).filter(p => p.w != null);
+      const goal = state.user.goalWeight;
+
+      // 見出しの下の要約
+      const all = Object.keys(state.data.weights).sort();
+      const summary = $('weightSummary');
+      if (all.length) {
+        const first = state.data.weights[all[0]], last = state.data.weights[all[all.length - 1]];
+        const change = r1(last - first);
+        const toGoal = r1(Math.abs(last - goal));
+        summary.textContent = `記録開始から ${change > 0 ? '+' : ''}${change}kg ・ 目標まであと ${toGoal}kg`;
+      } else {
+        summary.textContent = '目標ライン（点線）との差分';
+      }
+
+      if (!pts.length) {
+        box.innerHTML = `<div class="h-full flex flex-col items-center justify-center text-center text-xs text-textSecondary border border-dashed border-gray-200 rounded-2xl">
+          <p class="font-semibold text-textPrimary">この期間の体重記録はまだありません</p>
+          <p class="mt-1">上の欄から今日の体重を記録すると、ここにグラフが表示されます</p></div>`;
+        return;
+      }
+
+      const W = Math.max(280, box.clientWidth || 600), H = Math.max(200, box.clientHeight || 260);
+      const padL = 36, padR = 14, padT = 26, padB = 26;
+      const ws = pts.map(p => p.w).concat(goal);
+      let lo = Math.floor(Math.min(...ws) - 0.5), hi = Math.ceil(Math.max(...ws) + 0.5);
+      if (hi - lo < 2) { hi += 1; lo -= 1; }
+      const step = hi - lo > 12 ? 5 : hi - lo > 6 ? 2 : 1;
+      lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+      const x = i => padL + (days === 1 ? 0 : i * (W - padL - padR) / (days - 1));
+      const y = w => padT + (hi - w) * (H - padT - padB) / (hi - lo);
+
+      let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" style="font-family:inherit">`;
+      for (let v = lo; v <= hi + 1e-9; v += step) {
+        svg += `<line x1="${padL}" x2="${W - padR}" y1="${y(v)}" y2="${y(v)}" stroke="#F0F0F2"/>`;
+        svg += `<text x="${padL - 6}" y="${y(v) + 3.5}" text-anchor="end" font-size="10" fill="#86868B">${v}</text>`;
+      }
+      const labelEvery = days === 7 ? 1 : 5;
+      keys.forEach((k, i) => {
+        if ((days - 1 - i) % labelEvery !== 0) return;
+        const [, m, d] = k.split('-').map(Number);
+        svg += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" font-size="10" fill="#86868B">${m}/${d}</text>`;
+      });
+      // 目標ライン
+      svg += `<line x1="${padL}" x2="${W - padR}" y1="${y(goal)}" y2="${y(goal)}" stroke="#F5A623" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+      svg += `<text x="${W - padR}" y="${y(goal) - 5}" text-anchor="end" font-size="10" font-weight="700" fill="#C47F0E">目標 ${goal}kg</text>`;
+      // 体重の線と塗り
+      const line = pts.map((p, j) => `${j ? 'L' : 'M'}${x(p.i)},${y(p.w)}`).join(' ');
+      if (pts.length > 1) {
+        svg += `<path d="${line} L${x(pts[pts.length - 1].i)},${H - padB} L${x(pts[0].i)},${H - padB} Z" fill="rgba(15,76,58,0.06)"/>`;
+        svg += `<path d="${line}" fill="none" stroke="#0F4C3A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+      }
+      pts.forEach(p => {
+        svg += `<circle cx="${x(p.i)}" cy="${y(p.w)}" r="3.5" fill="#fff" stroke="#0F4C3A" stroke-width="2"><title>${p.k}: ${p.w}kg</title></circle>`;
+      });
+      const lastP = pts[pts.length - 1];
+      const anchor = x(lastP.i) > W - 60 ? 'end' : 'middle';
+      const labelY = Math.min(...pts.filter(p => x(lastP.i) - x(p.i) < 50).map(p => y(p.w))) - 10;
+      svg += `<text x="${x(lastP.i)}" y="${labelY}" text-anchor="${anchor}" font-size="11" font-weight="700" fill="#0F4C3A">${lastP.w}kg</text>`;
+      svg += '</svg>';
+      box.innerHTML = svg;
+    }
 
     function showToast(msg) {
-      const existing = document.getElementById('fitcore-toast');
+      const existing = $('fitcore-toast');
       if (existing) existing.remove();
       const toast = document.createElement('div');
       toast.id = 'fitcore-toast';
-      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-textPrimary/90 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-all';
+      toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-textPrimary/90 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg transition-all max-w-[90vw] text-center';
       toast.textContent = msg;
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 2500);
     }
+
   </script>
 </body>
 </html>
