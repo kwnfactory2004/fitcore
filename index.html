@@ -494,18 +494,18 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-semibold text-textSecondary mb-1">身長 (cm)</label>
-            <input type="number" id="welcomeHeight" min="100" max="250" step="any" inputmode="decimal" required placeholder="170" value="170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeHeight" min="100" max="250" step="any" inputmode="decimal" required placeholder="例: 170" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">現在の体重 (kg)</label>
-            <input type="number" id="welcomeWeight" min="20" max="300" step="any" inputmode="decimal" required placeholder="68.5" value="68.5" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
+            <input type="number" id="welcomeWeight" min="20" max="300" step="any" inputmode="decimal" required placeholder="例: 65.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2">
           </div>
         </div>
         
         <div class="grid grid-cols-3 gap-2">
           <div>
             <label class="block font-semibold text-textSecondary mb-1">年齢</label>
-            <input type="number" id="welcomeAge" required placeholder="25" value="25" min="10" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <input type="number" id="welcomeAge" required placeholder="例: 20" min="10" max="100" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">性別</label>
@@ -516,7 +516,7 @@
           </div>
           <div>
             <label class="block font-semibold text-textSecondary mb-1">目標 (kg)</label>
-            <input type="number" id="welcomeGoal" min="20" max="300" step="any" inputmode="decimal" required placeholder="62.0" value="62.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <input type="number" id="welcomeGoal" min="20" max="300" step="any" inputmode="decimal" required placeholder="例: 60.0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
           </div>
         </div>
 
@@ -1349,12 +1349,13 @@
         activity: parseFloat($(ids.activity).value), durationMonths: parseInt($(ids.duration).value)
       };
       const checks = [
-        [u.height, 100, 250, '身長は100〜250cmで入力してください', ids.height],
-        [u.weight, 20, 300, '体重は20〜300kgで入力してください', ids.weight],
-        [u.age, 10, 100, '年齢は10〜100で入力してください', ids.age],
-        [u.goalWeight, 20, 300, '目標体重は20〜300kgで入力してください', ids.goal]
+        [u.height, 100, 250, '身長', '身長は100〜250cmで入力してください', ids.height],
+        [u.weight, 20, 300, '体重', '体重は20〜300kgで入力してください', ids.weight],
+        [u.age, 10, 100, '年齢', '年齢は10〜100で入力してください', ids.age],
+        [u.goalWeight, 20, 300, '目標体重', '目標体重は20〜300kgで入力してください', ids.goal]
       ];
-      for (const [v, min, max, msg, id] of checks) {
+      for (const [v, min, max, label, msg, id] of checks) {
+        if (!String($(id).value).trim() && !($(id).validity && $(id).validity.badInput)) return { error: `${label}を入力してください`, field: id };
         if (!(v >= min && v <= max)) return { error: msg, field: id };
       }
       return { user: u };
