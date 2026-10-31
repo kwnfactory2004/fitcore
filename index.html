@@ -43,6 +43,12 @@
           <span class="text-sm">🔥</span>
           <span id="streakCount">1日連続記録中</span>
         </div>
+        <button onclick="openBackup()" class="w-9 h-9 rounded-xl bg-white border border-gray-200 text-textSecondary hover:text-textPrimary shadow-sm flex items-center justify-center transition" aria-label="バックアップ" title="バックアップ">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
@@ -503,6 +509,10 @@
         <button type="submit" class="w-full mt-2 py-3 rounded-xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">
           設定してスタート
         </button>
+        <label class="block w-full py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold text-xs hover:bg-gray-200 transition text-center cursor-pointer">
+          バックアップファイルから復元する
+          <input type="file" accept=".json,application/json" class="hidden" onchange="importBackup(this)">
+        </label>
       </form>
     </div>
   </div>
@@ -528,6 +538,29 @@
         <button id="timerToggleBtn" onclick="toggleTimer()" class="flex-1 py-3 rounded-2xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition">一時停止</button>
         <button onclick="skipExercise()" class="px-5 py-3 rounded-2xl bg-gray-100 text-textPrimary font-bold text-sm hover:bg-gray-200 transition">スキップ</button>
       </div>
+    </div>
+  </div>
+
+  <!-- バックアップ -->
+  <div id="backupModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4" onclick="if(event.target===this)closeBackup()">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-textPrimary">バックアップ</h3>
+      </div>
+      <p class="text-xs text-textSecondary mt-3 leading-relaxed">記録はこの端末のブラウザの中だけに保存されています。ファイルに保存しておくと、機種変更やホーム画面への追加、ブラウザのデータ削除のあとでも元に戻せます。</p>
+      <p id="backupLast" class="text-xs font-semibold mt-3"></p>
+      <button onclick="exportBackup()" class="w-full mt-4 py-3 rounded-xl bg-deepGreen text-white font-bold text-sm hover:bg-deepGreenHover transition shadow-sm">ファイルに保存</button>
+      <label class="block w-full mt-2 py-3 rounded-xl bg-gray-100 text-textPrimary font-bold text-sm hover:bg-gray-200 transition text-center cursor-pointer">
+        ファイルから読み込む
+        <input type="file" accept=".json,application/json" class="hidden" onchange="importBackup(this)">
+      </label>
+      <button onclick="closeBackup()" class="w-full mt-3 py-2.5 rounded-xl text-textSecondary font-bold text-xs hover:bg-gray-100 transition">閉じる</button>
     </div>
   </div>
 
@@ -1130,6 +1163,103 @@
       $('welcomeModal').classList.add('hidden');
       try { applyUser(r.user); } catch (err) { console.error(err); }
       showToast('初期設定が完了しました！');
+    }
+
+    // ---------- バックアップ ----------
+    const BACKUP_KEY = 'fitcore_last_backup';
+
+    function openBackup() {
+      let last = null;
+      try { last = localStorage.getItem(BACKUP_KEY); } catch (e) {}
+      const el = $('backupLast');
+      if (last) {
+        const d = new Date(last);
+        el.textContent = `最後にファイルに保存した日: ${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
+        el.className = 'text-xs font-semibold mt-3 text-textSecondary';
+      } else {
+        el.textContent = 'まだファイルに保存していません';
+        el.className = 'text-xs font-semibold mt-3 text-accentCoral';
+      }
+      $('backupModal').classList.remove('hidden');
+    }
+    function closeBackup() { $('backupModal').classList.add('hidden'); }
+
+    async function exportBackup() {
+      const now = new Date();
+      const payload = { app: 'FITCORE', version: 1, exportedAt: now.toISOString(), user: state.user, data: state.data };
+      const json = JSON.stringify(payload, null, 2);
+      const filename = `fitcore-backup-${dateKey(now).replace(/-/g, '')}.json`;
+      const markSaved = () => {
+        try { localStorage.setItem(BACKUP_KEY, now.toISOString()); } catch (e) {}
+        openBackup();
+        showToast('バックアップファイルを保存しました');
+      };
+
+      // スマホでは共有シートから「ファイルに保存」できるようにする(ホーム画面版でも確実に保存できる)
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile && navigator.canShare) {
+        try {
+          const file = new File([json], filename, { type: 'application/json' });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: 'FITCORE バックアップ' });
+            markSaved();
+            return;
+          }
+        } catch (err) {
+          if (err && err.name === 'AbortError') return; // ユーザーがキャンセル
+        }
+      }
+
+      const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      markSaved();
+    }
+
+    function parseBackup(text) {
+      const json = JSON.parse(text);
+      if (!json || json.app !== 'FITCORE') return null;
+      const u = json.user, d = json.data;
+      if (!u || typeof u !== 'object' || !u.height) return null;
+      if (!d || typeof d.days !== 'object' || typeof d.weights !== 'object' || !d.days || !d.weights) return null;
+      return { user: { ...DEFAULT_USER, ...u }, data: { ...d, days: d.days, weights: d.weights } };
+    }
+
+    function importBackup(input) {
+      const file = input.files && input.files[0];
+      input.value = '';
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        let backup = null;
+        try { backup = parseBackup(reader.result); } catch (e) {}
+        if (!backup) { showToast('FITCOREのバックアップファイルではないようです'); return; }
+        const days = Object.keys(backup.data.days).filter(k => {
+          const d = backup.data.days[k];
+          return d && ((d.meals && d.meals.length) || d.water || d.workouts);
+        }).length;
+        const weights = Object.keys(backup.data.weights).length;
+        const ok = window.confirm(`このファイルを読み込みますか？\n\n記録のある日: ${days}日分、体重の記録: ${weights}件\n\n今このアプリにあるデータは、ファイルの内容に置き換わります。`);
+        if (!ok) return;
+        state.user = backup.user;
+        state.data = backup.data;
+        saveUser();
+        saveData();
+        $('welcomeModal').classList.add('hidden');
+        closeBackup();
+        syncInputFields();
+        calculateAllMetrics();
+        generateCustomWorkout();
+        renderAll();
+        showToast('バックアップから読み込みました');
+      };
+      reader.onerror = () => showToast('ファイルを読み込めませんでした');
+      reader.readAsText(file);
     }
 
     function saveUserProfile(e) {
