@@ -19,6 +19,7 @@
     body { background-color: #F5F5F7; color: #1D1D1F; font-size: 16px; line-height: 1.6; }
     .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 9999px; }
+.accent-deepGreen{accent-color:#0F4C3A}.items-start{align-items:flex-start}.mr-1{margin-right:.25rem}.mt-5{margin-top:1.25rem}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.text-left{text-align:left}.w-16{width:4rem}.opacity-30{opacity:.3}.modal-scroll{max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch}.modal-footer{position:sticky;bottom:-1.5rem;background:#fff;padding-top:.5rem;padding-bottom:1.5rem;margin-bottom:-1.5rem}
   </style>
 </head>
 <body class="min-h-screen pb-24 md:pb-12 text-textPrimary">
@@ -311,7 +312,14 @@
           <!-- カテゴリタブ -->
           <div class="flex space-x-1 overflow-x-auto custom-scrollbar pb-1 text-[11px] font-medium" id="foodCategoryTabs">
             <button onclick="filterFoodCategory('all')" id="cat-btn-all" class="px-3 py-1 rounded-full bg-deepGreen text-white whitespace-nowrap">すべて</button>
+            <button onclick="filterFoodCategory('fav')" id="cat-btn-fav" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">★ お気に入り</button>
+            <button onclick="filterFoodCategory('my')" id="cat-btn-my" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">マイ食品</button>
             <button onclick="filterFoodCategory('drink')" id="cat-btn-drink" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">飲み物</button>
+            <button onclick="filterFoodCategory('staple')" id="cat-btn-staple" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">ごはん・パン</button>
+            <button onclick="filterFoodCategory('protein')" id="cat-btn-protein" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">肉・魚・卵・大豆</button>
+            <button onclick="filterFoodCategory('dairy')" id="cat-btn-dairy" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">乳製品・プロテイン</button>
+            <button onclick="filterFoodCategory('fruit')" id="cat-btn-fruit" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">果物・野菜</button>
+            <button onclick="filterFoodCategory('snack')" id="cat-btn-snack" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">お菓子</button>
             <button onclick="filterFoodCategory('meat')" id="cat-btn-meat" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">肉メイン</button>
             <button onclick="filterFoodCategory('fish')" id="cat-btn-fish" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">魚メイン</button>
             <button onclick="filterFoodCategory('bowl')" id="cat-btn-bowl" class="px-3 py-1 rounded-full bg-white text-textSecondary border border-gray-200 whitespace-nowrap">丼・ご飯</button>
@@ -328,7 +336,7 @@
           </div>
 
           <div class="relative">
-            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" placeholder="例: おーいお茶、コーラ、ハンバーグ、牛丼..." class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
+            <input type="text" id="foodSearchInput" oninput="handleFoodSearch(this.value)" onfocus="handleFoodSearch(this.value)" placeholder="例: 納豆、プロテイン、コーラ、牛丼...（空欄でお気に入り・最近）" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-deepGreen">
             <div id="foodDropdown" class="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-20 hidden max-h-56 overflow-y-auto custom-scrollbar"></div>
           </div>
         </div>
@@ -378,7 +386,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
           <div>
             <h2 class="text-lg font-bold text-textPrimary">おまかせ筋トレメニュー生成</h2>
-            <p class="text-xs text-textSecondary mt-0.5">初心者でも器具なし・自宅でできる自重トレーニング（種目の間に15秒休憩）</p>
+            <p class="text-xs text-textSecondary mt-0.5">器具なし・自宅でできる自重トレーニング（<span id="restNote">種目の間に15秒休憩</span>）</p>
           </div>
           <div class="flex flex-wrap gap-2">
             <select id="filterGoal" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
@@ -391,6 +399,13 @@
               <option value="5">所要時間: 5分</option>
               <option value="10" selected>所要時間: 10分</option>
               <option value="15">所要時間: 15分</option>
+              <option value="20">所要時間: 20分</option>
+              <option value="30">所要時間: 30分</option>
+            </select>
+            <select id="filterLevel" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
+              <option value="easy">レベル: 初級（短め・休憩多め）</option>
+              <option value="normal" selected>レベル: 中級</option>
+              <option value="hard">レベル: 上級（長め・休憩短め）</option>
             </select>
           </div>
         </div>
@@ -405,6 +420,23 @@
             タイマー連動でスタート
           </button>
         </div>
+      </div>
+
+      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-base font-bold text-textPrimary">マイメニュー</h3>
+            <p class="text-xs text-textSecondary mt-0.5">種目・秒数・周回数を自分で決めて保存</p>
+          </div>
+          <button onclick="openMenuEditor()" class="shrink-0 whitespace-nowrap px-3 py-1.5 rounded-xl bg-deepGreen text-white text-xs font-bold hover:bg-deepGreenHover transition">+ 新しく作る</button>
+        </div>
+        <div class="space-y-2" id="myWorkoutList"></div>
+      </div>
+
+      <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
+        <h3 class="text-base font-bold text-textPrimary">トレーニング履歴</h3>
+        <p class="text-xs text-textSecondary mt-0.5 mb-4">最近10回分。終了後に入力した回数も表示します</p>
+        <div class="space-y-2" id="workoutHistory"></div>
       </div>
 
       <div class="bg-cardBg p-6 rounded-3xl shadow-sm border border-gray-100">
@@ -541,6 +573,64 @@
     </div>
   </div>
 
+  <!-- 終了後の回数記録 -->
+  <div id="workoutDoneModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl modal-scroll">
+      <p class="text-3xl text-center">🎉</p>
+      <h3 class="text-base font-bold text-textPrimary text-center mt-1">お疲れさまでした！</h3>
+      <p class="text-xs text-textSecondary text-center mt-0.5" id="doneSummary"></p>
+      <div id="doneRepsWrap" class="mt-4">
+        <p class="text-xs font-bold text-textSecondary mb-2">できた回数を記録（空欄でもOK）</p>
+        <div class="space-y-2" id="doneReps"></div>
+      </div>
+      <div class="flex gap-2 mt-5">
+        <button type="button" onclick="closeDoneModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold text-xs hover:bg-gray-200 transition">回数は記録しない</button>
+        <button type="button" onclick="saveDoneReps()" class="flex-1 py-2.5 rounded-xl bg-deepGreen text-white font-bold text-xs hover:bg-deepGreenHover transition">記録する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- マイメニュー作成 -->
+  <div id="menuEditorModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4" onclick="if(event.target===this)closeMenuEditor()">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl modal-scroll space-y-3 text-xs">
+      <h3 class="text-base font-bold text-textPrimary" id="menuEditorTitle">マイメニューを作る</h3>
+      <div>
+        <label class="block font-semibold text-textSecondary mb-1">メニュー名</label>
+        <input type="text" id="menuName" maxlength="30" placeholder="例: 朝の10分メニュー" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-deepGreen">
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block font-semibold text-textSecondary mb-1">周回数</label>
+          <select id="menuRounds" onchange="updateMenuTotal()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <option value="1">1周</option><option value="2">2周</option><option value="3">3周</option><option value="4">4周</option><option value="5">5周</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold text-textSecondary mb-1">種目の間の休憩</label>
+          <select id="menuRest" onchange="updateMenuTotal()" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-2 py-2">
+            <option value="0">なし</option><option value="10">10秒</option><option value="15">15秒</option><option value="20">20秒</option><option value="30">30秒</option><option value="45">45秒</option><option value="60">60秒</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="font-semibold text-textSecondary">種目（上から順に行います）</label>
+          <span id="menuTotal" class="font-bold text-deepGreen"></span>
+        </div>
+        <div class="space-y-1.5" id="menuSelected"></div>
+      </div>
+      <div>
+        <label class="block font-semibold text-textSecondary">種目を追加</label>
+        <div class="space-y-1.5" id="menuPicker"></div>
+      </div>
+      <p id="menuError" class="hidden text-xs font-semibold text-accentCoral bg-red-50 rounded-xl px-3 py-2"></p>
+      <div class="flex gap-2 pt-1 modal-footer">
+        <button type="button" onclick="closeMenuEditor()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold hover:bg-gray-200 transition">キャンセル</button>
+        <button type="button" onclick="saveMenu()" class="flex-1 py-2.5 rounded-xl bg-deepGreen text-white font-bold hover:bg-deepGreenHover transition">保存する</button>
+      </div>
+    </div>
+  </div>
+
   <!-- バックアップ -->
   <div id="backupModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-4" onclick="if(event.target===this)closeBackup()">
     <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl">
@@ -571,6 +661,10 @@
       <h3 class="text-base font-bold text-textPrimary mt-0.5" id="amountItemName">-</h3>
       <p class="text-xs text-textSecondary mt-1" id="amountBaseText"></p>
       <div class="grid grid-cols-3 gap-2 mt-4" id="amountOptions"></div>
+      <div class="flex gap-2 mt-3">
+        <button type="button" id="amountFavBtn" onclick="toggleFavPending()" class="flex-1 py-2 rounded-xl border border-gray-200 text-xs font-bold text-textPrimary hover:border-deepGreen transition">☆ お気に入り</button>
+        <button type="button" id="amountDeleteMyBtn" onclick="deletePendingMyFood()" class="hidden flex-1 py-2 rounded-xl border border-gray-200 text-xs font-bold text-accentCoral hover:border-deepGreen transition">マイ食品から削除</button>
+      </div>
       <button onclick="closeAmountModal()" class="w-full mt-3 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold text-xs hover:bg-gray-200 transition">キャンセル</button>
     </div>
   </div>
@@ -597,6 +691,10 @@
       </div>
       <p id="manualError" class="hidden text-xs font-semibold text-accentCoral bg-red-50 rounded-xl px-3 py-2"></p>
       <p class="text-[11px] text-textSecondary">PFCがわからないときは空欄のままで大丈夫です（0gで記録します）。</p>
+      <label class="flex items-center gap-2 font-semibold text-textPrimary cursor-pointer">
+        <input type="checkbox" id="manualSaveMy" class="w-4 h-4 accent-deepGreen">
+        マイ食品に保存して、次から検索で選べるようにする
+      </label>
       <div class="flex gap-2 pt-1">
         <button type="button" onclick="closeManualMealModal()" class="flex-1 py-2.5 rounded-xl bg-gray-100 text-textPrimary font-bold hover:bg-gray-200 transition">キャンセル</button>
         <button type="submit" class="flex-1 py-2.5 rounded-xl bg-deepGreen text-white font-bold hover:bg-deepGreenHover transition">記録する</button>
@@ -805,6 +903,71 @@
       { name: "チーズボール（約4〜5個）", cal: 280, p: 8, f: 14, c: 31, cat: "fastfood" },
       { name: "ヒレカツ（1枚 / 約100g）", cal: 220, p: 21, f: 12, c: 8, cat: "meat" },
 
+      // 主食・パン
+      { name: "ごはん（茶碗1杯・150g）", kw: "ご飯 白米 こめ", cal: 234, p: 3.8, f: 0.5, c: 55.7, cat: "staple", unit: "杯" },
+      { name: "ごはん（大盛り・250g）", kw: "ご飯 白米 こめ", cal: 390, p: 6.3, f: 0.8, c: 92.8, cat: "staple" },
+      { name: "玄米ごはん（茶碗1杯・150g）", kw: "げんまい ご飯", cal: 228, p: 4.2, f: 1.5, c: 53.4, cat: "staple", unit: "杯" },
+      { name: "食パン（6枚切り1枚）", kw: "しょくぱん", cal: 149, p: 5.3, f: 2.5, c: 27.8, cat: "staple", unit: "枚" },
+      { name: "食パン（8枚切り1枚）", kw: "しょくぱん", cal: 112, p: 4.0, f: 1.8, c: 20.9, cat: "staple", unit: "枚" },
+      { name: "ロールパン（1個・30g）", cal: 93, p: 3.0, f: 2.7, c: 14.6, cat: "staple", unit: "個" },
+      { name: "ベーグル（1個・90g）", cal: 243, p: 8.6, f: 1.8, c: 49.1, cat: "staple", unit: "個" },
+      { name: "クロワッサン（1個・40g）", cal: 175, p: 3.2, f: 10.7, c: 17.6, cat: "staple", unit: "個" },
+      { name: "メロンパン（1個）", cal: 350, p: 8.0, f: 10.5, c: 58.0, cat: "staple", unit: "個" },
+      { name: "あんパン（1個）", cal: 267, p: 6.8, f: 3.6, c: 53.0, cat: "staple", unit: "個" },
+      { name: "カレーパン（1個）", cal: 302, p: 6.6, f: 18.3, c: 32.3, cat: "staple", unit: "個" },
+      { name: "ミックスサンドイッチ（1パック）", cal: 300, p: 11, f: 15, c: 30, cat: "staple", unit: "パック" },
+      { name: "オートミール（30g）", cal: 105, p: 4.1, f: 1.7, c: 20.7, cat: "staple", g: 30 },
+      { name: "コーンフレーク（40g）", cal: 152, p: 3.1, f: 0.7, c: 33.4, cat: "staple", g: 40 },
+      { name: "焼き芋（1本・200g）", kw: "やきいも さつまいも", cal: 302, p: 2.8, f: 0.4, c: 78.0, cat: "staple", unit: "本" },
+
+      // 肉・魚・卵・大豆（素材）
+      { name: "卵（1個）", kw: "たまご 玉子", cal: 71, p: 6.1, f: 5.1, c: 0.2, cat: "protein", unit: "個" },
+      { name: "ゆで卵（1個）", kw: "ゆでたまご 玉子", cal: 67, p: 6.3, f: 5.2, c: 0.2, cat: "protein", unit: "個" },
+      { name: "目玉焼き（1個）", kw: "めだまやき たまご", cal: 90, p: 6.1, f: 7.2, c: 0.2, cat: "protein", unit: "個" },
+      { name: "納豆（1パック・45g）", kw: "なっとう", cal: 86, p: 7.4, f: 4.5, c: 5.4, cat: "protein", unit: "パック" },
+      { name: "絹ごし豆腐（1/2丁・150g）", kw: "きぬ とうふ", cal: 84, p: 8.0, f: 5.3, c: 3.0, cat: "protein" },
+      { name: "木綿豆腐（1/2丁・150g）", kw: "もめん とうふ", cal: 110, p: 10.5, f: 7.4, c: 2.3, cat: "protein" },
+      { name: "サラダチキン（1個・110g）", cal: 121, p: 26, f: 1.5, c: 0.5, cat: "protein", unit: "個" },
+      { name: "鶏むね肉（皮なし・100g）", kw: "とりむね 胸肉", cal: 105, p: 23.3, f: 1.9, c: 0.1, cat: "protein", g: 100 },
+      { name: "鶏もも肉（皮つき・100g）", kw: "とりもも", cal: 190, p: 16.6, f: 14.2, c: 0, cat: "protein", g: 100 },
+      { name: "ささみ（100g）", kw: "鶏 とり", cal: 98, p: 23.9, f: 0.8, c: 0.1, cat: "protein", g: 100 },
+      { name: "豚ロース（100g）", kw: "ぶた", cal: 248, p: 19.3, f: 19.2, c: 0.2, cat: "protein", g: 100 },
+      { name: "鮭の切り身（1切れ・80g）", kw: "さけ しゃけ", cal: 99, p: 17.8, f: 3.3, c: 0.1, cat: "protein", unit: "切れ" },
+      { name: "サバ水煮缶（1缶）", cal: 261, p: 31.4, f: 16.1, c: 0.3, cat: "protein", unit: "缶" },
+      { name: "ツナ缶（ノンオイル・1缶70g）", cal: 49, p: 11.2, f: 0.5, c: 0.1, cat: "protein", unit: "缶" },
+      { name: "ツナ缶（油漬け・1缶70g）", cal: 186, p: 12.4, f: 15.2, c: 0.1, cat: "protein", unit: "缶" },
+      { name: "ちくわ（1本・30g）", cal: 36, p: 3.7, f: 0.6, c: 4.1, cat: "protein", unit: "本" },
+      { name: "ウインナー（3本・60g）", cal: 191, p: 6.9, f: 18.4, c: 2.0, cat: "protein" },
+      { name: "ロースハム（2枚・20g）", cal: 42, p: 3.7, f: 2.9, c: 0.4, cat: "protein" },
+
+      // 乳製品・プロテイン
+      { name: "プレーンヨーグルト（100g）", cal: 56, p: 3.6, f: 3.0, c: 4.9, cat: "dairy", g: 100 },
+      { name: "ギリシャヨーグルト（無脂肪・100g）", cal: 59, p: 10.3, f: 0, c: 4.2, cat: "dairy", g: 100 },
+      { name: "プロセスチーズ（1個・18g）", cal: 56, p: 4.1, f: 4.7, c: 0.2, cat: "dairy", unit: "個" },
+      { name: "スライスチーズ（1枚・18g）", cal: 56, p: 4.1, f: 4.7, c: 0.2, cat: "dairy", unit: "枚" },
+      { name: "プロテイン（ホエイ・1杯30g）", cal: 117, p: 22, f: 1.8, c: 3.0, cat: "dairy", unit: "杯" },
+      { name: "プロテインバー（1本）", cal: 190, p: 15, f: 8, c: 16, cat: "dairy", unit: "本" },
+
+      // 果物・野菜
+      { name: "バナナ（1本）", cal: 93, p: 1.1, f: 0.2, c: 22.5, cat: "fruit", unit: "本" },
+      { name: "りんご（1/2個・150g）", cal: 80, p: 0.2, f: 0.3, c: 23.3, cat: "fruit" },
+      { name: "みかん（1個）", cal: 39, p: 0.6, f: 0.1, c: 9.6, cat: "fruit", unit: "個" },
+      { name: "キウイ（1個）", cal: 43, p: 0.9, f: 0.2, c: 11.4, cat: "fruit", unit: "個" },
+      { name: "いちご（5粒）", cal: 23, p: 0.7, f: 0.1, c: 6.4, cat: "fruit" },
+      { name: "アボカド（1/2個）", cal: 125, p: 1.5, f: 12.3, c: 5.5, cat: "fruit" },
+      { name: "ブロッコリー（茹で・100g）", cal: 30, p: 3.9, f: 0.4, c: 4.3, cat: "fruit", g: 100 },
+      { name: "グリーンサラダ（ドレッシングなし）", cal: 20, p: 1.0, f: 0.2, c: 4.0, cat: "fruit" },
+
+      // お菓子・デザート
+      { name: "ポテトチップス（1袋・60g）", cal: 325, p: 2.8, f: 21.1, c: 32.7, cat: "snack", unit: "袋" },
+      { name: "ミルクチョコレート（板チョコ1枚・50g）", cal: 275, p: 3.5, f: 17.1, c: 27.9, cat: "snack", unit: "枚" },
+      { name: "バニラアイス（1個・100g）", cal: 178, p: 3.9, f: 8.0, c: 23.2, cat: "snack", unit: "個" },
+      { name: "シュークリーム（1個）", cal: 148, p: 4.2, f: 8.0, c: 17.9, cat: "snack", unit: "個" },
+      { name: "どら焼き（1個）", kw: "どらやき", cal: 204, p: 4.6, f: 2.2, c: 41.2, cat: "snack", unit: "個" },
+      { name: "大福（1個）", kw: "だいふく", cal: 156, p: 3.4, f: 0.4, c: 37.0, cat: "snack", unit: "個" },
+      { name: "しょうゆせんべい（2枚・20g）", kw: "醤油 煎餅", cal: 74, p: 1.5, f: 0.2, c: 16.8, cat: "snack" },
+      { name: "素焼きミックスナッツ（25g）", cal: 155, p: 5.0, f: 13.5, c: 5.0, cat: "snack", g: 25 },
+
       // 飲み物系
       { name: "お～いお茶（伊藤園）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
       { name: "綾鷹（日本コカ・コーラ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
@@ -867,33 +1030,69 @@
       { name: "サントリー天然水（サントリー）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
       { name: "おいしい水 富士山（アサヒ飲料）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
       { name: "キリンの天然水（キリンビバレッジ）", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
-      { name: "ルイボスティー", cal: 0, p: 0, f: 0, c: 0, cat: "drink" }
+      { name: "ルイボスティー", cal: 0, p: 0, f: 0, c: 0, cat: "drink" },
+      { name: "牛乳", kw: "ぎゅうにゅう ミルク", cal: 63, p: 3.4, f: 3.9, c: 4.9, cat: "drink" },
+      { name: "低脂肪牛乳", kw: "ぎゅうにゅう ミルク", cal: 43, p: 3.9, f: 1.0, c: 5.7, cat: "drink" },
+      { name: "無調整豆乳", kw: "とうにゅう", cal: 44, p: 3.6, f: 2.0, c: 3.1, cat: "drink" },
+      { name: "調製豆乳", kw: "とうにゅう", cal: 65, p: 3.3, f: 3.7, c: 4.9, cat: "drink" },
+      { name: "飲むヨーグルト", cal: 66, p: 3.0, f: 0.5, c: 12.6, cat: "drink" },
+      { name: "ミルクプロテイン飲料（脂肪0タイプ）", cal: 51, p: 7.5, f: 0, c: 5.1, cat: "drink" },
+      { name: "オレンジジュース（果汁100%）", cal: 45, p: 0.8, f: 0.1, c: 11.0, cat: "drink" },
+      { name: "りんごジュース（果汁100%）", cal: 43, p: 0.2, f: 0.1, c: 11.8, cat: "drink" },
+      { name: "野菜ジュース（野菜100%）", kw: "やさい", cal: 18, p: 0.6, f: 0, c: 4.0, cat: "drink" },
+      { name: "ブラックコーヒー", cal: 4, p: 0.2, f: 0, c: 0.7, cat: "drink" },
+      { name: "カフェラテ（砂糖なし）", cal: 35, p: 1.8, f: 2.0, c: 2.6, cat: "drink" },
     ];
 
     // 飲み物は100mlあたりの値で登録している
     const DRINK_AMOUNTS = [100, 200, 250, 350, 500, 1000];
     const FOOD_AMOUNTS = [0.5, 1, 1.5, 2];
+    const UNIT_AMOUNTS = [0.5, 1, 2, 3];   // 「個」「本」など数えられる物
+    const GRAM_AMOUNTS = [0.5, 1, 1.5, 2, 3]; // g で登録している物
 
+    // lv: 1=やさしい 2=ふつう 3=きつい / hold: 回数ではなく時間で行う種目
     const exerciseDB = [
-      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', durationSec: 30, point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
-      { id: 'legraise', name: 'レッグレイズ', target: '下腹部', category: 'belly', durationSec: 35, point: '腰を床に押し付けながら足を上下', ng: '腰を反らせる' },
-      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', durationSec: 40, point: '頭からかかとまで一直線', ng: '腰を反らさない' },
-      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', durationSec: 40, point: 'お尻を後ろへ引くように沈み込む', ng: '膝を内側にいれる' },
-      { id: 'lunge', name: 'ランジ', target: '太もも・ヒップ', category: 'legs', durationSec: 35, point: '股関節から前脚に体重を乗せる', ng: '前膝がつま先より前に出る' },
-      { id: 'hiplift', name: 'ヒップリフト', target: 'お尻・もも裏', category: 'legs', durationSec: 30, point: 'かかとで床を押してお尻を持ち上げる', ng: '腰を反らせて持ち上げる' },
-      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・二の腕', category: 'upper', durationSec: 30, point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' },
-      { id: 'armraise', name: 'バックエクステンション', target: '背中・姿勢', category: 'upper', durationSec: 30, point: '肩甲骨を寄せて上体を軽く起こす', ng: '首だけを反らす' },
-      { id: 'shouldertap', name: 'プランク・ショルダータップ', target: '肩・二の腕・体幹', category: 'upper', durationSec: 30, point: '腕立ての姿勢で左右交互に肩をタッチ', ng: '腰を左右に大きく揺らす' },
-      { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', durationSec: 45, point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
+      // お腹・体幹
+      { id: 'crunch', name: 'カールアップ・クランチ', target: 'お腹', category: 'belly', lv: 1, durationSec: 30, point: 'おへそを見て背中を丸める', ng: '首を無理に引っ張らない' },
+      { id: 'legraise', name: 'レッグレイズ', target: '下腹部', category: 'belly', lv: 2, durationSec: 35, point: '腰を床に押し付けながら足を上下', ng: '腰を反らせる' },
+      { id: 'plank', name: 'エルボー・プランク', target: '体幹', category: 'belly', lv: 1, hold: true, durationSec: 40, point: '頭からかかとまで一直線', ng: '腰を反らさない' },
+      { id: 'bicycle', name: 'バイシクルクランチ', target: '脇腹・お腹', category: 'belly', lv: 2, durationSec: 30, point: '肘と反対の膝を近づけるように上体をひねる', ng: '勢いで首を振る' },
+      { id: 'russiantwist', name: 'ロシアンツイスト', target: '脇腹', category: 'belly', lv: 2, durationSec: 30, point: '上体を少し後ろに倒し、胸から左右にひねる', ng: '腕だけを振る' },
+      { id: 'deadbug', name: 'デッドバグ', target: '体幹・下腹部', category: 'belly', lv: 1, durationSec: 30, point: '腰を床につけたまま、対角の手足をゆっくり伸ばす', ng: '腰が浮く' },
+      { id: 'sideplank', name: 'サイドプランク', target: '脇腹・体幹', category: 'belly', lv: 2, hold: true, durationSec: 40, point: '途中で左右を入れ替える。肩の真下に肘を置く', ng: 'お尻が落ちる' },
+      { id: 'mountain', name: 'マウンテンクライマー', target: 'お腹・全身', category: 'belly', lv: 2, durationSec: 30, point: '腕立ての姿勢で、膝を交互に胸へ引き寄せる', ng: 'お尻が高く上がる' },
+      // 下半身
+      { id: 'squat', name: 'ワイドスクワット', target: '太もも・お尻', category: 'legs', lv: 1, durationSec: 40, point: 'お尻を後ろへ引くように沈み込む', ng: '膝を内側にいれる' },
+      { id: 'lunge', name: 'ランジ', target: '太もも・ヒップ', category: 'legs', lv: 2, durationSec: 35, point: '股関節から前脚に体重を乗せる', ng: '前膝がつま先より前に出る' },
+      { id: 'hiplift', name: 'ヒップリフト', target: 'お尻・もも裏', category: 'legs', lv: 1, durationSec: 30, point: 'かかとで床を押してお尻を持ち上げる', ng: '腰を反らせて持ち上げる' },
+      { id: 'calfraise', name: 'カーフレイズ', target: 'ふくらはぎ', category: 'legs', lv: 1, durationSec: 30, point: '壁に手をついて、かかとを高く上げてゆっくり下ろす', ng: '反動で跳ねる' },
+      { id: 'sidelunge', name: 'サイドランジ', target: '内もも・お尻', category: 'legs', lv: 2, durationSec: 35, point: '横に大きく踏み出し、お尻を引いて沈む', ng: '上体が前に倒れすぎる' },
+      { id: 'donkeykick', name: 'ドンキーキック', target: 'お尻', category: 'legs', lv: 1, durationSec: 30, point: '四つ這いで膝を曲げたまま脚を天井へ。途中で左右を入れ替える', ng: '腰を反らせて蹴り上げる' },
+      { id: 'jumpsquat', name: 'スクワットジャンプ', target: '下半身・心肺', category: 'legs', lv: 3, durationSec: 30, point: 'しゃがんでから真上に跳び、膝を曲げて静かに着地', ng: '膝を伸ばしたまま着地する' },
+      // 上半身
+      { id: 'pushup', name: '膝つきプッシュアップ', target: '胸・二の腕', category: 'upper', lv: 1, durationSec: 30, point: '肘を斜め後ろに引く', ng: '腰を落としすぎない' },
+      { id: 'fullpushup', name: 'プッシュアップ（腕立て伏せ）', target: '胸・二の腕・体幹', category: 'upper', lv: 2, durationSec: 30, point: '頭からかかとまで一直線のまま胸を床に近づける', ng: 'お尻が上がる・腰が落ちる' },
+      { id: 'narrowpush', name: 'ナロープッシュアップ', target: '二の腕', category: 'upper', lv: 3, durationSec: 30, point: '手幅を肩幅より狭くし、脇を締めて下ろす（膝つきでもOK）', ng: '肘が外に開く' },
+      { id: 'dips', name: 'チェアディップス', target: '二の腕（裏側）', category: 'upper', lv: 2, durationSec: 30, point: '椅子の縁に手をつき、肘を後ろに曲げて体を下ろす', ng: '肩をすくめる' },
+      { id: 'pikepush', name: 'パイクプッシュアップ', target: '肩', category: 'upper', lv: 3, durationSec: 30, point: 'お尻を高く上げた「へ」の字で、頭を床に近づける', ng: '腰が丸まって背中が落ちる' },
+      { id: 'armraise', name: 'バックエクステンション', target: '背中・姿勢', category: 'upper', lv: 1, durationSec: 30, point: '肩甲骨を寄せて上体を軽く起こす', ng: '首だけを反らす' },
+      { id: 'superman', name: 'スーパーマン', target: '背中・お尻', category: 'upper', lv: 1, durationSec: 30, point: 'うつ伏せで両手両脚を同時に浮かせて2秒止める', ng: '首を強く反らす' },
+      { id: 'shouldertap', name: 'プランク・ショルダータップ', target: '肩・二の腕・体幹', category: 'upper', lv: 2, durationSec: 30, point: '腕立ての姿勢で左右交互に肩をタッチ', ng: '腰を左右に大きく揺らす' },
+      // 全身
+      { id: 'jumpingjack', name: 'ジャンピングジャック', target: '全身・心肺', category: 'full', lv: 1, durationSec: 30, point: '手足を同時に開閉しながら軽く跳ぶ', ng: 'かかとからドスンと着地' },
+      { id: 'highknees', name: 'もも上げ', target: '全身・心肺', category: 'full', lv: 1, durationSec: 30, point: '腕を振りながら、膝を腰の高さまで交互に上げる', ng: '上体が後ろに反る' },
+      { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', lv: 3, durationSec: 45, point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
     ];
     const exById = Object.fromEntries(exerciseDB.map(e => [e.id, e]));
+    const CATEGORY_LABEL = { belly: 'お腹・体幹', legs: '下半身', upper: '上半身', full: '全身' };
+    const LV_LABEL = ['', 'やさしい', 'ふつう', 'きつい'];
 
-    // 目的ごとの種目の順番（部位が続かないように並べる）
+    // 目的ごとの種目の順番（部位が続かないように並べる）。レベルに合わない種目は飛ばす
     const GOAL_ORDER = {
-      belly: ['crunch', 'legraise', 'plank', 'burpee'],
-      legs: ['squat', 'hiplift', 'lunge', 'burpee'],
-      upper: ['pushup', 'armraise', 'shouldertap', 'burpee'],
-      full: ['squat', 'pushup', 'crunch', 'lunge', 'armraise', 'plank', 'hiplift', 'legraise', 'shouldertap', 'burpee']
+      belly: ['crunch', 'mountain', 'legraise', 'plank', 'bicycle', 'deadbug', 'russiantwist', 'sideplank', 'burpee'],
+      legs: ['squat', 'hiplift', 'lunge', 'calfraise', 'sidelunge', 'donkeykick', 'jumpsquat', 'burpee'],
+      upper: ['pushup', 'armraise', 'shouldertap', 'dips', 'superman', 'fullpushup', 'narrowpush', 'pikepush', 'burpee'],
+      full: ['squat', 'pushup', 'mountain', 'lunge', 'superman', 'jumpingjack', 'hiplift', 'crunch', 'highknees', 'fullpushup', 'plank', 'sidelunge', 'shouldertap', 'jumpsquat', 'burpee']
     };
     const GOAL_INFO = {
       belly: { title: 'お腹引き締め & 体幹', tip: 'クランチ + プランクで下腹部を狙う' },
@@ -901,10 +1100,15 @@
       upper: { title: '二の腕・背中・姿勢改善', tip: '肩甲骨を意識して背中と二の腕を使う' },
       full: { title: '全身脂肪燃焼', tip: '全身を順番に動かして消費カロリーを上げる' }
     };
+    // レベル: 種目の時間の倍率・休憩・使う種目のきつさの上限
+    const LEVELS = {
+      easy: { label: '初級', mult: 0.75, rest: 20, maxLv: 2 },
+      normal: { label: '中級', mult: 1, rest: 15, maxLv: 3 },
+      hard: { label: '上級', mult: 1.35, rest: 10, maxLv: 3 }
+    };
     // 日曜〜土曜のおすすめ
     const WEEKDAY_GOALS = ['full', 'belly', 'legs', 'upper', 'belly', 'legs', 'full'];
     const TODAY_MINUTES = 7;
-    const REST_SEC = 15;
     const READY_SEC = 5;
 
     const DEFAULT_USER = { height: 170, weight: 68.5, goalWeight: 62.0, age: 25, gender: 'male', activity: 1.375, durationMonths: 3 };
@@ -917,10 +1121,17 @@
 
     let currentMealSlot = '朝食';
     let currentFoodCategory = 'all';
-    let customPlan = [];
+    let customPlan = null;
     let chartSpan = 'week';
     let renderedDay = '';
     let pendingFood = null;
+
+    // 保存データの中の、あとから追加した項目（古いデータやバックアップにはないことがある）
+    function myFoods() { return state.data.myFoods || (state.data.myFoods = []); }
+    function favs() { return state.data.favs || (state.data.favs = []); }
+    function myWorkouts() { return state.data.myWorkouts || (state.data.myWorkouts = []); }
+    function allFoods() { return foodDB.concat(myFoods()); }
+    function findFood(name) { return myFoods().find(f => f.name === name) || foodDB.find(f => f.name === name); }
 
     // ---------- 共通 ----------
     function dateKey(d = new Date()) {
@@ -1014,6 +1225,8 @@
       renderTodayWorkoutCard();
       renderMealLogs();
       renderWeightChart();
+      renderMyWorkouts();
+      renderWorkoutHistory();
     }
 
     function syncInputFields() {
@@ -1339,32 +1552,89 @@
         .replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60))
         .replace(/[\s・~〜ーｰ\-－‐（）()\/／、。]/g, '');
     }
-    const foodIndex = foodDB.map(f => normalizeText(f.name));
-    // メーカー名（かっこの中）を除いた商品名だけの検索用
-    const foodMainIndex = foodDB.map(f => normalizeText(f.name.replace(/（[^（）]*）\s*$/, '')));
+    const searchCache = new Map();
+    function searchKeys(f) {
+      let k = searchCache.get(f);
+      if (!k) {
+        // メーカー名（かっこの中）を除いた商品名だけの検索用も作る
+        k = { all: normalizeText(f.name + (f.kw || '')), main: normalizeText(f.name.replace(/（[^（）]*）\s*$/, '')) };
+        searchCache.set(f, k);
+      }
+      return k;
+    }
+
+    // 最近の記録から、もう一度選べる食品（新しい順）
+    function recentFoods(limit = 8) {
+      const out = [], seen = new Set();
+      const keys = Object.keys(state.data.days).sort().reverse().slice(0, 30);
+      for (const k of keys) {
+        const meals = state.data.days[k].meals || [];
+        for (let i = meals.length - 1; i >= 0; i--) {
+          const name = meals[i].name;
+          if (seen.has(name)) continue;
+          seen.add(name);
+          const f = findFood(name);
+          if (f) out.push(f);
+          if (out.length >= limit) return out;
+        }
+      }
+      return out;
+    }
+
+    function foodRow(item) {
+      const div = document.createElement('div');
+      div.className = 'px-3 py-2 hover:bg-gray-100 cursor-pointer text-xs flex justify-between items-center gap-2 border-b border-gray-100';
+      const unit = item.cat === 'drink' ? '/100ml' : '';
+      const star = favs().includes(item.name) ? '<span class="text-accentAmber">★</span> ' : '';
+      const my = item.cat === 'my' ? '<span class="px-1.5 py-0.5 rounded bg-deepGreenLight text-deepGreen text-[10px] font-bold mr-1">マイ</span>' : '';
+      div.innerHTML = `<span class="font-bold">${star}${my}${esc(item.name)}</span><span class="text-deepGreen font-bold whitespace-nowrap">${item.cal} kcal${unit}</span>`;
+      div.onclick = () => openAmountModal(item);
+      return div;
+    }
+    function dropdownHeading(text) {
+      const h = document.createElement('div');
+      h.className = 'px-3 pt-2 pb-1 text-[10px] font-bold text-textSecondary bg-gray-50 border-b border-gray-100';
+      h.textContent = text;
+      return h;
+    }
 
     function handleFoodSearch(keyword) {
       const dropdown = $('foodDropdown');
       const q = normalizeText(keyword);
-      const matched = foodDB.map((f, i) => ({ f, i }))
-        .filter(({ f, i }) => (currentFoodCategory === 'all' || f.cat === currentFoodCategory) && (!q || foodIndex[i].includes(q)))
-        .map(({ f, i }) => ({ f, rank: !q ? 2 : foodMainIndex[i].startsWith(q) ? 0 : foodMainIndex[i].includes(q) ? 1 : 2 }))
-        .sort((a, b) => a.rank - b.rank)
+      const cat = currentFoodCategory;
+      dropdown.innerHTML = '';
+
+      // 検索欄が空のときは、お気に入りと最近食べた物を出す
+      if (!q && cat === 'all') {
+        const fav = favs().map(findFood).filter(Boolean);
+        const recent = recentFoods().filter(f => !favs().includes(f.name));
+        if (!fav.length && !recent.length) { dropdown.classList.add('hidden'); return; }
+        if (fav.length) { dropdown.appendChild(dropdownHeading('★ お気に入り')); fav.forEach(f => dropdown.appendChild(foodRow(f))); }
+        if (recent.length) { dropdown.appendChild(dropdownHeading('最近記録した物')); recent.forEach(f => dropdown.appendChild(foodRow(f))); }
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      const pool = cat === 'fav' ? favs().map(findFood).filter(Boolean)
+        : cat === 'my' ? myFoods()
+        : cat === 'all' ? allFoods()
+        : foodDB.filter(f => f.cat === cat);
+      const matched = pool
+        .filter(f => !q || searchKeys(f).all.includes(q))
+        .map((f, i) => {
+          const m = searchKeys(f).main;
+          return { f, i, rank: !q ? 2 : m.startsWith(q) ? 0 : m.includes(q) ? 1 : 2 };
+        })
+        .sort((a, b) => a.rank - b.rank || a.i - b.i)
         .map(x => x.f);
 
-      if (!keyword.trim() && currentFoodCategory === 'all') { dropdown.classList.add('hidden'); return; }
-      dropdown.innerHTML = '';
       if (matched.length === 0) {
-        dropdown.innerHTML = '<div class="px-3 py-3 text-xs text-textSecondary text-center">見つかりません。「+ 手動で記録」から追加できます</div>';
+        const msg = cat === 'fav' && !q ? '食品を選んで「☆ お気に入り」を押すと、ここに並びます'
+          : cat === 'my' && !q ? '「+ 手動で記録」で「マイ食品に保存」にチェックすると、ここに並びます'
+          : '見つかりません。「+ 手動で記録」から追加できます';
+        dropdown.innerHTML = `<div class="px-3 py-3 text-xs text-textSecondary text-center">${msg}</div>`;
       }
-      matched.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'px-3 py-2 hover:bg-gray-100 cursor-pointer text-xs flex justify-between items-center gap-2 border-b border-gray-100';
-        const unit = item.cat === 'drink' ? '/100ml' : '';
-        div.innerHTML = `<span class="font-bold">${esc(item.name)}</span><span class="text-deepGreen font-bold whitespace-nowrap">${item.cal} kcal${unit}</span>`;
-        div.onclick = () => openAmountModal(item);
-        dropdown.appendChild(div);
-      });
+      matched.forEach(item => dropdown.appendChild(foodRow(item)));
       dropdown.classList.remove('hidden');
     }
 
@@ -1373,14 +1643,18 @@
       const isDrink = item.cat === 'drink';
       $('amountSlotText').textContent = currentMealSlot;
       $('amountItemName').textContent = item.name;
-      $('amountBaseText').textContent = isDrink
-        ? `100mlあたり ${item.cal} kcal（P:${item.p} F:${item.f} C:${item.c}）。飲んだ量を選んでください`
-        : `1人前 ${item.cal} kcal（P:${item.p} F:${item.f} C:${item.c}）。食べた量を選んでください`;
+      const base = isDrink ? '100mlあたり' : item.g ? `${item.g}gあたり` : item.unit ? `1${item.unit}` : '1人前';
+      $('amountBaseText').textContent = `${base} ${item.cal} kcal（P:${item.p} F:${item.f} C:${item.c}）。${isDrink ? '飲んだ' : '食べた'}量を選んでください`;
+      renderAmountExtras();
       const box = $('amountOptions');
       box.innerHTML = '';
-      (isDrink ? DRINK_AMOUNTS : FOOD_AMOUNTS).forEach(a => {
+      const amounts = isDrink ? DRINK_AMOUNTS : item.g ? GRAM_AMOUNTS : item.unit ? UNIT_AMOUNTS : FOOD_AMOUNTS;
+      amounts.forEach(a => {
         const mult = isDrink ? a / 100 : a;
-        const label = isDrink ? (a >= 1000 ? `${a / 1000}L` : `${a}ml`) : (a === 1 ? '1人前' : `${a}人前`);
+        const label = isDrink ? (a >= 1000 ? `${a / 1000}L` : `${a}ml`)
+          : item.g ? `${Math.round(item.g * a)}g`
+          : item.unit ? `${a}${item.unit}`
+          : (a === 1 ? '1人前' : `${a}人前`);
         const b = document.createElement('button');
         b.type = 'button';
         b.className = `py-2.5 rounded-xl border text-xs font-bold transition active:scale-95 ${mult === 1 && !isDrink ? 'bg-deepGreen text-white border-deepGreen' : 'bg-gray-50 border-gray-200 text-textPrimary hover:border-deepGreen'}`;
@@ -1392,6 +1666,36 @@
       $('foodDropdown').classList.add('hidden');
     }
     function closeAmountModal() { $('amountModal').classList.add('hidden'); pendingFood = null; }
+
+    function renderAmountExtras() {
+      const item = pendingFood;
+      if (!item) return;
+      const on = favs().includes(item.name);
+      $('amountFavBtn').textContent = on ? '★ お気に入り解除' : '☆ お気に入りに追加';
+      $('amountFavBtn').classList.toggle('text-accentAmber', on);
+      $('amountDeleteMyBtn').classList.toggle('hidden', item.cat !== 'my');
+    }
+    function toggleFavPending() {
+      const item = pendingFood;
+      if (!item) return;
+      const list = favs();
+      const i = list.indexOf(item.name);
+      if (i === -1) list.push(item.name); else list.splice(i, 1);
+      saveData();
+      renderAmountExtras();
+      showToast(i === -1 ? `${item.name} をお気に入りに追加しました` : 'お気に入りから外しました');
+    }
+    function deletePendingMyFood() {
+      const item = pendingFood;
+      if (!item || item.cat !== 'my') return;
+      if (!window.confirm(`「${item.name}」をマイ食品から削除しますか？\n（これまでの食事の記録は消えません）`)) return;
+      state.data.myFoods = myFoods().filter(f => f !== item);
+      state.data.favs = favs().filter(n => n !== item.name);
+      saveData();
+      closeAmountModal();
+      handleFoodSearch($('foodSearchInput').value);
+      showToast('マイ食品から削除しました');
+    }
 
     function addMeal(item, mult = 1, amountLabel = '') {
       const day = getDay();
@@ -1453,6 +1757,7 @@
     function openManualMealModal() {
       $('manualSlotText').textContent = currentMealSlot;
       ['manualName', 'manualCal', 'manualP', 'manualF', 'manualC'].forEach(id => $(id).value = '');
+      $('manualSaveMy').checked = false;
       showFormError('manualError', '');
       $('manualMealModal').classList.remove('hidden');
       setTimeout(() => $('manualName').focus(), 50);
@@ -1464,66 +1769,76 @@
       if (!$('manualName').value.trim()) { showFormError('manualError', 'メニュー名を入力してください', 'manualName'); return; }
       const cal = readNum('manualCal');
       if (!(cal >= 0 && cal <= 5000)) { showFormError('manualError', 'カロリーを0〜5000kcalで入力してください', 'manualCal'); return; }
-      addMeal({ name: $('manualName').value.trim() || '手動記録', cal: n('manualCal'), p: n('manualP'), f: n('manualF'), c: n('manualC') });
+      const item = { name: $('manualName').value.trim() || '手動記録', cal: Math.round(n('manualCal')), p: r1(n('manualP')), f: r1(n('manualF')), c: r1(n('manualC')) };
+      if ($('manualSaveMy').checked) {
+        // 同じ名前のマイ食品があれば上書きする
+        state.data.myFoods = myFoods().filter(f => f.name !== item.name);
+        myFoods().push({ ...item, cat: 'my' });
+        searchCache.clear();
+      }
+      addMeal(item);
       closeManualMealModal();
     }
 
     // ---------- 筋トレ ----------
     // 指定した時間に収まるように、種目（間に休憩）を順番に並べる
-    function buildPlan(goal, minutes) {
-      const pool = GOAL_ORDER[goal].map(id => exById[id]);
+    function buildPlan(goal, minutes, level = 'normal') {
+      const L = LEVELS[level] || LEVELS.normal;
+      const pool = GOAL_ORDER[goal].map(id => exById[id]).filter(e => e.lv <= L.maxLv);
       const target = minutes * 60;
-      const plan = [];
+      const items = [];
       let total = 0;
       for (let i = 0; i < 100; i++) {
         const ex = pool[i % pool.length];
-        const need = (plan.length ? REST_SEC : 0) + ex.durationSec;
-        if (plan.length && total + need > target + 15) break;
-        plan.push({ ex, round: Math.floor(i / pool.length) + 1 });
+        const sec = Math.max(15, Math.round(ex.durationSec * L.mult / 5) * 5);
+        const need = (items.length ? L.rest : 0) + sec;
+        if (items.length && total + need > target + 15) break;
+        items.push({ ex, sec, round: Math.floor(i / pool.length) + 1 });
         total += need;
       }
-      return { plan, totalSec: total };
+      return { name: `${GOAL_INFO[goal].title}（${L.label}）`, items, rest: L.rest, totalSec: total };
     }
     function planToSteps(plan) {
-      const steps = [{ kind: 'ready', sec: READY_SEC, ex: plan[0].ex }];
-      plan.forEach((p, i) => {
-        if (i > 0) steps.push({ kind: 'rest', sec: REST_SEC, ex: p.ex });
-        steps.push({ kind: 'work', sec: p.ex.durationSec, ex: p.ex, no: i + 1 });
+      const steps = [{ kind: 'ready', sec: READY_SEC, ex: plan.items[0].ex }];
+      plan.items.forEach((it, i) => {
+        if (i > 0 && plan.rest > 0) steps.push({ kind: 'rest', sec: plan.rest, ex: it.ex });
+        steps.push({ kind: 'work', sec: it.sec, ex: it.ex, no: i + 1 });
       });
       return steps;
     }
     function minutesText(sec) { return `約${Math.max(1, Math.round(sec / 60))}分`; }
 
-    function generateCustomWorkout() {
-      const goal = $('filterGoal').value;
-      const duration = parseInt($('filterDuration').value);
-      const { plan, totalSec } = buildPlan(goal, duration);
-      customPlan = plan;
-
-      const container = $('workoutListContainer');
+    function renderPlanList(container, plan) {
       container.innerHTML = '';
-      const rounds = plan[plan.length - 1].round;
-      plan.forEach((p, idx) => {
-        if (rounds > 1 && (idx === 0 || p.round !== plan[idx - 1].round)) {
+      const rounds = plan.items[plan.items.length - 1].round;
+      plan.items.forEach((it, idx) => {
+        if (rounds > 1 && (idx === 0 || it.round !== plan.items[idx - 1].round)) {
           const h = document.createElement('p');
           h.className = `text-xs font-bold text-textSecondary ${idx ? 'pt-3' : ''}`;
-          h.textContent = `${p.round}周目`;
+          h.textContent = `${it.round}周目`;
           container.appendChild(h);
         }
         const item = document.createElement('div');
         item.className = 'flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200/80';
         item.innerHTML = `
           <div class="flex items-center space-x-3">
-            <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs">${idx + 1}</div>
+            <div class="w-8 h-8 rounded-xl bg-deepGreenLight text-deepGreen font-bold flex items-center justify-center text-xs shrink-0">${idx + 1}</div>
             <div>
-              <h4 class="text-sm font-bold text-textPrimary">${p.ex.name}</h4>
-              <p class="text-xs text-textSecondary">${p.ex.target} ・ ${p.ex.durationSec}秒</p>
+              <h4 class="text-sm font-bold text-textPrimary">${esc(it.ex.name)}</h4>
+              <p class="text-xs text-textSecondary">${esc(it.ex.target)} ・ ${it.sec}秒</p>
             </div>
           </div>`;
         container.appendChild(item);
       });
-      const kinds = new Set(plan.map(p => p.ex.id)).size;
-      $('totalExerciseCount').textContent = `${kinds}種目${rounds > 1 ? ` × ${rounds}周` : ''} ・ ${minutesText(totalSec)}`;
+      const kinds = new Set(plan.items.map(it => it.ex.id)).size;
+      return `${kinds}種目${rounds > 1 ? ` × ${rounds}周` : ''} ・ ${minutesText(plan.totalSec)}`;
+    }
+
+    function generateCustomWorkout() {
+      const level = $('filterLevel').value;
+      customPlan = buildPlan($('filterGoal').value, parseInt($('filterDuration').value), level);
+      $('restNote').textContent = `種目の間に${LEVELS[level].rest}秒休憩`;
+      $('totalExerciseCount').textContent = renderPlanList($('workoutListContainer'), customPlan);
     }
 
     function todayGoal() { return WEEKDAY_GOALS[new Date().getDay()]; }
@@ -1544,13 +1859,13 @@
       exerciseDB.forEach(ex => {
         const card = document.createElement('div');
         card.className = 'p-4 rounded-2xl bg-gray-50 border border-gray-200/80 text-xs';
-        card.innerHTML = `<h4 class="font-bold text-sm text-textPrimary mb-1">${ex.name}<span class="text-[11px] font-medium text-textSecondary ml-1.5">${ex.target}</span></h4><p class="text-deepGreen mb-1"><strong>正解:</strong> ${ex.point}</p><p class="text-accentCoral"><strong>NG:</strong> ${ex.ng}</p>`;
+        card.innerHTML = `<h4 class="font-bold text-sm text-textPrimary mb-1">${ex.name}<span class="text-[11px] font-medium text-textSecondary ml-1.5">${ex.target}・${LV_LABEL[ex.lv]}</span></h4><p class="text-deepGreen mb-1"><strong>正解:</strong> ${ex.point}</p><p class="text-accentCoral"><strong>NG:</strong> ${ex.ng}</p>`;
         container.appendChild(card);
       });
     }
 
     // ---------- タイマー（終了時刻から残りを計算する） ----------
-    const timer = { steps: [], index: 0, endAt: 0, pausedLeft: null, loop: null, lastBeepSec: null, wakeLock: null };
+    const timer = { plan: null, steps: [], index: 0, endAt: 0, pausedLeft: null, loop: null, lastBeepSec: null, wakeLock: null };
     let audioCtx = null;
 
     function beep(freq = 880, dur = 0.12, vol = 0.25) {
@@ -1579,10 +1894,16 @@
       if (document.visibilityState === 'visible' && timer.loop && timer.pausedLeft === null) requestWakeLock();
     });
 
-    function openWorkoutSessionModal(mode) {
-      const plan = mode === 'today' ? buildPlan(todayGoal(), TODAY_MINUTES).plan : customPlan;
-      if (!plan.length) return;
+    function openWorkoutSessionModal(mode, myId) {
+      let plan = mode === 'today' ? buildPlan(todayGoal(), TODAY_MINUTES) : customPlan;
+      if (mode === 'today') plan.name = GOAL_INFO[todayGoal()].title;
+      if (mode === 'my') {
+        const m = myWorkouts().find(x => x.id === myId);
+        plan = m && myWorkoutToPlan(m);
+      }
+      if (!plan || !plan.items.length) return;
       beep(0, 0.01, 0.0001); // タップ中に音声を使える状態にしておく
+      timer.plan = plan;
       timer.steps = planToSteps(plan);
       timer.index = 0;
       timer.pausedLeft = null;
@@ -1606,12 +1927,233 @@
 
     function finishWorkout() {
       closeWorkoutModal();
-      getDay().workouts += 1;
+      const day = getDay();
+      day.workouts += 1;
+      const plan = timer.plan;
+      // 種目ごとのセット数（周回で同じ種目が何回出たか）
+      const sets = {};
+      plan.items.forEach(it => { sets[it.ex.id] = (sets[it.ex.id] || 0) + 1; });
+      const entry = { at: Date.now(), name: plan.name, sec: plan.totalSec, sets, reps: {} };
+      (day.workoutLog || (day.workoutLog = [])).push(entry);
       saveData();
       renderTodayDashboard();
       renderTodayWorkoutCard();
+      renderWorkoutHistory();
       beep(660, 0.15); setTimeout(() => beep(880, 0.15), 180); setTimeout(() => beep(1175, 0.3), 360);
-      showToast('🎉 ワークアウト完了！');
+      openDoneModal(entry);
+    }
+
+    // ---------- 終了後の回数記録 ----------
+    let doneEntry = null;
+    function allWorkoutLogs() {
+      const out = [];
+      Object.keys(state.data.days).forEach(k => (state.data.days[k].workoutLog || []).forEach(e => out.push({ ...e, day: k, ref: e })));
+      return out.sort((a, b) => b.at - a.at);
+    }
+    function lastReps(exId, before) {
+      const hit = allWorkoutLogs().find(e => e.at < before && e.reps && e.reps[exId]);
+      return hit ? hit.reps[exId] : null;
+    }
+    function openDoneModal(entry) {
+      doneEntry = entry;
+      $('doneSummary').textContent = `${entry.name} ・ ${minutesText(entry.sec)}`;
+      const box = $('doneReps');
+      box.innerHTML = '';
+      const ids = Object.keys(entry.sets).filter(id => exById[id] && !exById[id].hold);
+      $('doneRepsWrap').classList.toggle('hidden', ids.length === 0);
+      ids.forEach(id => {
+        const ex = exById[id];
+        const prev = lastReps(id, entry.at);
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between gap-2';
+        row.innerHTML = `
+          <div class="min-w-0">
+            <p class="text-xs font-bold text-textPrimary">${esc(ex.name)}${entry.sets[id] > 1 ? `<span class="text-textSecondary font-medium"> ×${entry.sets[id]}セット</span>` : ''}</p>
+            <p class="text-[10px] text-textSecondary">${prev ? `前回 ${prev}回` : '1セットあたりの回数'}</p>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <input type="number" min="0" max="999" step="1" inputmode="numeric" data-ex="${id}" placeholder="${prev || ''}" class="w-16 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1.5 text-sm text-center focus:outline-none focus:border-deepGreen">
+            <span class="text-xs text-textSecondary">回</span>
+          </div>`;
+        box.appendChild(row);
+      });
+      $('workoutDoneModal').classList.remove('hidden');
+    }
+    function saveDoneReps() {
+      if (doneEntry) {
+        $('doneReps').querySelectorAll('input[data-ex]').forEach(inp => {
+          const v = parseInt(inp.value, 10);
+          if (v > 0 && v < 1000) doneEntry.reps[inp.dataset.ex] = v;
+        });
+        saveData();
+        renderWorkoutHistory();
+      }
+      closeDoneModal();
+      showToast('🎉 ワークアウト完了！記録しました');
+    }
+    function closeDoneModal() { $('workoutDoneModal').classList.add('hidden'); doneEntry = null; }
+
+    function renderWorkoutHistory() {
+      const box = $('workoutHistory');
+      const logs = allWorkoutLogs().slice(0, 10);
+      if (!logs.length) {
+        box.innerHTML = '<p class="text-xs text-textSecondary text-center py-4">タイマーでトレーニングを終えると、ここに記録が残ります</p>';
+        return;
+      }
+      box.innerHTML = '';
+      logs.forEach(e => {
+        const [, m, d] = e.day.split('-').map(Number);
+        const reps = Object.keys(e.reps || {}).filter(id => exById[id])
+          .map(id => `${exById[id].name} ${e.reps[id]}回${e.sets && e.sets[id] > 1 ? `×${e.sets[id]}` : ''}`).join(' ・ ');
+        const div = document.createElement('div');
+        div.className = 'p-3 bg-gray-50 rounded-2xl text-xs';
+        div.innerHTML = `
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="px-2 py-0.5 rounded bg-deepGreenLight text-deepGreen font-bold text-[10px] shrink-0">${m}/${d}</span>
+              <span class="font-bold text-textPrimary break-words">${esc(e.name)}</span>
+            </div>
+            <span class="text-textSecondary font-semibold whitespace-nowrap">${minutesText(e.sec)}</span>
+          </div>
+          ${reps ? `<p class="text-[11px] text-textSecondary mt-1">${esc(reps)}</p>` : ''}`;
+        box.appendChild(div);
+      });
+    }
+
+    // ---------- マイメニュー ----------
+    let editingMenu = null;
+    function myWorkoutToPlan(m) {
+      const list = m.items.filter(it => exById[it.id]);
+      const items = [];
+      for (let r = 1; r <= m.rounds; r++) list.forEach(it => items.push({ ex: exById[it.id], sec: it.sec, round: r }));
+      const totalSec = items.reduce((t, it) => t + it.sec, 0) + Math.max(0, items.length - 1) * m.rest;
+      return { name: m.name, items, rest: m.rest, totalSec };
+    }
+    function renderMyWorkouts() {
+      const box = $('myWorkoutList');
+      const list = myWorkouts();
+      if (!list.length) {
+        box.innerHTML = '<p class="text-xs text-textSecondary text-center py-4">好きな種目・秒数・周回数で、自分だけのメニューを作れます</p>';
+        return;
+      }
+      box.innerHTML = '';
+      list.forEach(m => {
+        const plan = myWorkoutToPlan(m);
+        const div = document.createElement('div');
+        div.className = 'p-4 bg-gray-50 rounded-2xl border border-gray-200/80';
+        div.innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0">
+              <h4 class="text-sm font-bold text-textPrimary break-words">${esc(m.name)}</h4>
+              <p class="text-xs text-textSecondary mt-0.5">${m.items.length}種目${m.rounds > 1 ? ` × ${m.rounds}周` : ''} ・ ${m.rest ? `休憩${m.rest}秒` : '休憩なし'} ・ ${minutesText(plan.totalSec)}</p>
+              <p class="text-[11px] text-textSecondary mt-1 break-words">${esc(m.items.filter(it => exById[it.id]).map(it => exById[it.id].name).join(' → '))}</p>
+            </div>
+            <div class="flex gap-1 shrink-0">
+              <button data-act="edit" class="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 text-xs font-bold text-textPrimary hover:border-deepGreen transition">編集</button>
+              <button data-act="del" class="px-2.5 py-1.5 rounded-lg bg-white border border-gray-200 text-xs font-bold text-accentCoral hover:border-deepGreen transition">削除</button>
+            </div>
+          </div>
+          <button data-act="start" class="w-full mt-3 py-2.5 rounded-xl bg-deepGreen text-white font-bold text-xs hover:bg-deepGreenHover transition">このメニューでスタート</button>`;
+        div.querySelector('[data-act=edit]').onclick = () => openMenuEditor(m.id);
+        div.querySelector('[data-act=del]').onclick = () => deleteMyWorkout(m.id);
+        div.querySelector('[data-act=start]').onclick = () => openWorkoutSessionModal('my', m.id);
+        box.appendChild(div);
+      });
+    }
+    function openMenuEditor(id) {
+      const m = id && myWorkouts().find(x => x.id === id);
+      editingMenu = m ? JSON.parse(JSON.stringify(m)) : { id: null, name: '', items: [], rounds: 2, rest: 15 };
+      $('menuName').value = editingMenu.name;
+      $('menuRounds').value = String(editingMenu.rounds);
+      $('menuRest').value = String(editingMenu.rest);
+      $('menuEditorTitle').textContent = m ? 'マイメニューを編集' : 'マイメニューを作る';
+      showFormError('menuError', '');
+      renderMenuEditor();
+      $('menuEditorModal').classList.remove('hidden');
+    }
+    function closeMenuEditor() { $('menuEditorModal').classList.add('hidden'); editingMenu = null; }
+    function readMenuSettings() {
+      editingMenu.name = $('menuName').value;
+      editingMenu.rounds = parseInt($('menuRounds').value, 10);
+      editingMenu.rest = parseInt($('menuRest').value, 10);
+    }
+    function renderMenuEditor() {
+      const sel = $('menuSelected');
+      sel.innerHTML = '';
+      if (!editingMenu.items.length) {
+        sel.innerHTML = '<p class="text-xs text-textSecondary text-center py-3 border border-dashed border-gray-200 rounded-xl">下の一覧から種目を「＋」で追加してください</p>';
+      }
+      editingMenu.items.forEach((it, i) => {
+        const ex = exById[it.id];
+        if (!ex) return;
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2 p-2 bg-gray-50 rounded-xl';
+        row.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-deepGreenLight text-deepGreen font-bold text-[11px] flex items-center justify-center shrink-0">${i + 1}</span>
+          <span class="flex-1 min-w-0 text-xs font-bold text-textPrimary break-words">${esc(ex.name)}</span>
+          <select class="bg-white border border-gray-200 rounded-lg text-xs px-1 py-1 shrink-0">${[15, 20, 30, 40, 45, 60, 90].map(v => `<option value="${v}" ${v === it.sec ? 'selected' : ''}>${v}秒</option>`).join('')}</select>
+          <button data-act="up" class="w-7 h-7 rounded-lg bg-white border border-gray-200 text-xs font-bold shrink-0 ${i ? '' : 'opacity-30'}" title="上へ">↑</button>
+          <button data-act="rm" class="w-7 h-7 rounded-lg bg-white border border-gray-200 text-xs font-bold text-accentCoral shrink-0" title="外す">✕</button>`;
+        row.querySelector('select').onchange = (e) => { it.sec = parseInt(e.target.value, 10); updateMenuTotal(); };
+        row.querySelector('[data-act=up]').onclick = () => {
+          if (!i) return;
+          [editingMenu.items[i - 1], editingMenu.items[i]] = [editingMenu.items[i], editingMenu.items[i - 1]];
+          renderMenuEditor();
+        };
+        row.querySelector('[data-act=rm]').onclick = () => { editingMenu.items.splice(i, 1); renderMenuEditor(); };
+        sel.appendChild(row);
+      });
+
+      const pick = $('menuPicker');
+      if (!pick.childElementCount) {
+        Object.keys(CATEGORY_LABEL).forEach(cat => {
+          const h = document.createElement('p');
+          h.className = 'text-[11px] font-bold text-textSecondary pt-2';
+          h.textContent = CATEGORY_LABEL[cat];
+          pick.appendChild(h);
+          exerciseDB.filter(ex => ex.category === cat).forEach(ex => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-gray-200 text-left hover:border-deepGreen transition';
+            b.innerHTML = `<span class="min-w-0"><span class="block text-xs font-bold text-textPrimary">${esc(ex.name)}</span><span class="block text-[10px] text-textSecondary">${esc(ex.target)}・${LV_LABEL[ex.lv]}</span></span><span class="text-deepGreen font-bold text-base shrink-0">＋</span>`;
+            b.onclick = () => {
+              if (editingMenu.items.length >= 20) { showToast('1つのメニューに入れられるのは20種目までです'); return; }
+              editingMenu.items.push({ id: ex.id, sec: ex.durationSec });
+              renderMenuEditor();
+              showToast(`${ex.name} を追加しました`);
+            };
+            pick.appendChild(b);
+          });
+        });
+      }
+      updateMenuTotal();
+    }
+    function updateMenuTotal() {
+      readMenuSettings();
+      const n = editingMenu.items.length;
+      $('menuTotal').textContent = n ? `${n}種目${editingMenu.rounds > 1 ? ` × ${editingMenu.rounds}周` : ''} ・ ${minutesText(myWorkoutToPlan(editingMenu).totalSec)}` : '';
+    }
+    function saveMenu() {
+      readMenuSettings();
+      const name = editingMenu.name.trim();
+      if (!name) { showFormError('menuError', 'メニュー名を入力してください', 'menuName'); return; }
+      if (!editingMenu.items.length) { showFormError('menuError', '種目を1つ以上追加してください'); return; }
+      const list = myWorkouts();
+      const data = { id: editingMenu.id || `m${Date.now()}`, name: name.slice(0, 30), items: editingMenu.items.map(it => ({ id: it.id, sec: it.sec })), rounds: editingMenu.rounds, rest: editingMenu.rest };
+      const i = list.findIndex(x => x.id === data.id);
+      if (i === -1) list.push(data); else list[i] = data;
+      saveData();
+      closeMenuEditor();
+      renderMyWorkouts();
+      showToast(`マイメニュー「${data.name}」を保存しました`);
+    }
+    function deleteMyWorkout(id) {
+      const m = myWorkouts().find(x => x.id === id);
+      if (!m || !window.confirm(`マイメニュー「${m.name}」を削除しますか？`)) return;
+      state.data.myWorkouts = myWorkouts().filter(x => x.id !== id);
+      saveData();
+      renderMyWorkouts();
+      showToast('マイメニューを削除しました');
     }
 
     function tick() {
@@ -1659,7 +2201,7 @@
         $('modalExerciseTitle').textContent = step.ex.name;
         $('modalExerciseTip').textContent = step.ex.point;
         $('modalStepCount').textContent = `${step.no} / ${works}`;
-        const next = timer.steps[timer.index + 2];
+        const next = timer.steps.slice(timer.index + 1).find(s => s.kind === 'work');
         $('modalNextText').textContent = next ? `次: ${next.ex.name}` : 'ラスト！';
       } else {
         badge.textContent = step.kind === 'ready' ? 'READY' : 'REST';
@@ -1669,7 +2211,7 @@
         $('modalExerciseTip').textContent = step.kind === 'ready' ? '姿勢を整えて準備しましょう' : '呼吸を整えましょう';
         const no = timer.steps[timer.index + 1].no;
         $('modalStepCount').textContent = `${no} / ${works}`;
-        $('modalNextText').textContent = `次: ${step.ex.name}（${step.ex.durationSec}秒）`;
+        $('modalNextText').textContent = `次: ${step.ex.name}（${timer.steps[timer.index + 1].sec}秒）`;
       }
     }
 
