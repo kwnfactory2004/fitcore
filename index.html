@@ -1447,19 +1447,101 @@
       markSaved();
     }
 
+    // 読み込むファイルの中身は信用せず、アプリが使う項目だけを型・範囲を確かめて取り出す
+    const BACKUP_MAX_BYTES = 5 * 1024 * 1024;
+    function bNum(v, min, max) { return typeof v === 'number' && isFinite(v) && v >= min && v <= max ? v : null; }
+    function bStr(v, max) { return typeof v === 'string' ? v.slice(0, max) : ''; }
+    function bCountMap(o) {
+      const out = {};
+      if (o && typeof o === 'object' && !Array.isArray(o)) {
+        Object.keys(o).slice(0, 200).forEach(k => {
+          const n = bNum(o[k], 0, 9999);
+          if (n !== null && /^[A-Za-z0-9_-]{1,40}$/.test(k)) out[k] = n;
+        });
+      }
+      return out;
+    }
+    function bFood(f) {
+      if (!f || typeof f !== 'object') return null;
+      const cal = bNum(f.cal, 0, 100000), p = bNum(f.p, 0, 100000), fa = bNum(f.f, 0, 100000), c = bNum(f.c, 0, 100000);
+      const name = bStr(f.name, 100);
+      if (!name || cal === null || p === null || fa === null || c === null) return null;
+      return { name, cal, p, f: fa, c };
+    }
+    function bUser(u) {
+      const o = { ...DEFAULT_USER };
+      const h = bNum(u.height, 100, 250), w = bNum(u.weight, 20, 300), g = bNum(u.goalWeight, 20, 300), a = bNum(u.age, 10, 100);
+      if (h === null || w === null || g === null || a === null) return null; // 必須項目が正しくない
+      o.height = h; o.weight = w; o.goalWeight = g; o.age = a;
+      o.gender = u.gender === 'female' ? 'female' : 'male';
+      const act = bNum(u.activity, 1, 3); if (act !== null) o.activity = act;
+      const dur = bNum(u.durationMonths, 1, 60); if (dur !== null) o.durationMonths = Math.round(dur);
+      return o;
+    }
+    function bData(d) {
+      const slots = ['朝食', '昼食', '夕食', '間食'];
+      const out = { days: {}, weights: {} };
+      Object.keys(d.days).slice(0, 5000).forEach(k => {
+        const day = d.days[k];
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !day || typeof day !== 'object') return;
+        const meals = (Array.isArray(day.meals) ? day.meals : []).slice(0, 300).map(m => {
+          if (!m || typeof m !== 'object') return null;
+          const f = bFood(m);
+          const id = bNum(m.id, 0, 1e16);
+          if (!f || id === null || slots.indexOf(m.slot) < 0) return null;
+          return { id, slot: m.slot, name: f.name, amount: bStr(m.amount, 60), cal: f.cal, p: f.p, f: f.f, c: f.c };
+        }).filter(Boolean);
+        const nd = { meals, water: bNum(day.water, 0, 100000) || 0, workouts: Math.round(bNum(day.workouts, 0, 1000) || 0) };
+        if (Array.isArray(day.workoutLog)) {
+          nd.workoutLog = day.workoutLog.slice(0, 200).map(e => {
+            if (!e || typeof e !== 'object') return null;
+            const at = bNum(e.at, 0, 1e15), sec = bNum(e.sec, 0, 1e6);
+            if (at === null || sec === null) return null;
+            return { at, name: bStr(e.name, 60), sec, sets: bCountMap(e.sets), reps: bCountMap(e.reps) };
+          }).filter(Boolean);
+        }
+        out.days[k] = nd;
+      });
+      if (d.weights && typeof d.weights === 'object') {
+        Object.keys(d.weights).slice(0, 5000).forEach(k => {
+          const v = bNum(d.weights[k], 20, 300);
+          if (/^\d{4}-\d{2}-\d{2}$/.test(k) && v !== null) out.weights[k] = v;
+        });
+      }
+      if (Array.isArray(d.myFoods)) out.myFoods = d.myFoods.slice(0, 500).map(f => { const x = bFood(f); return x && { ...x, cat: 'my' }; }).filter(Boolean);
+      if (Array.isArray(d.favs)) out.favs = d.favs.filter(n => typeof n === 'string').slice(0, 500).map(n => n.slice(0, 100));
+      if (Array.isArray(d.myWorkouts)) {
+        out.myWorkouts = d.myWorkouts.slice(0, 100).map(m => {
+          if (!m || typeof m !== 'object') return null;
+          const rounds = bNum(m.rounds, 1, 20), rest = bNum(m.rest, 0, 600);
+          const id = typeof m.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(m.id) ? m.id : null;
+          const name = bStr(m.name, 30);
+          const items = (Array.isArray(m.items) ? m.items : []).slice(0, 100).map(it => {
+            const sec = it && bNum(it.sec, 1, 3600);
+            return it && typeof it.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(it.id) && sec !== null ? { id: it.id, sec } : null;
+          }).filter(Boolean);
+          if (!id || !name || rounds === null || rest === null || !items.length) return null;
+          return { id, name, items, rounds: Math.round(rounds), rest: Math.round(rest) };
+        }).filter(Boolean);
+      }
+      return out;
+    }
     function parseBackup(text) {
       const json = JSON.parse(text);
-      if (!json || json.app !== 'FITCORE') return null;
+      if (!json || typeof json !== 'object' || json.app !== 'FITCORE') return null;
       const u = json.user, d = json.data;
-      if (!u || typeof u !== 'object' || !u.height) return null;
-      if (!d || typeof d.days !== 'object' || typeof d.weights !== 'object' || !d.days || !d.weights) return null;
-      return { user: { ...DEFAULT_USER, ...u }, data: { ...d, days: d.days, weights: d.weights } };
+      if (!u || typeof u !== 'object' || Array.isArray(u)) return null;
+      if (!d || typeof d !== 'object' || !d.days || typeof d.days !== 'object' || !d.weights || typeof d.weights !== 'object') return null;
+      const user = bUser(u);
+      if (!user) return null;
+      return { user, data: bData(d) };
     }
 
     function importBackup(input) {
       const file = input.files && input.files[0];
       input.value = '';
       if (!file) return;
+      if (file.size > BACKUP_MAX_BYTES) { showToast('ファイルが大きすぎます（5MBまで）'); return; }
       const reader = new FileReader();
       reader.onload = () => {
         let backup = null;
