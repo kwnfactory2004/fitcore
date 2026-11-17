@@ -1,12 +1,15 @@
 // FITCORE - Smart Diet & WorkoutService Worker
 // アプリを更新したら CACHE_VERSION の数字を上げると、確実に新しいキャッシュへ切り替わります。
-const CACHE_VERSION = 'v9';
+const CACHE_VERSION = 'v10';
 const CACHE_NAME = `fitcore-${CACHE_VERSION}`;
 const PRECACHE = [
   './',
   './index.html',
   './dotfont.js',
   './manifest.webmanifest',
+  './logo-intro.js',
+  './logo-sprites.js',
+  './logo-arrival.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
