@@ -174,7 +174,7 @@
         <div class="fc-head-text">
           <!-- data-dot: 読み込み後に dotfont.js のドット文字（SVG）に差し替える。JS が動かない間は、この文字がそのまま見える -->
           <h1 class="fc-title" data-dot="FITCORE">FITCORE</h1>
-          <p class="fc-sub" data-dot="SMART DIET SUPPORT" data-dot-size="0.95">Smart Diet Support</p>
+          <p class="fc-sub" data-dot="DIET AND MUSCLE" data-dot-size="0.95">ダイエットも、筋肉づくりも</p>
         </div>
       </div>
 
@@ -533,6 +533,7 @@
               <option value="belly">目的: お腹・下腹部引き締め</option>
               <option value="legs">目的: 太もも・美脚・ヒップ</option>
               <option value="upper">目的: 二の腕・背中・姿勢改善</option>
+              <option value="muscle">目的: 筋肥大（ゆっくり・限界まで）</option>
               <option value="full" selected>目的: 全身脂肪燃焼</option>
             </select>
             <select id="filterDuration" onchange="generateCustomWorkout()" class="bg-gray-100 text-xs font-semibold px-3 py-2 rounded-xl border-none">
@@ -1223,6 +1224,11 @@
       // 全身
       { id: 'jumpingjack', name: 'ジャンピングジャック', target: '全身・心肺', category: 'full', lv: 1, durationSec: 30, point: '手足を同時に開閉しながら軽く跳ぶ', ng: 'かかとからドスンと着地' },
       { id: 'highknees', name: 'もも上げ', target: '全身・心肺', category: 'full', lv: 1, durationSec: 30, point: '腕を振りながら、膝を腰の高さまで交互に上げる', ng: '上体が後ろに反る' },
+      // 筋肥大用（ゆっくり動かして、きつくなるまで）
+      { id: 'slowsquat', name: 'スロースクワット', target: '太もも・お尻', category: 'legs', lv: 2, durationSec: 30, point: '3秒かけて沈み、1秒で立つ。立ち切らずに続ける', ng: '勢いをつけて反動で動く' },
+      { id: 'slowpush', name: 'スロープッシュアップ', target: '胸・肩・二の腕', category: 'upper', lv: 2, durationSec: 30, point: '3秒で胸を床すれすれまで下ろし、1秒で押す（きつければ膝つきでOK）', ng: '腰が落ちる・反動で押す' },
+      { id: 'hiplift1', name: '片脚ヒップリフト', target: 'お尻・もも裏', category: 'legs', lv: 2, durationSec: 30, point: '片脚を伸ばしたまま持ち上げる。半分で左右を入れ替え、上で1秒止める', ng: '腰を反らせて持ち上げる' },
+      { id: 'bulgarian', name: 'ブルガリアンスクワット', target: '太もも・お尻', category: 'legs', lv: 3, durationSec: 30, point: '後ろ足を椅子にのせ、前脚で沈む。半分で左右を入れ替える', ng: '前かがみになりすぎる・ぐらつく椅子を使う' },
       { id: 'burpee', name: 'バーピージャンプ', target: '全身燃焼', category: 'full', lv: 3, durationSec: 45, point: '素早くかがんで脚を後ろに伸ばす', ng: '着地時に膝を痛める姿勢' }
     ];
     const exById = Object.fromEntries(exerciseDB.map(e => [e.id, e]));
@@ -1234,14 +1240,18 @@
       belly: ['crunch', 'mountain', 'legraise', 'plank', 'bicycle', 'deadbug', 'russiantwist', 'sideplank', 'burpee'],
       legs: ['squat', 'hiplift', 'lunge', 'calfraise', 'sidelunge', 'donkeykick', 'jumpsquat', 'burpee'],
       upper: ['pushup', 'armraise', 'shouldertap', 'dips', 'superman', 'fullpushup', 'narrowpush', 'pikepush', 'burpee'],
+      muscle: ['slowsquat', 'slowpush', 'hiplift1', 'pikepush', 'bulgarian', 'dips', 'superman'],
       full: ['squat', 'pushup', 'mountain', 'lunge', 'superman', 'jumpingjack', 'hiplift', 'crunch', 'highknees', 'fullpushup', 'plank', 'sidelunge', 'shouldertap', 'jumpsquat', 'burpee']
     };
     const GOAL_INFO = {
       belly: { title: 'お腹引き締め & 体幹', tip: 'クランチ + プランクで下腹部を狙う' },
       legs: { title: '下半身・ヒップアップ', tip: 'スクワットとヒップリフトでお尻から引き締める' },
       upper: { title: '二の腕・背中・姿勢改善', tip: '肩甲骨を意識して背中と二の腕を使う' },
-      full: { title: '全身脂肪燃焼', tip: '全身を順番に動かして消費カロリーを上げる' }
+      full: { title: '全身脂肪燃焼', tip: '全身を順番に動かして消費カロリーを上げる' },
+      muscle: { title: '筋肥大（ゆっくり・限界まで）', tip: 'ゆっくり動かして、最後はきつくなるまで。休憩は45秒' }
     };
+    // 目的ごとの調整：筋肥大は1種目を長めにして、休憩も45秒（書いてない目的はレベルの値）
+    const GOAL_TUNE = { muscle: { mult: 1.5, rest: 45 } };
     // レベル: 種目の時間の倍率・休憩・使う種目のきつさの上限
     const LEVELS = {
       easy: { label: '初級', mult: 0.75, rest: 20, maxLv: 2 },
@@ -1249,7 +1259,9 @@
       hard: { label: '上級', mult: 1.35, rest: 10, maxLv: 3 }
     };
     // 日曜〜土曜のおすすめ
-    const WEEKDAY_GOALS = ['full', 'belly', 'legs', 'upper', 'belly', 'legs', 'full'];
+    const WEEKDAY_GOALS = ['full', 'muscle', 'belly', 'muscle', 'legs', 'muscle', 'full'];
+    // 筋肥大モード（目標体重が今より重い）の週間おすすめ：筋肥大の日を4回に
+    const GAIN_WEEKDAY_GOALS = ['belly', 'muscle', 'legs', 'muscle', 'upper', 'muscle', 'muscle'];
     const TODAY_MINUTES = 7;
     const READY_SEC = 5;
 
@@ -1451,7 +1463,8 @@
       const mode = goalMode();
       let targetCal = tdee;
       if (mode === 'loss') targetCal = tdee - Math.min((diff * 7200) / days, 700);
-      if (mode === 'gain') targetCal = tdee + Math.min((-diff * 7200) / days, 300);
+      // 筋肥大の目安：1日 +300〜500kcal（増やしすぎると脂肪もつく）
+      if (mode === 'gain') targetCal = tdee + Math.min(500, Math.max(300, (-diff * 7200) / days));
       targetCal = Math.round(targetCal);
       if (targetCal < bmr) targetCal = Math.round(bmr * 1.05);
       state.stats.targetCalories = targetCal;
@@ -1459,6 +1472,11 @@
       state.stats.targetP = Math.round((targetCal * 0.25) / 4);
       state.stats.targetF = Math.round((targetCal * 0.20) / 9);
       state.stats.targetC = Math.round((targetCal * 0.55) / 4);
+      if (mode === 'gain') { // 筋肥大：たんぱく質は体重1kgあたり2g、残りを脂質25%と炭水化物に
+        state.stats.targetP = Math.round(u.weight * 2);
+        state.stats.targetF = Math.round((targetCal * 0.25) / 9);
+        state.stats.targetC = Math.max(0, Math.round((targetCal - state.stats.targetP * 4 - state.stats.targetF * 9) / 4));
+      }
 
       $('calcBmi').textContent = state.stats.bmi;
       $('calcBmr').textContent = state.stats.bmr.toLocaleString();
@@ -1466,7 +1484,7 @@
       $('calcTargetCal').textContent = state.stats.targetCalories.toLocaleString();
       const g = u.goalWeight - u.weight;
       $('calcWeightDiff').textContent = (g > 0 ? '+' : '') + g.toFixed(1) + ' kg';
-      $('goalTypeText').textContent = { loss: '減量モード', gain: '増量モード', keep: '維持モード' }[mode];
+      $('goalTypeText').textContent = { loss: '減量モード', gain: '筋肥大モード', keep: '維持モード' }[mode];
     }
 
     // 入力欄の数字を読む（全角数字や「,」の小数点も受け付ける）
@@ -2015,14 +2033,17 @@
     // ---------- 筋トレ ----------
     // 指定した時間に収まるように、種目（間に休憩）を順番に並べる
     function buildPlan(goal, minutes, level = 'normal') {
-      const L = LEVELS[level] || LEVELS.normal;
+      const L = { ...(LEVELS[level] || LEVELS.normal) };
+      const tune = GOAL_TUNE[goal] || {};
+      const gm = tune.mult || 1;
+      if (tune.rest != null) L.rest = tune.rest;
       const pool = GOAL_ORDER[goal].map(id => exById[id]).filter(e => e.lv <= L.maxLv);
       const target = minutes * 60;
       const items = [];
       let total = 0;
       for (let i = 0; i < 100; i++) {
         const ex = pool[i % pool.length];
-        const sec = Math.max(15, Math.round(ex.durationSec * L.mult / 5) * 5);
+        const sec = Math.max(15, Math.round(ex.durationSec * L.mult * gm / 5) * 5);
         const need = (items.length ? L.rest : 0) + sec;
         if (items.length && total + need > target + 15) break;
         items.push({ ex, sec, round: Math.floor(i / pool.length) + 1 });
@@ -2071,11 +2092,11 @@
     function generateCustomWorkout() {
       const level = $('filterLevel').value;
       customPlan = buildPlan($('filterGoal').value, parseInt($('filterDuration').value), level);
-      $('restNote').textContent = `種目の間に${LEVELS[level].rest}秒休憩`;
+      $('restNote').textContent = `種目の間に${customPlan.rest}秒休憩`;
       $('totalExerciseCount').textContent = renderPlanList($('workoutListContainer'), customPlan);
     }
 
-    function todayGoal() { return WEEKDAY_GOALS[new Date().getDay()]; }
+    function todayGoal() { return (goalMode() === 'gain' ? GAIN_WEEKDAY_GOALS : WEEKDAY_GOALS)[new Date().getDay()]; }
 
     function renderTodayWorkoutCard() {
       const goal = todayGoal();
@@ -2194,6 +2215,17 @@
         STAND] }
     };
     EX_ANIM.narrowpush = { ...EX_ANIM.fullpushup, dur: 2000 };
+    // ゆっくり版：4秒で1回。3秒かけて下ろし（または上げ）、1秒で戻る
+    EX_ANIM.slowsquat = { ...EX_ANIM.squat, dur: 4000, slow: true };
+    EX_ANIM.slowpush = { ...EX_ANIM.fullpushup, dur: 4000, slow: true };
+    // 片脚ヒップリフト：片脚を伸ばしたまま上げ下げ
+    EX_ANIM.hiplift1 = { dur: 2400, frames: [
+      { hip: [62, 77], t: 180, a1: [3, 0], a2: [3, 0], l1: { to: [80, 82] }, l2: [-22, -22], toe1: 0, toe2: -22 },
+      { hip: [62, 64], t: 146, a1: [3, 0], a2: [3, 0], l1: { to: [80, 82] }, l2: [-22, -22], toe1: 0, toe2: -22 }] };
+    // ブルガリアンスクワット：後ろ足を椅子にのせて沈む
+    EX_ANIM.bulgarian = { dur: 2600, prop: 'chair', frames: [
+      { hip: [58, 54], t: -90, a1: { toH: [6, -2], b: 1 }, a2: { toH: [6, -2], b: 1 }, l1: { to: [72, 82] }, l2: { to: [36, 62] }, toe1: 0, toe2: 170 },
+      { hip: [56, 64], t: -90, a1: { toH: [6, -2], b: 1 }, a2: { toH: [6, -2], b: 1 }, l1: { to: [72, 82] }, l2: { to: [36, 62] }, toe1: 0, toe2: 170 }] };
 
     const D2R = Math.PI / 180;
     function polar(p, a, l) { return [p[0] + l * Math.cos(a * D2R), p[1] + l * Math.sin(a * D2R)]; }
@@ -2246,6 +2278,12 @@
     function lerpAngle(a, b, u) { let d = ((b - a) % 360 + 540) % 360 - 180; return a + d * u; }
     function poseAt(id, ms) {
       const frames = animFrames(id), def = EX_ANIM[id];
+      if (def.slow) { // 前の4分の3でゆっくり変化、残りで戻る
+        const t = (ms % def.dur) / def.dur, v = t < 0.75 ? t / 0.75 : (1 - t) / 0.25, w = 0.5 - 0.5 * Math.cos(Math.PI * v);
+        const A = frames[0], B = frames[1], f = { hx: A.hx + (B.hx - A.hx) * w, hy: A.hy + (B.hy - A.hy) * w };
+        ANGLE_KEYS.forEach(k => f[k] = lerpAngle(A[k], B[k], w));
+        return f;
+      }
       const n = frames.length;
       const pos = ((ms % def.dur) / def.dur) * n;
       const i = Math.floor(pos), j = (i + 1) % n;
